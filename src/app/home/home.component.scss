@@ -1,0 +1,45 @@
+.bandeau {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 185px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.bandeau .bandeau-title {
+  min-height: 135px;
+  max-height: 135px;
+  background-color: rgb(31, 82, 150);
+
+  min-width: 80%;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-weight: bold;
+}
+.bandeau .bandeau-title .title {
+  font-size: 3.8em;
+  margin-left: 20px;
+}
+.bandeau .bandeau-title .logo fa-icon {
+  font-size: 81px;
+  color: white;
+}
+.last-intervention {
+  /* background: orangered; */
+  /* border: 3px solid orangered; */
+  color: white;
+  max-width: 100%;
+  min-height: 150px;
+  margin: 20px;
+  margin-top: 0;
+
+  border-radius: 5px;
+}
