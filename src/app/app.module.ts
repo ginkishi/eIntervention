@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/angular-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
+import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { far } from "@fortawesome/free-regular-svg-icons";
     MenuComponent,
     LoginComponent,
     HomeComponent,
-    ClockComponent
+    ClockComponent,
+    NoPageFoundComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
 
