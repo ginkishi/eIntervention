@@ -1,0 +1,118 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.contain {
+  display: grid;
+  background: #141e30; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #243b55,
+    #141e30
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #243b55,
+    #141e30
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  min-height: 100vh;
+  place-content: center;
+}
+.form-login {
+  text-align: center;
+  max-width: 500px;
+  padding: 15px;
+  margin: 0px auto 0px auto;
+  min-height: 700px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1e3c72; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #2a5298,
+    #1e3c72
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #2a5298,
+    #1e3c72
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  box-shadow: 0px 0px 10px 2px black;
+  border-radius: 21px;
+}
+.form-login .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 500px;
+  text-align: center;
+}
+.form-login .content .champ {
+  margin: 20px 10px;
+  background: #192e57;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 450px;
+  padding: 5px 0px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.795);
+}
+.form-login .content .champ input {
+  font-size: 22px;
+  background: #192e57;
+  outline: none;
+  border: none;
+  color: white;
+  width: 100%;
+}
+.form-login .content .champ label {
+  font-size: 22px;
+  margin-right: 10px;
+}
+.form-login .content .champ label fa-icon {
+  color: white;
+  margin-left: 5px;
+  border-right: 2px solid #1e3c72;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-login .content .icon-header {
+  margin-bottom: 30px;
+  color: white;
+}
+.form-login .content .icon-header fa-icon {
+  font-size: 10em;
+  /* box-shadow: 0px 0px 5px 5px #0b1c3b; */
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.795);
+
+  display: flex;
+}
+.form-login .content #loginBtn {
+  min-width: 300px;
+  max-width: 300px;
+  margin: 40px auto 0px auto;
+  border: none;
+  padding: 20px;
+  font-size: 22px;
+  border-radius: 5px;
+  background: #0575e6; /* fallback for old browsers */
+  color: white;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  /* box-shadow: 0px 0px 5px 1px white; */
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.795);
+}
