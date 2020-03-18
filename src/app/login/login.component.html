@@ -1,1 +1,19 @@
-<p>login works!</p>
+<div class="form-login">
+    <div class="content">
+        <div class="icon-header">
+            <fa-icon [icon]="['fas', 'user-circle']"></fa-icon>
+        </div>
+        <div class="champ">
+            <label for="username">
+                <fa-icon [icon]="['fas', 'user']"></fa-icon>
+            </label>
+            <input type="text" id="username" name="username" placeholder="Identifiant" autocomplete="off" required></div>
+        <div class="champ">
+            <label for="password">
+                <fa-icon [icon]="['fas', 'unlock-alt']"></fa-icon>
+            </label>
+            <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+        </div>
+        <input type="submit" value="Connexion" id="loginBtn" name="loginBtn">
+    </div>
+</div>
