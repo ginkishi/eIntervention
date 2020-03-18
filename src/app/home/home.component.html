@@ -8,6 +8,36 @@
     </div>
     <app-clock></app-clock>
 </div>
+<div class="cards-container">
+    <div class="cards warn">
+        <div class="logo"><a routerLinkActive="active" routerLink='/home' href="#">
+                <fa-icon [icon]="['fas', 'pause-circle']"></fa-icon>
+            </a></div>
+        <div class="body">
+            <div class="title">En attente :
+            </div>
+            <div class="number">0 </div>
+        </div>
+    </div>
+    <div class="cards danger">
+        <div class="logo"><a routerLinkActive="active" routerLink='/home' href="#">
+                <fa-icon [icon]="['fas', 'times-circle']"></fa-icon>
+            </a></div>
+        <div class="body">
+            <div class="title">Non Validé :</div>
+            <div class="number">0 </div>
+        </div>
+    </div>
+    <div class="cards valid">
+        <div class="logo"><a routerLinkActive="active" routerLink='/home' href="#">
+                <fa-icon [icon]="['fas', 'check-circle']"></fa-icon>
+            </a></div>
+        <div class="body">
+            <div class="title">Validé :</div>
+            <div class="number">0 </div>
+        </div>
+    </div>
+</div>
 <div class="last-intervention">
     <div class="title">Derni&egrave;res interventions</div>
     <div class="grille">
