@@ -113,3 +113,39 @@
 .cards-container .cards.valid {
   background: #56ab2f; /* fallback for old browsers */
 }
+@media screen and (max-width: 768px) {
+  .bandeau {
+    grid-template-columns: 1fr;
+    transition: 0.25s linear;
+  }
+  .bandeau .bandeau-title {
+    margin: 0;
+    flex-direction: column;
+  }
+  .bandeau .bandeau-title .title {
+    font-size: 2em;
+  }
+  .bandeau .bandeau-title .logo fa-icon {
+    font-size: 3.2em;
+    transition: 0.25s linear;
+  }
+}
+@media screen and (max-width: 576px) {
+  .bandeau {
+    grid-template-columns: 1fr;
+    transition: 0.25s linear;
+  }
+  .bandeau .bandeau-title {
+    margin: 0;
+    flex-direction: column;
+    min-height: 150px;
+  }
+  .bandeau .bandeau-title .title {
+    font-size: 2em;
+    transition: 0.25s linear;
+  }
+  .bandeau .bandeau-title .logo fa-icon {
+    font-size: 3em;
+    transition: 0.25s linear;
+  }
+}

@@ -1,0 +1,107 @@
+.export-container {
+  min-width: 100%;
+  text-align: center;
+}
+.export-container .bandeau {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 185px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.export-container .bandeau .bandeau-title {
+  min-height: 120px;
+  max-height: 120px;
+  background-color: #56ab2f;
+
+  min-width: 80%;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-weight: bold;
+}
+.export-container .bandeau .bandeau-title .title {
+  font-size: 2.5em;
+  margin-left: 20px;
+}
+.export-container .bandeau .bandeau-title .logo {
+  font-size: 50px;
+}
+.export-container .body {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 20px;
+  padding: 10px 25px;
+  font-family: "Montserrat", sans-serif;
+  text-align: left;
+  justify-items: center;
+}
+.export-container .body span.label {
+  font-size: 24px;
+  font-weight: bold;
+}
+.export-container .body input[type="date"] {
+  font-size: 20px;
+  border-radius: 8px;
+  border: 2px solid #56ab2f;
+  outline: none;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+  //   background-color: #56ab2f;
+  color: #56ab2f;
+}
+.submit {
+  background-color: #56ab2f;
+  color: white;
+  border: none;
+  font-size: 1.5em;
+  padding: 10px 25px;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 8px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+  transition: 0.25s linear;
+}
+@media screen and (max-width: 768px) {
+  .export-container .bandeau {
+    grid-template-columns: 1fr;
+    transition: 0.25s linear;
+  }
+  .export-container .bandeau .bandeau-title {
+    margin: 0;
+    flex-direction: column;
+  }
+  .export-container .bandeau .bandeau-title .title {
+    font-size: 2em;
+  }
+}
+@media screen and (max-width: 515px) {
+  .export-container .bandeau {
+    grid-template-columns: 1fr;
+    transition: 0.25s linear;
+  }
+  .export-container .bandeau .bandeau-title {
+    margin: 0;
+    flex-direction: column;
+    min-height: 150px;
+  }
+  .export-container .bandeau .bandeau-title .title {
+    font-size: 1.8em;
+  }
+  .export-container .body .champ {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .export-container .body .champ input[type="date"] {
+    width: 100%;
+  }
+}
