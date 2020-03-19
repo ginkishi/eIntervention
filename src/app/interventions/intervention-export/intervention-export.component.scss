@@ -70,3 +70,38 @@
   box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
   transition: 0.25s linear;
 }
+@media screen and (max-width: 768px) {
+  .export-container .bandeau {
+    grid-template-columns: 1fr;
+    transition: 0.25s linear;
+  }
+  .export-container .bandeau .bandeau-title {
+    margin: 0;
+    flex-direction: column;
+  }
+  .export-container .bandeau .bandeau-title .title {
+    font-size: 2em;
+  }
+}
+@media screen and (max-width: 515px) {
+  .export-container .bandeau {
+    grid-template-columns: 1fr;
+    transition: 0.25s linear;
+  }
+  .export-container .bandeau .bandeau-title {
+    margin: 0;
+    flex-direction: column;
+    min-height: 150px;
+  }
+  .export-container .bandeau .bandeau-title .title {
+    font-size: 1.8em;
+  }
+  .export-container .body .champ {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .export-container .body .champ input[type="date"] {
+    width: 100%;
+  }
+}
