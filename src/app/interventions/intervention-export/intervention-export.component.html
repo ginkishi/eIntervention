@@ -3,14 +3,16 @@
     <form action="">
         <div class="bandeau">
             <div class="bandeau-title">
-                <div class="logo"><i class="fas fa-file-download"></i></div>
+                <div class="logo">
+                    <fa-icon [icon]="['fas', 'file-download']"></fa-icon>
+                </div>
                 <div class="title">Exportation des interventions</div>
             </div>
             <app-clock></app-clock>
         </div>
         <div class="body">
             <div class="champ"><span class="label"> Date de début : </span><input type="date" name="date_debut" /></div>
-            <div class="champ"><span class="label">Date de fin :</span> <input type="date" name="date_fin" /></div>
+            <div class="champ"><span class="label">Date de fin : </span> <input type="date" name="date_fin" /></div>
             <div class="champ"><input class="submit" type="submit" value="Exporter"></div>
         </div>
     </form>
