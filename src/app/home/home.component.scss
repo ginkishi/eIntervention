@@ -1,0 +1,115 @@
+.bandeau {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 185px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.bandeau .bandeau-title {
+  min-height: 135px;
+  max-height: 135px;
+  background-color: rgb(31, 82, 150);
+
+  min-width: 80%;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-weight: bold;
+}
+.bandeau .bandeau-title .title {
+  font-size: 3.8em;
+  margin-left: 20px;
+}
+.bandeau .bandeau-title .logo fa-icon {
+  font-size: 81px;
+  color: white;
+}
+.last-intervention {
+  color: white;
+  max-width: 100%;
+  min-height: 150px;
+  margin: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+.last-intervention > .title {
+  text-align: center;
+  min-width: 100%;
+  font-size: 36px;
+  font-family: "Montserrat", sans-serif;
+  padding: 10px;
+  color: white;
+  background: orangered;
+  transition: 0.25 linear;
+  border-radius: 5px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+  transition: 0.25s linear;
+}
+.cards-container {
+  max-width: 100%;
+  min-height: 175px;
+  max-height: 1175px;
+  margin: 20px;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  flex-wrap: wrap;
+}
+.cards-container .cards {
+  background: #212121;
+  min-width: 390px;
+  max-width: 390px;
+  min-height: 230px;
+  max-height: 230px;
+  margin: 10px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+
+  border-radius: 8px;
+}
+.cards-container .cards > .logo {
+  text-align: center;
+  min-width: 100%;
+  font-size: 102px;
+}
+.cards-container .cards > .logo fa-icon {
+  color: white;
+}
+.cards-container .cards > .body {
+  display: flex;
+  padding: 0 10px;
+}
+.cards-container .cards > .body .number {
+  text-align: center;
+  min-width: 25%;
+  max-width: 25%;
+  font-size: 52px;
+  color: white;
+}
+.cards-container .cards > .body .title {
+  text-align: center;
+  min-width: 75%;
+  max-width: 75%;
+  font-size: 36px;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.cards-container .cards.warn {
+  background: #f7971e; /* fallback for old browsers */
+}
+.cards-container .cards.danger {
+  background: #ed213a; /* fallback for old browsers */
+}
+.cards-container .cards.valid {
+  background: #56ab2f; /* fallback for old browsers */
+}
