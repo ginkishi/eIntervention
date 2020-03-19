@@ -14,6 +14,9 @@ import {
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
+import { InterventionAddComponent } from './interventions/intervention-add/intervention-add.component';
+import { InterventionEditComponent } from './interventions/intervention-edit/intervention-edit.component';
+import { InterventionExportComponent } from './interventions/intervention-export/intervention-export.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
     LoginComponent,
     HomeComponent,
     ClockComponent,
-    NoPageFoundComponent
+    NoPageFoundComponent,
+    InterventionAddComponent,
+    InterventionEditComponent,
+    InterventionExportComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
 
