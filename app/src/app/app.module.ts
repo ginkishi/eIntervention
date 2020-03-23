@@ -1,4 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -13,10 +14,10 @@ import {
 } from "@fortawesome/angular-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
-import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
-import { InterventionAddComponent } from './interventions/intervention-add/intervention-add.component';
-import { InterventionEditComponent } from './interventions/intervention-edit/intervention-edit.component';
-import { InterventionExportComponent } from './interventions/intervention-export/intervention-export.component';
+import { NoPageFoundComponent } from "./no-page-found/no-page-found.component";
+import { InterventionAddComponent } from "./interventions/intervention-add/intervention-add.component";
+import { InterventionEditComponent } from "./interventions/intervention-edit/intervention-edit.component";
+import { InterventionExportComponent } from "./interventions/intervention-export/intervention-export.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,12 @@ import { InterventionExportComponent } from './interventions/intervention-export
     InterventionEditComponent,
     InterventionExportComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+    HttpClientModule
+  ],
 
   providers: [],
   bootstrap: [AppComponent]
