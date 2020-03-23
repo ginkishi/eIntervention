@@ -7,4 +7,3 @@
     define("SQL_DSN", "mysql:host=".$host.";dbname=".$dbname);
     define("SQL_USERNAME", $dbUsername);
     define("SQL_PASSWORD", $dbPassword);
-?>

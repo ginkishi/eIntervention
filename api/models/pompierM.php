@@ -46,7 +46,7 @@ class Pompier
 
   public function listAllRole($hab)
   {
-    $sql = "SELECT F_ID FROM `habilitation` WHERE GP_ID = " . $hab . " ORDER BY F_ID ASC;";
+    $sql = "SELECT h.F_ID,F_LIBELLE FROM `habilitation` h JOIN fonctionnalite f on f.F_ID = h.F_ID WHERE GP_ID = " . $hab . " ORDER BY h.F_ID ASC;";
     $dbh = BDD::getInstance();
     $stmt = $dbh->prepare($sql);
     $stmt->execute();

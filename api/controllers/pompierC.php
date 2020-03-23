@@ -74,7 +74,7 @@ class PompierController
                     "P_PRENOM" => utf8_encode($P_PRENOM),
                     "P_PRENOM2" => utf8_encode($P_PRENOM2),
                     "P_SEXE" => utf8_encode($P_SEXE),
-                    "P_CIVILITE " => utf8_encode($P_CIVILITE),
+                    "P_CIVILITE" => utf8_encode($P_CIVILITE),
                     "P_GRADE" => utf8_encode($P_GRADE),
                     "GP_ID" => $GP_ID,
                     "GP_ID2" => $GP_ID2,
@@ -129,7 +129,7 @@ class PompierController
                 "P_PRENOM" => utf8_encode($P_PRENOM),
                 "P_PRENOM2" => utf8_encode($P_PRENOM2),
                 "P_SEXE" => utf8_encode($P_SEXE),
-                "P_CIVILITE " => utf8_encode($P_CIVILITE),
+                "P_CIVILITE" => utf8_encode($P_CIVILITE),
                 "P_GRADE" => utf8_encode($P_GRADE),
                 "P_EMAIL" => utf8_encode($P_EMAIL),
                 "P_BIRTHDATE" => utf8_encode($P_BIRTHDATE),
@@ -144,7 +144,12 @@ class PompierController
             if ($num2 > 0) {
                 while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                     extract($row2);
-                    array_push($p["ROLE"], $F_ID);
+
+					$f = array(
+					"F_ID" => $F_ID,
+					"F_LIBELLE" => utf8_encode($F_LIBELLE)
+					);
+                    array_push($p["ROLE"], $f);
                 }
             }
             $stmt3 = $model->listAllRole($GP_ID2);
@@ -152,7 +157,11 @@ class PompierController
             if ($num3 > 0) {
                 while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC)) {
                     extract($row3);
-                    array_push($p["ROLE2"], $F_ID);
+					$f = array(
+					"F_ID" => $F_ID,
+					"F_LIBELLE" => utf8_encode($F_LIBELLE)
+					);
+                    array_push($p["ROLE2"], $f);
                 }
             }
             array_push($parr["pompier"], $p);
