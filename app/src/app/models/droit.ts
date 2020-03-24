@@ -1,5 +1,5 @@
-export interface Droit {
 
-    F_ID: number;
-    F_LIBELLE: string;
-  }
+export class Droit {
+  constructor(public F_ID: number, public F_LIBELLE: string) {}
+}
+
