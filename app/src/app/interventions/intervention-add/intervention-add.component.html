@@ -46,15 +46,22 @@
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Nom du v&eacute;hicule</label>
-                        <select name="vehicule[]" id="vehicule[]" class="form-control" ngModel>
-                            <option value="">Selectionnez un nom</option>
+                        <select name="vehicule[]" id="vehicule[]" class="form-control" ngModel [(ngModel)]="selectedvehicule">
+                            <option value="">Selectionnez un véhicule</option>
                             <option *ngFor="let v of vehicules"  value="{{v.V_ID}}" >
                                 {{v.V_INDICATIF}}
                             </option>
                      </select>
-                        
                     </div>
+                   
                     <div class="champ mycheckbox"><label for="">Ronde</label><input type="checkbox" name="ronde" id="ronde" ngModel></div>
+                </div>
+                <div class="group-champ col2"  *ngIf="selectedvehicule !== ''">
+                    <div class="champ">
+                        <label for="name">Apprenti(Optionel):</label>
+                        <input type="text" id="apprenti[]" ngModel name="apprenti[]" required>
+                            
+                    </div>
                 </div>
                 <div class="group-champ col2">
                     <div class="champ"><label for="">Date de d&eacute;part</label><input type="date" autocomplete="off" required ngModel  id="datadepart" name="datadepart"></div>
