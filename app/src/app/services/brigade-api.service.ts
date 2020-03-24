@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Vehicule } from "../models/vehicule";
 import { Observable } from "rxjs";
 import { Pompier } from "../models/pompier";
+import { Droit } from "../models/droit";
 import { TypeIntervention } from "../models/typeIntervention";
 
 @Injectable({
