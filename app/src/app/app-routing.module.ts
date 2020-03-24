@@ -7,15 +7,33 @@ import { InterventionAddComponent } from "./interventions/intervention-add/inter
 import { InterventionEditComponent } from "./interventions/intervention-edit/intervention-edit.component";
 import { InterventionExportComponent } from "./interventions/intervention-export/intervention-export.component";
 import { ProfilComponent } from "./profil/profil.component";
+import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
-  { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path: "profil", component: ProfilComponent },
-  { path: "home", component: HomeComponent },
+  {
+    path: "",
+    canActivate: [AuthGuard],
+    redirectTo: "/home",
+    pathMatch: "full"
+  },
+  { path: "profil", canActivate: [AuthGuard], component: ProfilComponent },
+  { path: "home", canActivate: [AuthGuard], component: HomeComponent },
   { path: "login", component: LoginComponent },
-  { path: "intervention/add", component: InterventionAddComponent },
-  { path: "intervention/export", component: InterventionExportComponent },
-  { path: "intervention/edit/:id", component: InterventionEditComponent },
+  {
+    path: "intervention/add",
+    canActivate: [AuthGuard],
+    component: InterventionAddComponent
+  },
+  {
+    path: "intervention/export",
+    canActivate: [AuthGuard],
+    component: InterventionExportComponent
+  },
+  {
+    path: "intervention/edit/:id",
+    canActivate: [AuthGuard],
+    component: InterventionEditComponent
+  },
   { path: "logout", component: LoginComponent },
   { path: "**", component: NoPageFoundComponent }
 ];

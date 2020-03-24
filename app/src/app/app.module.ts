@@ -21,6 +21,8 @@ import { InterventionEditComponent } from "./interventions/intervention-edit/int
 import { InterventionExportComponent } from "./interventions/intervention-export/intervention-export.component";
 import { ProfilComponent } from "./profil/profil.component";
 import { AuthentificationService } from "./services/authentification.service";
+import { AuthGuard } from "./auth.guard";
+import { BrigadeApiService } from "./services/brigade-api.service";
 
 @NgModule({
   declarations: [
@@ -43,7 +45,7 @@ import { AuthentificationService } from "./services/authentification.service";
     FormsModule
   ],
 
-  providers: [AuthentificationService],
+  providers: [BrigadeApiService, AuthentificationService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
