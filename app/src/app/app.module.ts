@@ -19,6 +19,7 @@ import { NoPageFoundComponent } from "./no-page-found/no-page-found.component";
 import { InterventionAddComponent } from "./interventions/intervention-add/intervention-add.component";
 import { InterventionEditComponent } from "./interventions/intervention-edit/intervention-edit.component";
 import { InterventionExportComponent } from "./interventions/intervention-export/intervention-export.component";
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { InterventionExportComponent } from "./interventions/intervention-export
     NoPageFoundComponent,
     InterventionAddComponent,
     InterventionEditComponent,
-    InterventionExportComponent
+    InterventionExportComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
