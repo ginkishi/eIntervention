@@ -1,0 +1,39 @@
+<app-menu></app-menu>
+<div class="pompier-container">
+    <div class="bandeau-title">
+        <div class="logo">
+            <fa-icon [icon]="['fas', 'address-card']"></fa-icon>
+        </div>
+        <div class="title">Profil</div>
+    </div>
+    <div class="body" *ngIf="ProfileLoaded | async">
+        <div class="info">
+            <div class="title">Informations</div>
+            <div class="nom"><span class="label">Nom : </span>{{unPompier.P_NOM}}</div>
+            <div class="prenom"><span class="label">Prénom : </span>{{unPompier.P_PRENOM}}</div>
+            <div class="prenom"><span class="label">Prénom 2 : </span>{{unPompier.P_PRENOM2}}</div>
+            <div class="civilite"><span class="label">Civilité : </span>{{unPompier.P_CIVILITE ? "Monsieur" : "Madame"}}</div>
+            <div class="sexe"><span class="label">Sexe : </span>{{unPompier.P_SEXE ? "Masculin" : "Feminin"}}</div>
+            <div class="birth"><span class="label">Date de naissance : </span></div>
+            <div class="grade"><span class="label">Grade : </span>{{unPompier.G_DESCRIPTION}}</div>
+            <div class="email"><span class="label">Email : </span>{{unPompier.P_EMAIL}}</div>
+        </div>
+        <div class="droits">
+            <div class="title">Droits</div>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Droit</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let d of unPompier.ROLE">
+                        <td>{{d.F_ID}}</td>
+                        <td>{{d.F_LIBELLE}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
