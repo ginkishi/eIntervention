@@ -12,6 +12,9 @@ export class InterventionAddComponent implements OnInit {
   response: any;
   typesIntervention: TypeIntervention[];
   vehicules :Vehicule[];
+  selectedvehicule: string='';
+
+
   constructor(private apiService: BrigadeApiService) {}
 
   ngOnInit(): void {
