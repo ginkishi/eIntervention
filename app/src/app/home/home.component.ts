@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { BrigadeApiService } from "../services/brigade-api.service";
 import { Vehicule } from "../models/vehicule";
 import { Pompier } from "../models/pompier";

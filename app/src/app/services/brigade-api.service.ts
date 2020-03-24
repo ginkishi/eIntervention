@@ -1,15 +1,16 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Vehicule } from "../models/vehicule";
 import { Observable } from "rxjs";
 import { Pompier } from "../models/pompier";
 import { Droit } from "../models/droit";
+import { User } from "../models/user";
 
 @Injectable({
   providedIn: "root"
 })
 export class BrigadeApiService {
-  PHP_API_SERVER = "http://localhost/eintervention/api";
+  PHP_API_SERVER = "http://localhost/eIntervention/api";
   constructor(private httpClient: HttpClient) {}
 
   readAllVehicule(): Observable<Vehicule[]> {
@@ -25,5 +26,9 @@ export class BrigadeApiService {
     return this.httpClient.get<Droit>(
       `${this.PHP_API_SERVER}/fonctionnalite/` + id
     );
+  }
+
+  authentificate(user: User): Observable<User> {
+    return this.httpClient.post<User>(`${this.PHP_API_SERVER}/auth`, user);
   }
 }

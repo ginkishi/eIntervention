@@ -1,17 +1,19 @@
 import { Droit } from "./droit";
 
-export interface Pompier {
-  P_ID: number;
-  P_CODE: string;
-  P_NOM: string;
-  P_PRENOM: string;
-  P_PRENOM2: string;
-  P_SEXE: string;
-  P_CIVILITE: number;
-  GP_ID: number;
-  GP_ID2: number;
-  ROLE: Droit[];
-  ROLE2: Droit[];
-  G_DESCRIPTION: string;
-  P_EMAIL: string;
+export class Pompier {
+  constructor(
+    public P_ID: number,
+    public P_CODE: string,
+    public P_NOM: string,
+    public P_PRENOM: string,
+    public P_PRENOM2: string,
+    public P_SEXE: string,
+    public P_CIVILITE: number,
+    public GP_ID: number,
+    public GP_ID2: number,
+    public ROLE: Droit[],
+    public ROLE2: Droit[],
+    public G_DESCRIPTION: string,
+    public P_EMAIL: string
+  ) {}
 }

@@ -44,11 +44,11 @@ class PompierController
                 }
             }
             array_push($parr["pompier"], $p);
-            header('Content-Type: application/json');
+            //header('Content-Type: application/json');
             http_response_code(200);
             echo json_encode($parr);
         } else {
-            http_response_code(404);
+            http_response_code(200);
             echo json_encode(
                 array("message" => "Pas de pompier.")
             );
@@ -99,7 +99,7 @@ class PompierController
                 }
                 array_push($parr["pompiers"], $p);
             }
-            header('Content-Type: application/json');
+            //header('Content-Type: application/json');
             http_response_code(200);
             echo json_encode($parr);
         } else {
@@ -165,7 +165,7 @@ class PompierController
                 }
             }
             array_push($parr["pompier"], $p);
-            header('Content-Type: application/json');
+            //header('Content-Type: application/json');
             http_response_code(200);
             echo json_encode($parr);
         } else {
