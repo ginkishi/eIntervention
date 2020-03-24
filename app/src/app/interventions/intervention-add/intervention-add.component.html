@@ -48,7 +48,11 @@
                         <label for="">Nom du v&eacute;hicule</label>
                         <select name="" id="" class="form-control">
                             <option value="">Selectionnez un nom</option>
-                        </select>
+                            <option value="" *ngFor="let v of vehicules">
+                                {{v.V_INDICATIF}}
+                            </option>
+                     </select>
+                        
                     </div>
                     <div class="champ mycheckbox"><label for="">Ronde</label><input type="checkbox" name="" id=""></div>
                 </div>
