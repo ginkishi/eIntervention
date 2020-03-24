@@ -6,14 +6,21 @@
             <h2 class="title">Intervention</h2>
             <div class="body">
                 <div class="group-champ col3">
-                    <div class="champ"><label for="">Num&eacute;ro d'intervention</label><input type="text" autocomplete="off" required></div>
-                    <div class="champ"><label for="">Commune</label><input type="text" autocomplete="off" required></div>
-                    <div class="champ"><label for="">Adresse</label><input type="text" autocomplete="off" required></div>
+                    <div class="champ"><label for="">Num&eacute;ro d'intervention</label><input id="Nintervention" name="Nintervention" type="text" autocomplete="off" required ngModel></div>
+                    <div class="champ"><label for="">Commune</label><input type="text" autocomplete="off" required id="commune" name="commune" ngModel></div>
+                    <div class="champ"><label for="">Adresse</label><input type="text" autocomplete="off" required  id="adresse" name="adresse" ngModel></div>
                 </div>
                 <div class="champ">
                     <label for="">Type d'intervention</label>
-                    <select name="typeIntervention" id="" class="form-control">
-                        <option value="">Selectionnez un type</option>
+                    <select name="typeIntervention" id="typeIntervention" ngModel class="form-control">
+                        <option value="">
+                            Selectionnez un type</option>
+
+                            <option value=t[TI_CODE] *ngFor="let t of typesIntervention">
+                               {{t.TI_DESCRIPTION}}</option>
+                        <li *ngFor="let v of vehicules">
+                            {{v.V_INDICATIF}}
+                        </li>
                     </select>
                 </div>
                 <div class="group-champ col2">
@@ -75,3 +82,4 @@
         </div>
     </form>
 </div>
+{{form.value | json }}
