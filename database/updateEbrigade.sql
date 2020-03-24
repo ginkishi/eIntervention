@@ -1,0 +1,7 @@
+INSERT INTO fonctionnalite (F_ID, F_LIBELLE, F_TYPE, TF_ID, F_FLAG, F_DESCRIPTION) VALUES (78, "Ajouter Interventions", 0, 0, 0, "Permet a l'utilisateur d'ajouter des interventions");
+INSERT INTO fonctionnalite (F_ID, F_LIBELLE, F_TYPE, TF_ID, F_FLAG, F_DESCRIPTION) VALUES (79, "Modifier Interventions", 0, 0, 0, "Permet a l'utilisateur de modifer des interventions");
+INSERT INTO fonctionnalite (F_ID, F_LIBELLE, F_TYPE, TF_ID, F_FLAG, F_DESCRIPTION) VALUES (80, "Valider Interventions", 0, 0, 0, "Permet a l'utilisateur de valider des interventions");
+INSERT INTO fonctionnalite (F_ID, F_LIBELLE, F_TYPE, TF_ID, F_FLAG, F_DESCRIPTION) VALUES (81, "Lecture Intervention/Vehicule", 0, 0, 0, "Permet a l'utilisateur d'accèder aux interventions et aux véhicules (lecture)");
+INSERT INTO fonctionnalite (F_ID, F_LIBELLE, F_TYPE, TF_ID, F_FLAG, F_DESCRIPTION) VALUES (82, "Supprimer Interventions", 0, 0, 0, "Permet a l'utilisateur de supprimer des interventions");
+INSERT INTO fonctionnalite (F_ID, F_LIBELLE, F_TYPE, TF_ID, F_FLAG, F_DESCRIPTION) VALUES (83, "Demander Modifications", 0, 0, 0, "Permet a l'utilisateur de demander la modifications d'une interventions");
+INSERT INTO fonctionnalite (F_ID, F_LIBELLE, F_TYPE, TF_ID, F_FLAG, F_DESCRIPTION) VALUES (84, "Exporter", 0, 0, 0, "Permet a l'utilisateur d'exporter les donnees");
