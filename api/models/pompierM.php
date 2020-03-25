@@ -22,6 +22,16 @@ class Pompier
     $stmt->execute();
     return $stmt;
   }
+  public static function getPompierID($prenom, $nom)
+  {
+
+    $sql = "SELECT P_ID FROM `pompier` WHERE P_PRENOM = \"" . $prenom .  "\" AND P_NOM = \"" . $nom . "\";";
+    $dbh = BDD::getInstanceOfEBrigade();
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+    return $stmt;
+  }
+
 
 
   public function listAllPompier()

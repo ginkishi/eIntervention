@@ -1,6 +1,7 @@
 <?php
 require_once(MODELS . DS . "interventionM.php");
 require_once(MODELS . DS . "vehiculeM.php");
+
 class InterventionController
 {
     public function __construct()
@@ -109,5 +110,22 @@ class InterventionController
                 array("message" => "Pas d'intervention.")
             );
         }
+    }
+
+    public function addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
+    {
+        $model = new Intervention();
+        $stmt = $model->addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status);
+    }
+
+    public function deleteIntervention($id)
+    {
+        $model = new Intervention();
+        $stmt = $model->deleteIntervention($id);
+    }
+    public function deleteVehiculeFromIntervention($idIntervention, $idVehicule)
+    {
+        $model = new Intervention();
+        $stmt = $model->deleteVehiculeFromIntervention($idIntervention, $idVehicule);
     }
 }

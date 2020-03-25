@@ -1,5 +1,6 @@
 <?php
 require_once(PDO_PATH);
+require_once(MODELS . DS . "pompierM.php");
 class Intervention
 {
     public function construct()
@@ -44,6 +45,56 @@ class Intervention
         $idIntervention = self::cleanUserInput($idIntervention);
         $idVehicule = self::cleanUserInput($idVehicule);
         $sql = "SELECT IDPersonne,IDrole FROM `personnelduvehicule` WHERE IDIntervention = " . $idIntervention . " AND IDVehicule = " . $idVehicule . ";";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
+
+    public function addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
+    {
+        //DELETE FROM personnelduvehicule WHERE IDIntervention = $id;
+        //DELETE FROM vehiculeutilise WHERE IDIntervention = $id;
+        //DELETE FROM interventions WHERE IDIntervention = $id;
+
+        //$this->addVehiculeFromIntervention($id);
+        $res = explode(" ", $responsable); // $res[0] = prenom
+        $datedec = $dateDeclenchement . " " . $heureDeclenchement;
+        $idresp = Pompier::getPompierID($res[0], $res[1]);
+        $datef = $dateFin . " " . $heureFin;
+        $sql = "INSERT INTO interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur,IDstatus) VALUES($numIntervention,$opm,'$commune','$adresse', '$typeIntervention',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur, $status);";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
+
+    public function deleteIntervention($id)
+    {
+        //DELETE FROM personnelduvehicule WHERE IDIntervention = $id;
+        //DELETE FROM vehiculeutilise WHERE IDIntervention = $id;
+        //DELETE FROM interventions WHERE IDIntervention = $id;
+        $id = self::cleanUserInput($id);
+        $this->deleteVehiculeFromIntervention($id);
+        $sql = "DELETE FROM interventions WHERE IDIntervention = " . $id . ";";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+    public function deleteVehiculeFromIntervention($id)
+    {
+        //DELETE FROM personnelduvehicule WHERE IDIntervention = $id;
+        //DELETE FROM vehiculeutilise WHERE IDIntervention = $id;
+
+        $id = self::cleanUserInput($id);
+        $sql = "DELETE FROM personnelduvehicule WHERE IDIntervention = " . $id . ";";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        $sql = "DELETE FROM vehiculeutilise WHERE IDIntervention = " . $id . ";";
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();

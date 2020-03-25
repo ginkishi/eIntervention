@@ -107,10 +107,43 @@ $router->get('/intervention', function () {
     $s = new InterventionController();
     $s->interventions();
 });
+
+// Get list of all intervention
+$router->post('/intervention', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $data = json_decode(file_get_contents('php://input'), true);
+    $s->addIntervention($data["Nintervention"], $data["adresse"], $data["commune"], $data["opm"], $data["typeIntervention"], $data["important"], $data["requerant"], $data["datedeclenchement"], $data["heuredeclenchement"], $data["datefin"], $data["heurefin"], $data["respnsable"], $data["idcreateur"], "0");
+});
+
+// Get one intervention by id
 $router->get('/intervention/:id', function ($id) {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
     $s->UneIntervention($id);
 });
+
+// Delete one intervention by id
+$router->delete('/intervention/:id', function ($id) {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->deleteIntervention($id);
+});
+
+// Delete one intervention by id
+$router->delete('/vehicule', function ($id) {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->deleteIntervention($id);
+});
+
+
+// Edit one intervention by id
+// $router->put('/intervention/:id', function ($id) {
+//     require_once CONTROLLERS . DS . 'interventionC.php';
+//     $s = new InterventionController();
+//     $data = json_decode(file_get_contents('php://input'), true);
+//     $s->editIntervention($data['IDIntervention'], $data['NIntervention'],$data[''], $data['mp'],$data[''], $data['mp']);
+// });
 
 $router->run();
