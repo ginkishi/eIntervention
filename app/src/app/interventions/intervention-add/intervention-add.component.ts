@@ -3,6 +3,7 @@ import { BrigadeApiService } from "../../services/brigade-api.service";
 import { TypeIntervention } from "../../models/typeIntervention";
 import { Vehicule } from "../../models/vehicule";
 import { RoleVhicule } from "../../models/rolevehicule";
+import { FormIntervention } from "../../models/formIntervention";
 
 @Component({
   selector: 'app-intervention-add',
@@ -12,6 +13,20 @@ import { RoleVhicule } from "../../models/rolevehicule";
 
 
 export class InterventionAddComponent implements OnInit {
+  interventionForm: FormIntervention ={
+    numeroIntervention: +'2515',
+    commune: '',
+    adresse: '',
+    typeIntervention: '',
+    requerant:'',
+    opm:false,
+    important:false,
+    dateDeclenchement: new Date(),
+    heureDeclenchement:new Date(),
+    dateFin: new Date(),
+    heureFin:new Date(),
+    responsable:'admin admin'
+  }
   response: any;
   typesIntervention: TypeIntervention[];
   vehicules :Vehicule[];
@@ -23,10 +38,12 @@ export class InterventionAddComponent implements OnInit {
   constructor(private apiService: BrigadeApiService) {}
 
   ngOnInit(): void {
+    
+   
     this.createListTypeIntervention();
     this.createListVehicule();
+    
   }
-
   createListTypeIntervention() :void
   {
       this.apiService.readAllTypeIntervention().subscribe((resultat: TypeIntervention[]) => {
@@ -45,19 +62,26 @@ export class InterventionAddComponent implements OnInit {
       // console.log(this.vehicules);
     });
   }
+  // rajouter l'equipe d'apres le vehicule selectionnée
   addTeam(value: string){
   
     var val=+value;
     console.log(value);
-    for (let i of this.vehicules) {
-      if(i.V_ID==val){
+    for (let i of this.vehicules) 
+    {
+      if(i.V_ID==val)
+      {
         this.usedVehicule=i.ROLE;
-     
       }
    
+   }
+
   }
- 
-  
- 
-  }
+  // a utiliser apres 
+  parseDate(dateString: string): Date {
+    if (dateString) {
+        return new Date(dateString);
+    }
+    return null;
+}
 }
