@@ -17,7 +17,7 @@ define('PDO_PATH', ROOT . DS . 'pdo.php');
 require_once CLASSES . DS . 'router.php';
 $router = new Routeur($_GET['url']);
 
-//Route for eBrigade
+// ==================== Route for eBrigade ==================== //
 
 // Check authentification
 $router->post('/auth', function () {
@@ -84,6 +84,33 @@ $router->get('/fonctionnalite/:id', function ($id) {
 });
 
 
+// ==================== Route for eIntervention ==================== //
 
+
+// Get list of all statut of intervention
+$router->get('/statutIntervention', function () {
+    require_once CONTROLLERS . DS . 'statut_interventionC.php';
+    $s = new statutInterventionController();
+    $s->statutsIntervention();
+});
+
+// Get one statut of intervention by id
+$router->get('/statutIntervention/:id', function ($id) {
+    require_once CONTROLLERS . DS . 'statut_interventionC.php';
+    $s = new statutInterventionController();
+    $s->UnStatutIntervention($id);
+});
+
+// Get list of all intervention
+$router->get('/intervention', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->interventions();
+});
+$router->get('/intervention/:id', function ($id) {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->UneIntervention($id);
+});
 
 $router->run();
