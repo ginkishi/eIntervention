@@ -11,7 +11,7 @@ class TypeIntervention {
 
   public function listAll() {
     $sql='SELECT * FROM type_intervention';
-    $dbh = BDD::getInstance();
+    $dbh = BDD::getInstanceOfEBrigade();
     $stmt=$dbh->prepare($sql);
     $stmt->execute();
     return $stmt;
@@ -20,7 +20,7 @@ class TypeIntervention {
   public function OneTIByID($id) {
     $id = self::cleanUserInput($id);
     $sql="SELECT * FROM type_intervention WHERE TI_CODE = \"" . $id . "\";";
-    $dbh = BDD::getInstance();
+    $dbh = BDD::getInstanceOfEBrigade();
     $stmt=$dbh->prepare($sql);
     $stmt->execute();
     return $stmt;
@@ -28,4 +28,3 @@ class TypeIntervention {
 
 
 }
-?>

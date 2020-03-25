@@ -11,7 +11,7 @@ class TypeIntervention {
 
   public function listAllFonct() {
     $sql='SELECT F_ID, F_LIBELLE FROM fonctionnalite';
-    $dbh = BDD::getInstance();
+    $dbh = BDD::getInstanceOfEBrigade();
     $stmt=$dbh->prepare($sql);
     $stmt->execute();
     return $stmt;
@@ -20,7 +20,7 @@ class TypeIntervention {
   public function OneFonctByID($id) {
     $id = self::cleanUserInput($id);
     $sql="SELECT F_ID, F_LIBELLE FROM fonctionnalite WHERE F_ID = " . $id . ";";
-    $dbh = BDD::getInstance();
+    $dbh = BDD::getInstanceOfEBrigade();
     $stmt=$dbh->prepare($sql);
     $stmt->execute();
     return $stmt;
@@ -28,4 +28,3 @@ class TypeIntervention {
 
 
 }
-?>

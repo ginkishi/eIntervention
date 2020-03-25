@@ -17,9 +17,11 @@ export class LoginComponent implements OnInit {
   ) {}
 
   authStatus: boolean;
+  errormessage: boolean;
 
   ngOnInit(): void {
     this.authStatus = this.authService.isAuth;
+    this.errormessage = false;
   }
 
   // onSignIn() {
@@ -38,7 +40,8 @@ export class LoginComponent implements OnInit {
       if (this.authStatus) {
         this.router.navigate(["home"]);
       } else {
-        console.log(this.authStatus);
+        //console.log(this.authStatus);
+        this.errormessage = true;
       }
     }, 500);
   }

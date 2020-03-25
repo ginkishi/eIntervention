@@ -17,7 +17,7 @@ class Pompier
   {
     $code = self::cleanUserInput($code);
     $sql = "SELECT P_ID,P_CODE,P_NOM, P_PRENOM, P_GRADE, GP_ID, GP_ID2 FROM `pompier` WHERE P_CODE = \"" . $code .  "\" AND P_MDP = \"" . $mp . "\";";
-    $dbh = BDD::getInstance();
+    $dbh = BDD::getInstanceOfEBrigade();
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     return $stmt;
@@ -27,7 +27,7 @@ class Pompier
   public function listAllPompier()
   {
     $sql = "SELECT P_ID,P_CODE,P_NOM, P_PRENOM, P_PRENOM2, P_SEXE, P_CIVILITE , P_GRADE, GP_ID, GP_ID2 FROM `pompier`;";
-    $dbh = BDD::getInstance();
+    $dbh = BDD::getInstanceOfEBrigade();
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     return $stmt;
@@ -38,7 +38,7 @@ class Pompier
   {
     $id = self::cleanUserInput($id);
     $sql = "SELECT P_ID,P_CODE,P_NOM, P_PRENOM, P_PRENOM2, P_SEXE, P_CIVILITE , P_GRADE,G_DESCRIPTION,P_EMAIL,P_BIRTHDATE, GP_ID, GP_ID2 FROM `pompier` JOIN grade on P_GRADE = G_GRADE  WHERE P_ID = " . $id . ";";
-    $dbh = BDD::getInstance();
+    $dbh = BDD::getInstanceOfEBrigade();
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     return $stmt;
@@ -47,7 +47,7 @@ class Pompier
   public function listAllRole($hab)
   {
     $sql = "SELECT h.F_ID,F_LIBELLE FROM `habilitation` h JOIN fonctionnalite f on f.F_ID = h.F_ID WHERE GP_ID = " . $hab . " ORDER BY h.F_ID ASC;";
-    $dbh = BDD::getInstance();
+    $dbh = BDD::getInstanceOfEBrigade();
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     return $stmt;
