@@ -5,6 +5,10 @@
         <div class="section">
             <h2 class="title">Intervention</h2>
             <div class="body">
+                <datalist id="firefighters" >
+                 
+                    <option *ngFor="let p of listPompiers" value="{{p.P_PRENOM}}">  {{p.P_ID}} </option>
+                </datalist>
                 <div class="group-champ col3">
                     <div class="champ"><label for="">Num&eacute;ro d'intervention</label><input id="Nintervention" name="Nintervention" type="text" autocomplete="off" required ngModel></div>
                     <div class="champ"><label for="">Commune</label><input type="text" autocomplete="off" required id="commune" name="commune" ngModel></div>
@@ -23,7 +27,13 @@
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Requ&eacute;rant</label>
-                        <select name="requerant" id="requerant" class="form-control" ngModel></select>
+                        <select name="requerant" id="requerant" class="form-control" ngModel>
+                            <option value="">
+                                Selectionnez un type</option>
+    
+                                <option value=t[TI_CODE] *ngFor="let t of typesIntervention" value={{t.TI_CODE}} >
+                                   {{t.TI_DESCRIPTION}}</option>
+                        </select>
                     </div>
                     <div class="group-champ col2">
                         <div class="champ mycheckbox"><label for="opm">OPM</label><input type="checkbox" name="opm" id="opm" ngModel></div>
@@ -61,7 +71,7 @@
                     <div class="champ" *ngFor="let ro of usedVehicule">
                        
                         <label for="name">{{ro.ROLE_NAME}}</label>
-                        <input type="text" id="apprenti[]" ngModel name="apprenti[]" required>
+                        <input type="text" id="{{ro.ROLE_NAME}}" ngModel name="{{ro.ROLE_NAME}}" list="firefighters" required>
                         
                     </div>
                     <div class="champ">
@@ -88,7 +98,17 @@
         <div class="section resp">
             <h2 class="title">Responsable</h2>
             <div class="body">
-                <div class="champ"><label for="">Responsable</label><input type="text" id="responsable" name="responsable" ngModel></div>
+                <div class="champ"><label for="">Responsable</label>
+                    <mat-form-field>
+                    <input type="text" id="responsable" name="responsable"  matInput [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of options" [value]="option">
+                          {{option}}
+                       </mat-option>
+                   </mat-autocomplete>
+                </mat-form-field>
+                </div>
             </div>
         </div>
         <div class="group-champ col2">
