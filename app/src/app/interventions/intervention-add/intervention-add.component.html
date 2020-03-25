@@ -6,13 +6,16 @@
             <h2 class="title">Intervention</h2>
             <div class="body">
                 <div class="group-champ col3">
-                    <div class="champ"><label for="">Num&eacute;ro d'intervention</label><input id="Nintervention" name="Nintervention" type="text" autocomplete="off" required ngModel></div>
-                    <div class="champ"><label for="">Commune</label><input type="text" autocomplete="off" required id="commune" name="commune" ngModel></div>
-                    <div class="champ"><label for="">Adresse</label><input type="text" autocomplete="off" required  id="adresse" name="adresse" ngModel></div>
+                    <div class="champ"><label for="">Num&eacute;ro d'intervention</label>
+                        <input id="Nintervention" name="Nintervention" type="text" autocomplete="off" required [(ngModel)]="interventionForm.numeroIntervention"></div>
+                    <div class="champ"><label for="">Commune</label>
+                        <input type="text" autocomplete="off" required id="commune" name="commune"[(ngModel)]="interventionForm.commune"></div>
+                    <div class="champ"><label for="">Adresse</label>
+                        <input type="text" autocomplete="off" required  id="adresse" name="adresse" [(ngModel)]="interventionForm.adresse" ></div>
                 </div>
                 <div class="champ">
                     <label for="">Type d'intervention</label>
-                    <select name="typeIntervention" id="typeIntervention" ngModel class="form-control">
+                    <select name="typeIntervention" id="typeIntervention" ngModel class="form-control" [(ngModel)]="interventionForm.typeIntervention" >
                         <option value="">
                             Selectionnez un type</option>
 
@@ -23,20 +26,36 @@
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Requ&eacute;rant</label>
-                        <select name="requerant" id="requerant" class="form-control" ngModel></select>
+                        <select name="requerant" id="requerant" class="form-control" [(ngModel)]="interventionForm.requerant">
+                            <option value="">
+                                Selectionnez un type</option>
+    
+                                <option value="CODIS" >
+                                   CODIS</option>
+                                   <option value="Alerte locale" >
+                                    Alerte locale</option>
+                        </select>
                     </div>
                     <div class="group-champ col2">
-                        <div class="champ mycheckbox"><label for="opm">OPM</label><input type="checkbox" name="opm" id="opm" ngModel></div>
-                        <div class="champ mycheckbox"><label for="important">Inmportant</label><input type="checkbox" name="opm" id="important" ngModel></div>
+                        <div class="champ mycheckbox"><label for="opm">OPM</label>
+                            <input type="checkbox" name="opm" id="opm"  [(ngModel)]="interventionForm.opm"></div>
+                        <div class="champ mycheckbox"><label for="important">Important</label>
+                            <input type="checkbox" name="important" id="important"  [(ngModel)]="interventionForm.important"></div>
                     </div>
                 </div>
                 <div class="group-champ col2">
-                    <div class="champ"><label for="">Date de d&eacute;clenchement</label><input type="date" autocomplete="off" ngModel required  id="datedeclenchement" name="datedeclenchement"></div>
-                    <div class="champ"><label for="">Heure de d&eacute;clenchement</label><input type="time" autocomplete="off" ngModel required  id="heuredeclenchement" name="heuredeclenchement"></div>
+                    <div class="champ"><label for="">Date de d&eacute;clenchement</label>
+                        <input type="date" autocomplete="off"  required  id="datedeclenchement" name="datedeclenchement"  [ngModel] ="interventionForm.dateDeclenchement| date:'yyyy-MM-dd'" (ngModelChange)="interventionForm.dateDeclenchement = $event"  ></div>
+                    <div class="champ"><label for="">Heure de d&eacute;clenchement</label>
+                        <input type="time" autocomplete="off"  required  id="heuredeclenchement" name="heuredeclenchement"  [ngModel] ="interventionForm.heureDeclenchement|date:'hh:mm:ss'" (ngModelChange)="interventionForm.heureDeclenchement = $event"  ></div>
                 </div>
                 <div class="group-champ col2">
-                    <div class="champ"><label for="">Date de fin</label><input type="date" autocomplete="off" required ngModel  id="datefin" name="datefin"></div>
-                    <div class="champ"><label for="">Heure de fin</label><input type="time" autocomplete="off" required ngModel  id="heurefin" name="heurefin"></div>
+                    <div class="champ"><label for="">Date de fin</label>
+                      <input type="date" autocomplete="off"  required  id="datefin" name="datefin"  [ngModel] ="interventionForm.dateFin| date:'yyyy-MM-dd'" (ngModelChange)="interventionForm.dateFin = $event"  >
+                    </div>
+                    <div class="champ"><label for="">Heure de fin</label>
+                        <input type="time" autocomplete="off"  required  id="heurefin" name="heurefin"  [ngModel] ="interventionForm.heureFin|date:'hh:mm:ss'" (ngModelChange)="interventionForm.heureFin = $event"  >
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,7 +65,7 @@
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Nom du v&eacute;hicule</label>
-                        <select name="vehicule[]" id="vehicule[]" class="form-control" ngModel [(ngModel)]="selectedvehicule" (change)="addTeam($event.target.value)">
+                        <select name="vehicule[]" id="vehicule[]" class="form-control" [(ngModel)]="selectedvehicule" (change)="addTeam($event.target.value)">
                             <option value="">Selectionnez un véhicule</option>
                             <option *ngFor="let v of vehicules"  value="{{v.V_ID}}" >
                                 {{v.V_INDICATIF}}
@@ -54,33 +73,33 @@
                      </select>
                     </div>
                    
-                    <div class="champ mycheckbox"><label for="">Ronde</label><input type="checkbox" name="ronde" id="ronde" ngModel></div>
+                    <div class="champ mycheckbox"><label for="">Ronde</label><input type="checkbox" name="ronde" id="ronde" ></div>
                 </div>
                 <div class="group-champ col1"  *ngIf="selectedvehicule !== ''">
                    
                     <div class="champ" *ngFor="let ro of usedVehicule">
                        
                         <label for="name">{{ro.ROLE_NAME}}</label>
-                        <input type="text" id="apprenti[]" ngModel name="apprenti[]" required>
+                        <input type="text" id="apprenti[]"  name="apprenti[]" required>
                         
                     </div>
                     <div class="champ">
                         <label for="name">Apprenti(Optionel):</label>
-                        <input type="text" id="apprenti[]" ngModel name="apprenti[]" required>
+                        <input type="text" id="apprenti[]"  name="apprenti[]" required>
                             
                     </div>
                 </div>
                 <div class="group-champ col2">
-                    <div class="champ"><label for="">Date de d&eacute;part</label><input type="date" autocomplete="off" required ngModel  id="datadepart" name="datadepart"></div>
-                    <div class="champ"><label for="">Heure de d&eacute;part</label><input type="time" autocomplete="off" required ngModel  id="heuredepart" name="heuredepart"></div>
+                    <div class="champ"><label for="">Date de d&eacute;part</label><input type="date" autocomplete="off" required   id="datadepart" name="datadepart"></div>
+                    <div class="champ"><label for="">Heure de d&eacute;part</label><input type="time" autocomplete="off" required  id="heuredepart" name="heuredepart"></div>
                 </div>
                 <div class="group-champ col2">
-                    <div class="champ"><label for="">Date d'arriv&eacute;e</label><input type="date" autocomplete="off" required ngModel  id="datearrivee" name="datearrivee"></div>
-                    <div class="champ"><label for="">Heure d'arriv&eacute;e</label><input type="time" autocomplete="off" required ngModel  id="heurearrivee" name="heurearrivee"></div>
+                    <div class="champ"><label for="">Date d'arriv&eacute;e</label><input type="date" autocomplete="off" required   id="datearrivee" name="datearrivee"></div>
+                    <div class="champ"><label for="">Heure d'arriv&eacute;e</label><input type="time" autocomplete="off" required  id="heurearrivee" name="heurearrivee"></div>
                 </div>
                 <div class="group-champ col2">
-                    <div class="champ"><label for="">Date de retour</label><input type="date" autocomplete="off"id="dateretour" name="dateretour" required ngModel></div>
-                    <div class="champ"><label for="">Heure de retour</label><input type="time" autocomplete="off" id="heureretour" name="dateretour" required ngModel></div>
+                    <div class="champ"><label for="">Date de retour</label><input type="date" autocomplete="off"id="dateretour" name="dateretour" required ></div>
+                    <div class="champ"><label for="">Heure de retour</label><input type="time" autocomplete="off" id="heureretour" name="dateretour" required ></div>
                 </div>
             </div>
             <button type="button" class="btn btn-danger btn-lg" id="addVehicule">Ajouter un v&eacute;hicule</button>
@@ -88,7 +107,7 @@
         <div class="section resp">
             <h2 class="title">Responsable</h2>
             <div class="body">
-                <div class="champ"><label for="">Responsable</label><input type="text" id="responsable" name="responsable" ngModel></div>
+                <div class="champ"><label for="">Responsable</label><input type="text" id="responsable" name="responsable" [(ngModel)]="interventionForm.responsable"></div>
             </div>
         </div>
         <div class="group-champ col2">
@@ -97,4 +116,4 @@
         </div>
     </form>
 </div>
-{{form.value | json }}
+{{interventionForm | json }}
