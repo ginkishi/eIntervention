@@ -23,6 +23,18 @@
 			$this->routes["POST"][] = $route;
 			return $route;
 		}
+		public function delete($path, $callable)
+		{
+			$route = new Route($path, $callable);
+			$this->routes["DELETE"][] = $route;
+			return $route;
+		}
+		public function put($path, $callable)
+		{
+			$route = new Route($path, $callable);
+			$this->routes["PUT"][] = $route;
+			return $route;
+		}
 
 		public function run()
 		{
@@ -37,4 +49,3 @@
 			}
 		}
 	}
-?>
