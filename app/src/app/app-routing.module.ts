@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: "intervention/list",
-    canActivate: [AuthGuard],
+
     component: InterventionListComponent
   },
   {
