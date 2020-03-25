@@ -29,8 +29,8 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" routerLinkActive="active" routerLink='/profil' href="#">Mon Profil
                     </a>
-                    <a class="dropdown-item text-danger font-weight-bold" routerLinkActive="active" routerLink='/logout' href="#">Se déconnecter
-                    </a>
+                    <div class="dropdown-item text-danger font-weight-bold" (click)="signout()">Se déconnecter
+                    </div>
                 </div>
             </li>
         </ul>

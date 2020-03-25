@@ -16,7 +16,7 @@ class Pompier
   public function getUser($code, $mp)
   {
     $code = self::cleanUserInput($code);
-    $sql = "SELECT P_ID,P_CODE,P_NOM, P_PRENOM, P_GRADE, GP_ID, GP_ID2 FROM `pompier` WHERE P_CODE = \"" . $code .  "\" AND P_MDP = \"" . $mp . "\";";
+    $sql = "SELECT P_ID,P_CODE,P_NOM, P_PRENOM, P_PRENOM2, P_SEXE, P_CIVILITE , P_GRADE,G_DESCRIPTION,P_EMAIL,P_BIRTHDATE, GP_ID, GP_ID2 FROM `pompier` JOIN grade on P_GRADE = G_GRADE  WHERE P_CODE = \"" . $code .  "\" AND P_MDP = \"" . $mp . "\";";
     $dbh = BDD::getInstanceOfEBrigade();
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
@@ -36,7 +36,7 @@ class Pompier
 
   public function listAllPompier()
   {
-    $sql = "SELECT P_ID,P_CODE,P_NOM, P_PRENOM, P_PRENOM2, P_SEXE, P_CIVILITE , P_GRADE, GP_ID, GP_ID2 FROM `pompier`;";
+    $sql = "SELECT P_ID,P_CODE,P_NOM, P_PRENOM, P_PRENOM2, P_SEXE, P_CIVILITE , P_GRADE,G_DESCRIPTION,P_EMAIL,P_BIRTHDATE, GP_ID, GP_ID2 FROM `pompier` JOIN grade on P_GRADE = G_GRADE;";
     $dbh = BDD::getInstanceOfEBrigade();
     $stmt = $dbh->prepare($sql);
     $stmt->execute();

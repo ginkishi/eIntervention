@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     // this.createListVehicule();
     // this.displayMyProfil();
+    console.log(JSON.parse(localStorage.getItem("user")));
   }
   // createListVehicule() {
   //   this.apiService.readAllVehicule().subscribe((res: Vehicule[]) => {
