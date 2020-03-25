@@ -70,6 +70,25 @@ class Intervention
         return $stmt;
     }
 
+    public function editIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
+    {
+        //DELETE FROM personnelduvehicule WHERE IDIntervention = $id;
+        //DELETE FROM vehiculeutilise WHERE IDIntervention = $id;
+        //DELETE FROM interventions WHERE IDIntervention = $id;
+
+        //$this->addVehiculeFromIntervention($id);
+        $this->deleteVehiculeFromIntervention($id);
+        $res = explode(" ", $responsable); // $res[0] = prenom
+        $datedec = $dateDeclenchement . " " . $heureDeclenchement;
+        $idresp = Pompier::getPompierID($res[0], $res[1]);
+        $datef = $dateFin . " " . $heureFin;
+        $sql = "UPDATE interventions SET NIntervention = $numIntervention,OPM = $opm, Commune = '$commune', Adresse = '$adresse', TypeIntervention = '$typeIntervention', Important = $important, Requerant = '$requerant', DateDeclenchement = '$datedec', DateFin = '$datef', IDResponsable = $idresp WHERE IDIntervention = $id";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
 
     public function deleteIntervention($id)
     {
