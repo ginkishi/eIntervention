@@ -31,7 +31,7 @@ class InterventionController
                     "Important" => utf8_encode($Important),
                     "IDResponsable" => utf8_encode($IDResponsable),
                     "Requerant" => utf8_encode($Requerant),
-                    "IDStatus" => utf8_encode($IDStatus),
+                    "IDStatut" => utf8_encode($IDStatus),
                     "Statut" => utf8_encode($label)
                 );
                 array_push($farr["interventions"], $f);
@@ -69,7 +69,7 @@ class InterventionController
                 "Important" => utf8_encode($Important),
                 "IDResponsable" => utf8_encode($IDResponsable),
                 "Requerant" => utf8_encode($Requerant),
-                "IDStatus" => utf8_encode($IDStatus),
+                "IDStatut" => utf8_encode($IDStatus),
                 "Statut" => utf8_encode($label),
                 "Vehicules" => array(),
             );

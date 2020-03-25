@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BrigadeApiService } from "./brigade-api.service";
 import { User } from "../models/user";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -8,7 +9,7 @@ import { User } from "../models/user";
 export class AuthentificationService {
   isAuth = false;
   response: any;
-  constructor(private apiService: BrigadeApiService) {}
+  constructor(private apiService: BrigadeApiService, public router: Router) {}
   signIn(user: User) {
     this.apiService.authentificate(user).subscribe(
       response => {
@@ -16,8 +17,20 @@ export class AuthentificationService {
         // console.log("response received");
         this.response = JSON.parse(JSON.stringify(response));
         //console.log(this.response.message ? this.response.message : "Connection réussi");
-        if (this.response.message) this.isAuth = false;
-        else this.isAuth = true;
+        if (this.response.message) {
+          this.isAuth = false;
+        } else {
+          this.isAuth = true;
+          localStorage.setItem("statut", "connecte");
+          localStorage.setItem(
+            "user",
+            JSON.stringify(this.response.pompier[0])
+          );
+          setTimeout(() => {
+            console.log("deconnexion");
+            this.signOut();
+          }, 1800000);
+        }
       },
       error => {
         //Next callback
@@ -34,5 +47,8 @@ export class AuthentificationService {
 
   signOut() {
     this.isAuth = false;
+    localStorage.removeItem("statut");
+    localStorage.removeItem("user");
+    this.router.navigate(["logout"]);
   }
 }
