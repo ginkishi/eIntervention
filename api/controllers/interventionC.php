@@ -7,6 +7,37 @@ class InterventionController
     public function __construct()
     {
     }
+    public function vehiculeUtilise(){
+
+        $model = new Intervention();
+        $stmt = $model->listAllvehiculeUtilise();
+        $num = $stmt->rowCount();
+        if ($num > 0) {
+
+            $farr = array();
+            $farr["vehiculeutilise"] = array();
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+                $v = array(
+                    "IDVehicule" => $IDVehicule,
+                    "DateDepart" => utf8_encode($DateDepart),
+                    "DateArrive" => utf8_encode($DateArrive),
+                    "DateRetour" => utf8_encode($DateRetour),
+                    "Ronde" => utf8_encode($Ronde),
+                );
+                array_push($farr["vehiculeutilise"], $v);
+            }
+            header('Content-Type: application/json');
+            http_response_code(200);
+            echo json_encode($farr);
+        } else {
+            http_response_code(404);
+            echo json_encode(
+                array("message" => "Pas de vehicule.")
+            );
+        }
+    }
+
 
     public function interventions()
     {
@@ -111,7 +142,12 @@ class InterventionController
             );
         }
     }
-
+   
+    public function addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde)
+    {
+        $model = new Intervention();
+        $stmt = $model->addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde);
+    }
     public function addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
     {
         $model = new Intervention();

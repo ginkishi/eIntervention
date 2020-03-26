@@ -107,6 +107,26 @@ $router->get('/intervention', function () {
     $s = new InterventionController();
     $s->interventions();
 });
+$router->get('/vehicule', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->vehiculeUtilise();
+});
+$router->get('/vehicule', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->vehiculeUtilise();
+});
+$router->post('/vehicule', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $data = json_decode(file_get_contents('php://input'), true);
+    $s->addVehiculeToIntervention($data["IdVehicule"], $data["IDintervention"], $data["DateDepart"], 1, $data["HeureDepart"], $data["DateArrive"], $data["HeureArrive"], $data["DateRetour"], $data["HeureRetour"], $data["HeureRetour"], $data["Ronde"]);
+});
+
+
+
+
 
 // Get list of all intervention
 $router->post('/intervention', function () {

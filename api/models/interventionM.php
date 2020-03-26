@@ -34,7 +34,7 @@ class Intervention
     public function listVehiculesForOneIntervention($id)
     {
         $id = self::cleanUserInput($id);
-        $sql = "SELECT IDVehicule,DateDepart,DateArrive,DateRetour,Ronde FROM `vehiculeutilise` WHERE IDIntervention = " . $id . ";";
+        $sql = "SELECT IDVehicule,DateDepart,DateArrive,DateRetour,Ronde FROM `vehiculeutilise` ";;
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
@@ -51,7 +51,14 @@ class Intervention
         return $stmt;
     }
 
+     public function listAllvehiculeUtilise(){
+        $sql = "SELECT IDVehicule,DateDepart,DateArrive,DateRetour,Ronde FROM `vehiculeutilise` ;";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
 
+     }
     public function addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
     {
         //DELETE FROM personnelduvehicule WHERE IDIntervention = $id;
@@ -74,6 +81,27 @@ class Intervention
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
+    }                            
+    addVehiculeToIntervention($IdVehicule, $IDintervention, $datedepart, $heuredepart, $datearrive, $heurearrive, $dateretour, $heureretour, $ronde){
+        $dateepart = $datedepart . " " . $heuredepart;
+
+	//	echo $datearrive . "<br>";
+	//	echo $heurearrive . "<br>";
+		$datearrive = $datearrive . " " . $heurearrive;
+	//	echo $ronde . "<br>";
+	//	echo $dateretour . "<br>";
+	//	echo $heureretour . "<br>";
+
+		$dateretour = $dateretour . " " . $heureretour;
+		$sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
+    
+        //echo $sql;
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+                     
+
     }
 
     public function editIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
