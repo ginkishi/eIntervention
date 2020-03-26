@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormIntervention } from '../models/formIntervention';
+import { VehiculeUtilise} from '../models/vehiculeutilise';
 import { Observable,of } from 'rxjs';
 import { HttpClient,HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { CATCH_ERROR_VAR } from '@angular/compiler/src/output/output_ast';
@@ -17,4 +18,10 @@ export class DataService {
    // return of(formIntervention);
 
   }
+  postVehiculeUsedForm(vehiculeUtilise: VehiculeUtilise):Observable<any>{
+    console.log(vehiculeUtilise);
+  return this.http.post(`${this.PHP_API_SERVER}/vehicule`,vehiculeUtilise);
+// return of(formIntervention);
+
+}
 }

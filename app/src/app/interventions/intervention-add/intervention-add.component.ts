@@ -19,7 +19,7 @@ import { VehiculeUtilise } from 'src/app/models/vehiculeutilise';
 })
 export class InterventionAddComponent implements OnInit {
   interventionForm: FormIntervention = {
-    numeroIntervention: +"2515",
+    numeroIntervention: +"2515", //temporaire
     commune: null,
     adresse: null,
     typeIntervention: null,
@@ -36,7 +36,7 @@ export class InterventionAddComponent implements OnInit {
   };
   VehiculeUtilise: VehiculeUtilise={
     IdVehicule:null,
-    IDintervention: null,
+    IDintervention: "1008",
     DateDepart: null,
     HeureDepart: null,
     DateArrive : null,
@@ -150,5 +150,12 @@ export class InterventionAddComponent implements OnInit {
       },
       error => console.log("erreur", error)
     );
+     this.dataService.postVehiculeUsedForm(this.VehiculeUtilise).subscribe(
+      result => {
+        console.log("success bitchez", JSON.parse(JSON.stringify(result)));
+      },
+      error => console.log("erreur", error)
+    );
+    
   }
 }

@@ -81,8 +81,9 @@ class Intervention
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
-    }                            
-    addVehiculeToIntervention($IdVehicule, $IDintervention, $datedepart, $heuredepart, $datearrive, $heurearrive, $dateretour, $heureretour, $ronde){
+    }   
+
+    public function  addVehiculeToIntervention($IdVehicule, $IDintervention, $datedepart, $heuredepart, $datearrive, $heurearrive, $dateretour, $heureretour, $ronde){
         $dateepart = $datedepart . " " . $heuredepart;
 
 	//	echo $datearrive . "<br>";
