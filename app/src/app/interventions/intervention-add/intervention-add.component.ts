@@ -11,7 +11,7 @@ import localeFr from "@angular/common/locales/fr";
 import { formatDate } from "@angular/common";
 import { ProfilComponent } from 'src/app/profil/profil.component';
 import { Pompier } from 'src/app/models/pompier';
-registerLocaleData(localeFr, "fr");
+
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -56,15 +56,15 @@ export class InterventionAddComponent implements OnInit {
     this.interventionForm.dateDeclenchement = formatDate(
       new Date(),
       "yyyy-MM-dd",
-      "fr"
+      "fr-FR"
     );
     this.interventionForm.heureDeclenchement = formatDate(
       new Date(),
-      "hh-mm-ss",
-      "fr"
+      'shortTime',
+      "fr-FR"
     );
-    this.interventionForm.dateFin = formatDate(new Date(), "yyyy-MM-dd", "fr");
-    this.interventionForm.heureFin = formatDate(new Date(), "hh-mm-ss", "fr");
+    this.interventionForm.dateFin = formatDate(new Date(), "yyyy-MM-dd", "fr-FR");
+    this.interventionForm.heureFin = formatDate(new Date(), 'shortTime', "fr-FR");
     this.createListTypeIntervention();
     this.createListVehicule();
     this.createListAllPompier();
