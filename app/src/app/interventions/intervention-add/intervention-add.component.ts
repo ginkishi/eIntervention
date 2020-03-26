@@ -32,7 +32,7 @@ export class InterventionAddComponent implements OnInit {
     heureFin: null,
     // ici faudra recuper l'id de la session
     responsable: "admin admin",
-    idcreateur: 1
+    idcreateur:'',
   };
   p:ProfilComponent;
   response: any;
@@ -48,8 +48,8 @@ export class InterventionAddComponent implements OnInit {
 
   ngOnInit(): void {
   
- 
-  console.log(JSON.parse(localStorage.getItem("user")).P_ID);
+    this.interventionForm.idcreateur=JSON.parse(localStorage.getItem("user")).P_ID;
+    this.interventionForm.requerant=JSON.parse(localStorage.getItem("user")).P_PRENOM+" "+JSON.parse(localStorage.getItem("user")).P_NOM;
     // this.datepipe.transform(this.interventionForm.dateDeclenchement,'dd/MM/yyyy');
     this.interventionForm.dateDeclenchement = formatDate(
       new Date(),
