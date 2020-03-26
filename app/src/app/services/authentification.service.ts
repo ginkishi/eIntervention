@@ -21,15 +21,13 @@ export class AuthentificationService {
           this.isAuth = false;
         } else {
           this.isAuth = true;
+          var now = new Date().getTime();
           localStorage.setItem("statut", "connecte");
+          localStorage.setItem("setupTime", now.toString());
           localStorage.setItem(
             "user",
             JSON.stringify(this.response.pompier[0])
           );
-          setTimeout(() => {
-            console.log("deconnexion");
-            this.signOut();
-          }, 1800000);
         }
       },
       error => {
@@ -47,8 +45,9 @@ export class AuthentificationService {
 
   signOut() {
     this.isAuth = false;
+    console.log("deconnexion");
     localStorage.removeItem("statut");
     localStorage.removeItem("user");
-    this.router.navigate(["logout"]);
+    this.router.navigate(["logout", { msg: "Vous avez été déconnecté" }]);
   }
 }

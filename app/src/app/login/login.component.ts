@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, OnInit } from "@angular/core";
 import { AuthentificationService } from "../services/authentification.service";
 import { NgForm } from "@angular/forms";
 import { User } from "../models/user";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -13,15 +13,18 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthentificationService,
-    private router: Router
+    private router: Router,
+    private routeActive: ActivatedRoute
   ) {}
 
   authStatus: boolean;
   errormessage: boolean;
+  msg: string;
 
   ngOnInit(): void {
     this.authStatus = this.authService.isAuth;
     this.errormessage = false;
+    this.msg = this.routeActive.snapshot.params.msg;
   }
 
   // onSignIn() {

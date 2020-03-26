@@ -18,5 +18,6 @@
             <input type="submit" value="Connexion" id="loginBtn" name="loginBtn" [disabled]="f.invalid">
         </div>
         <p *ngIf="errormessage" class='error_message'>Le nom d'utilisateur ou le mot de passe est erroné</p>
+        <p *ngIf="msg" class='error_message'>{{msg}}</p>
     </form>
 </div>
