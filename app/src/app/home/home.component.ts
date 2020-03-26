@@ -19,15 +19,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(localStorage.getItem("setupTime"));
+    this.unPompier = JSON.parse(localStorage.getItem("user"));
+    this.getInterventions();
   }
   getInterventions() {
     this.apiService
-      .readAllIntervention()
+      .readAllInterventionForUser(this.unPompier.P_ID)
       .subscribe((resultat: Intervention[]) => {
         this.response = JSON.parse(JSON.stringify(resultat));
         //console.log(this.response);
         this.intervention = this.response.interventions;
-        //console.log(this.intervention);
+        console.log(this.intervention);
       });
   }
 }

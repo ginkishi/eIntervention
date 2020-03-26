@@ -25,6 +25,12 @@ export class BrigadeApiService {
       `${this.PHP_API_SERVER}/intervention`
     );
   }
+  readAllInterventionForUser(id): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/interventionForUser/` + id
+    );
+  }
+
   readAllTypeIntervention(): Observable<TypeIntervention[]> {
     return this.httpClient.get<TypeIntervention[]>(
       `${this.PHP_API_SERVER}/typeIntervention`

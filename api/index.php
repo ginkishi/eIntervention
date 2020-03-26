@@ -108,7 +108,14 @@ $router->get('/intervention', function () {
     $s->interventions();
 });
 
-// Get list of all intervention
+// Get list of all intervention for user
+$router->get('/interventionForUser/:id', function ($id) {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->interventionsForUser($id);
+});
+
+// Create intervention
 $router->post('/intervention', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
@@ -116,7 +123,6 @@ $router->post('/intervention', function () {
 
 
     $s->addIntervention($data["numeroIntervention"], $data["adresse"], $data["commune"], 1, $data["typeIntervention"], $data["important"], $data["requerant"], $data["dateDeclenchement"], $data["heureDeclenchement"], $data["dateFin"], $data["heureFin"], $data["responsable"], $data["idcreateur"], "0");
-
 });
 
 // Get one intervention by id
@@ -134,11 +140,11 @@ $router->delete('/intervention/:id', function ($id) {
 });
 
 // Delete one intervention by id
-$router->delete('/vehicule', function ($id) {
-    require_once CONTROLLERS . DS . 'interventionC.php';
-    $s = new InterventionController();
-    $s->deleteIntervention($id);
-});
+// $router->delete('/vehicule', function ($id) {
+//     require_once CONTROLLERS . DS . 'interventionC.php';
+//     $s = new InterventionController();
+//     $s->deleteIntervention($id);
+// });
 
 
 // Get list of all intervention
