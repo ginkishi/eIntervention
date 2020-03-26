@@ -88,3 +88,10 @@
   font-weight: bold;
   padding: 5px 0px;
 }
+.intervention-container .body .vehicule-container .vehicule a,
+#responsable a {
+  color: green;
+}
+.intervention-container .body .info #responsable {
+  text-transform: capitalize;
+}

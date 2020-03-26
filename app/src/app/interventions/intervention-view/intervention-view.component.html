@@ -1,23 +1,26 @@
 <app-menu></app-menu>
-<div class="intervention-container">
+<div class="intervention-container" *ngIf="intervention">
     <div class="bandeau-title">
         <div class="logo">
             <fa-icon [icon]="['far', 'clipboard']"></fa-icon>
         </div>
-        <div class="title">Intervention n°</div>
+        <div class="title">Intervention n°{{intervention.NIntervention}}</div>
     </div>
     <div class="body">
         <div class="info">
             <div class="title">Informations</div>
-            <div class="date_dec"><span class="label">Date de déclenchement : </span></div>
-            <div class="date_fin"><span class="label">Date de fin : </span></div>
-            <div class="adresse"><span class="label">Adresse : </span></div>
-            <div class="commune"><span class="label">Commune : </span></div>
-            <div class="type"><span class="label">Type d'intervention : </span></div>
-            <div class="requerant"><span class="label">Requérant : </span></div>
-            <div class="responsable"><span class="label">Responsable : </span></div>
-            <div class="important"><span class="label">Important : </span></div>
-            <div class="opm"><span class="label">OPM : </span></div>
+            <div class="date_dec"><span class="label">Date de déclenchement : </span>{{intervention.DateDeclenchement}}</div>
+            <div class="date_fin"><span class="label">Date de fin : </span>{{intervention.DateFin}}</div>
+            <div class="adresse"><span class="label">Adresse : </span>{{intervention.Adresse}}</div>
+            <div class="commune"><span class="label">Commune : </span>{{intervention.Commune}}</div>
+            <div class="type"><span class="label">Type d'intervention : </span>{{intervention.TypeIntervention}}</div>
+            <div class="requerant"><span class="label">Requérant : </span>{{intervention.Requerant}}</div>
+            <div id="responsable" class="responsable" *ngIf="responsable">
+                <span class="label">Responsable : </span>
+                <a href="">{{responsable.P_PRENOM}} {{responsable.P_NOM}}</a>
+            </div>
+            <div class="important"><span class="label">Important : </span>{{intervention.Important == 1 ? "OUI" : "NON" }}</div>
+            <div class="opm"><span class="label">OPM : </span>{{intervention.OPM == 1 ? "OUI" : "NON"}}</div>
         </div>
         <div class="vehicule-container">
             <div class="title">Véhicules</div>

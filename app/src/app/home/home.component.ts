@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
         this.response = JSON.parse(JSON.stringify(resultat));
         //console.log(this.response);
         this.intervention = this.response.interventions;
-        console.log(this.intervention);
+        //console.log(this.intervention);
       });
   }
 }
