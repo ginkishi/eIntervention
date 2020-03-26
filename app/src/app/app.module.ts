@@ -3,7 +3,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 
 import { FormsModule } from "@angular/forms";
-
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -49,7 +49,7 @@ import { InterventionListComponent } from './interventions/intervention-list/int
     FormsModule
   ],
 
-  providers: [BrigadeApiService, AuthentificationService, AuthGuard],
+  providers: [BrigadeApiService, AuthentificationService, AuthGuard,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

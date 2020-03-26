@@ -4,7 +4,12 @@ import { TypeIntervention } from "../../models/typeIntervention";
 import { Vehicule } from "../../models/vehicule";
 import { RoleVhicule } from "../../models/rolevehicule";
 import { FormIntervention } from "../../models/formIntervention";
-
+import { DataService } from 'src/app/services/data.service';
+import { NgForm } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import { formatDate } from '@angular/common';
+registerLocaleData(localeFr, 'fr');
 @Component({
   selector: 'app-intervention-add',
   templateUrl: './intervention-add.component.html',
@@ -15,18 +20,21 @@ import { FormIntervention } from "../../models/formIntervention";
 export class InterventionAddComponent implements OnInit {
   interventionForm: FormIntervention ={
     numeroIntervention: +'2515',
-    commune: '',
-    adresse: '',
-    typeIntervention: '',
-    requerant:'',
-    opm:false,
-    important:false,
-    dateDeclenchement: new Date(),
-    heureDeclenchement:new Date(),
-    dateFin: new Date(),
-    heureFin:new Date(),
-    responsable:'admin admin'
-  }
+    commune: null,
+    adresse: null,
+    typeIntervention: null,
+    requerant: null,
+    opm:0,
+    important:0,
+    dateDeclenchement:null,
+    heureDeclenchement:null,
+    dateFin:null,
+    heureFin:null,
+    // ici faudra recuper l'id de la session
+    responsable:'admin admin',
+    idcreateur: 1,
+  };
+
   response: any;
   typesIntervention: TypeIntervention[];
   vehicules :Vehicule[];
@@ -35,11 +43,15 @@ export class InterventionAddComponent implements OnInit {
 
 
 
-  constructor(private apiService: BrigadeApiService) {}
+  constructor(private apiService: BrigadeApiService,private dataService: DataService) {}
 
   ngOnInit(): void {
-    
-   
+ 
+   // this.datepipe.transform(this.interventionForm.dateDeclenchement,'dd/MM/yyyy');
+   this.interventionForm.dateDeclenchement=formatDate(new Date(), 'yyyy-MM-dd',"fr");
+   this.interventionForm.heureDeclenchement=formatDate(new Date(), 'hh-mm-ss','fr');
+   this.interventionForm.dateFin=formatDate(new Date(), 'yyyy-MM-dd','fr');
+   this.interventionForm.heureFin=formatDate(new Date(), 'hh-mm-ss','fr');
     this.createListTypeIntervention();
     this.createListVehicule();
     
@@ -83,5 +95,15 @@ export class InterventionAddComponent implements OnInit {
         return new Date(dateString);
     }
     return null;
-}
+ }
+
+ onSubmit(form:NgForm){
+   console.log('in onSubmit:',form.valid);
+   this.dataService.postInterventionForm(this.interventionForm).subscribe(
+     result =>{
+       console.log("success bitchez",JSON.parse(JSON.stringify(result)));
+     },
+     error => console.log("erreur",error),
+   );
+ }
 }
