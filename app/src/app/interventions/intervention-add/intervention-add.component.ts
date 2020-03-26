@@ -11,7 +11,7 @@ import localeFr from "@angular/common/locales/fr";
 import { formatDate } from "@angular/common";
 import { ProfilComponent } from 'src/app/profil/profil.component';
 import { Pompier } from 'src/app/models/pompier';
-
+import { VehiculeUtilise } from 'src/app/models/vehiculeutilise';
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -33,6 +33,17 @@ export class InterventionAddComponent implements OnInit {
     // ici faudra recuper l'id de la session
     responsable: "",
     idcreateur:'',
+  };
+  VehiculeUtilise: VehiculeUtilise={
+    IdVehicule:null,
+    IDintervention: null,
+    DateDepart: null,
+    HeureDepart: null,
+    DateArrive : null,
+    HeureArrive: null,
+    DateRetour: null,
+    HeureRetour: null,
+    Ronde:null,
   };
   listePompier:string[]=[];
   response: any;
@@ -65,6 +76,12 @@ export class InterventionAddComponent implements OnInit {
     );
     this.interventionForm.dateFin = formatDate(new Date(), "yyyy-MM-dd", "fr-FR");
     this.interventionForm.heureFin = formatDate(new Date(), 'shortTime', "fr-FR");
+    this.VehiculeUtilise.DateArrive  = formatDate(new Date(), 'yyyy-MM-dd', "fr-FR");
+    this.VehiculeUtilise.DateDepart  = formatDate(new Date(), 'yyyy-MM-dd', "fr-FR");
+    this.VehiculeUtilise.DateRetour  = formatDate(new Date(), 'yyyy-MM-dd', "fr-FR");
+    this.VehiculeUtilise.HeureArrive= formatDate(new Date(), 'shortTime', "fr-FR");
+    this.VehiculeUtilise.HeureDepart= formatDate(new Date(), 'shortTime', "fr-FR");
+    this.VehiculeUtilise.HeureRetour= formatDate(new Date(), 'shortTime', "fr-FR");
     this.createListTypeIntervention();
     this.createListVehicule();
     this.createListAllPompier();
