@@ -12,7 +12,7 @@ export interface FormIntervention
     dateFin: string;
     heureFin:string;
     responsable: string;
-    idcreateur: number;
+    idcreateur: string;
 
 
 
