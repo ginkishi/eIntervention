@@ -9,6 +9,7 @@ import { InterventionExportComponent } from "./interventions/intervention-export
 import { ProfilComponent } from "./profil/profil.component";
 import { AuthGuard } from "./auth.guard";
 import { InterventionListComponent } from "./interventions/intervention-list/intervention-list.component";
+import { InterventionViewComponent } from "./interventions/intervention-view/intervention-view.component";
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
     path: "intervention/add",
     canActivate: [AuthGuard],
     component: InterventionAddComponent
+  },
+  {
+    path: "intervention/:id",
+    canActivate: [AuthGuard],
+    component: InterventionViewComponent
   },
   {
     path: "intervention/list",
