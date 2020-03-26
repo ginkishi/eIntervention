@@ -7,11 +7,14 @@ export interface FormIntervention
     requerant: string;
     opm: boolean;
     important: boolean;
-    dateDeclenchement: Date;
-    heureDeclenchement: Date;
-    dateFin: Date;
-    heureFin: Date;
+    dateDeclenchement:string;
+    heureDeclenchement: string;
+    dateFin: string;
+    heureFin:string;
     responsable: string;
+    idcreateur: string;
+    status: string;
+
 
 
 
