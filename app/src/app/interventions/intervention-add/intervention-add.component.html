@@ -86,16 +86,22 @@
                     </div>
                 </div>
                 <div class="group-champ col2">
-                    <div class="champ"><label for="">Date de d&eacute;part</label><input type="date" autocomplete="off" required id="datadepart" name="datadepart"  [(ngModel)]="VehiculeUtilise.DateDepart"></div>
-                    <div class="champ"><label for="">Heure de d&eacute;part</label><input type="time" autocomplete="off" required id="heuredepart" name="heuredepart"  [(ngModel)]="VehiculeUtilise.HeureDepart"></div>
+                    <div class="champ"><label for="">Date de d&eacute;part</label><input type="date" autocomplete="off" required id="datadepart" name="datadepart"
+                            [(ngModel)]="VehiculeUtilise.DateDepart"></div>
+                    <div class="champ"><label for="">Heure de d&eacute;part</label><input type="time" autocomplete="off" required id="heuredepart" name="heuredepart"
+                            [(ngModel)]="VehiculeUtilise.HeureDepart"></div>
                 </div>
                 <div class="group-champ col2">
-                    <div class="champ"><label for="">Date d'arriv&eacute;e</label><input type="date" autocomplete="off" required id="datearrivee" name="datearrivee"  [(ngModel)]="VehiculeUtilise.DateArrive"></div>
-                    <div class="champ"><label for="">Heure d'arriv&eacute;e</label><input type="time" autocomplete="off" required id="heurearrivee" name="heurearrive"  [(ngModel)]="VehiculeUtilise.HeureArrive"></div>
+                    <div class="champ"><label for="">Date d'arriv&eacute;e</label><input type="date" autocomplete="off" required id="datearrivee" name="datearrivee"
+                            [(ngModel)]="VehiculeUtilise.DateArrive"></div>
+                    <div class="champ"><label for="">Heure d'arriv&eacute;e</label><input type="time" autocomplete="off" required id="heurearrivee" name="heurearrive"
+                            [(ngModel)]="VehiculeUtilise.HeureArrive"></div>
                 </div>
                 <div class="group-champ col2">
-                    <div class="champ"><label for="">Date de retour</label><input type="date" autocomplete="off" id="dateretour" name="dateretour" required  [(ngModel)]="VehiculeUtilise.DateRetour"></div>
-                    <div class="champ"><label for="">Heure de retour</label><input type="time" autocomplete="off" id="heureretour" name="heureretour" required  [(ngModel)]="VehiculeUtilise.HeureRetour"></div>
+                    <div class="champ"><label for="">Date de retour</label><input type="date" autocomplete="off" id="dateretour" name="dateretour" required
+                            [(ngModel)]="VehiculeUtilise.DateRetour"></div>
+                    <div class="champ"><label for="">Heure de retour</label><input type="time" autocomplete="off" id="heureretour" name="heureretour" required
+                            [(ngModel)]="VehiculeUtilise.HeureRetour"></div>
                 </div>
             </div>
             <button type="button" class="btn btn-danger btn-lg" id="addVehicule">Ajouter un v&eacute;hicule</button>
@@ -103,11 +109,9 @@
         <div class="section resp">
             <h2 class="title">Responsable</h2>
             <div class="body">
-                
-                <div class="champ"><label for="">Responsable </label>
-                    <input input-autocomplete  [items]="listePompier"   id="responsable" name="responsable" [(ngModel)]="interventionForm.responsable">
-                   
-            </div>
+                <div class="champ"><label for="">Responsable</label>
+                    <input input-autocomplete [items]="listePompier" id="responsable" name="responsable" [(ngModel)]="interventionForm.responsable">
+                </div>
             </div>
         </div>
         <div class="group-champ col2">

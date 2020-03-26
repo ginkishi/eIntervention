@@ -1,0 +1,36 @@
+<app-menu></app-menu>
+<div class="intervention-container" *ngIf="intervention">
+    <div class="bandeau-title">
+        <div class="logo">
+            <fa-icon [icon]="['far', 'clipboard']"></fa-icon>
+        </div>
+        <div class="title">Intervention n°{{intervention.NIntervention}}</div>
+    </div>
+    <div class="body">
+        <div class="info">
+            <div class="title">Informations</div>
+            <div class="date_dec"><span class="label">Date de déclenchement : </span>{{intervention.DateDeclenchement}}</div>
+            <div class="date_fin"><span class="label">Date de fin : </span>{{intervention.DateFin}}</div>
+            <div class="adresse"><span class="label">Adresse : </span>{{intervention.Adresse}}</div>
+            <div class="commune"><span class="label">Commune : </span>{{intervention.Commune}}</div>
+            <div class="type"><span class="label">Type d'intervention : </span>{{intervention.TypeIntervention}}</div>
+            <div class="requerant"><span class="label">Requérant : </span>{{intervention.Requerant}}</div>
+            <div id="responsable" class="responsable" *ngIf="responsable">
+                <span class="label">Responsable : </span>
+                <a href="">{{responsable.P_PRENOM}} {{responsable.P_NOM}}</a>
+            </div>
+            <div class="important"><span class="label">Important : </span>{{intervention.Important == 1 ? "OUI" : "NON" }}</div>
+            <div class="opm"><span class="label">OPM : </span>{{intervention.OPM == 1 ? "OUI" : "NON"}}</div>
+        </div>
+        <div class="vehicule-container">
+            <div class="title">Véhicules</div>
+            <div class="vehicule" *ngFor="let v of intervention.Vehicules">
+                <div class="nom"><span class="label">Nom : </span></div>
+                <div class="modele"><span class="label">Modèle : </span></div>
+                <div class="immatriculation"><span class="label">Immatriculation : </span></div>
+                <div class="comp"><span class="label">Composition : </span></div>
+                <div class="poste"><span class="label"></span><a href="#"></a></div>
+            </div>
+        </div>
+    </div>
+</div>

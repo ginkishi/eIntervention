@@ -42,7 +42,7 @@ class Intervention
     public function listVehiculesForOneIntervention($id)
     {
         $id = self::cleanUserInput($id);
-        $sql = "SELECT IDVehicule,DateDepart,DateArrive,DateRetour,Ronde FROM `vehiculeutilise` ";;
+        $sql = "SELECT IDVehicule,DateDepart,DateArrive,DateRetour,Ronde FROM `vehiculeutilise` WHERE IDIntervention = " . $id;
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
@@ -59,14 +59,14 @@ class Intervention
         return $stmt;
     }
 
-     public function listAllvehiculeUtilise(){
+    public function listAllvehiculeUtilise()
+    {
         $sql = "SELECT IDVehicule,DateDepart,DateArrive,DateRetour,Ronde FROM `vehiculeutilise` ;";
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
-
-     }
+    }
     public function addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
     {
         //DELETE FROM personnelduvehicule WHERE IDIntervention = $id;
@@ -89,28 +89,32 @@ class Intervention
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
-    }   
+    }
 
-    public function  addVehiculeToIntervention($IdVehicule, $IDIntervention, $datedepart, $heuredepart, $datearrive, $heurearrive, $dateretour, $heureretour, $ronde){
+
+    public function  addVehiculeToIntervention($IdVehicule, $IDintervention, $datedepart, $heuredepart, $datearrive, $heurearrive, $dateretour, $heureretour, $ronde)
+    {
         $datedepart = $datedepart . " " . $heuredepart;
-      echo $heuredepart;
-	//	echo $datearrive . "<br>";
-	//	echo $heurearrive . "<br>";
-		$datearrive = $datearrive . " " . $heurearrive;
-	//	echo $ronde . "<br>";
-	//	echo $dateretour . "<br>";
-	//	echo $heureretour . "<br>";
 
-		$dateretour = $dateretour . " " . $heureretour;
-		$sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDIntervention,'$datedepart','$datearrive','$dateretour',$ronde);";
-    
+        //	echo $datearrive . "<br>";
+        //	echo $heurearrive . "<br>";
+        $datearrive = $datearrive . " " . $heurearrive;
+        //	echo $ronde . "<br>";
+
+        //	echo $heureretour . "<br>";
+
+
+        $dateretour = $dateretour . " " . $heureretour;
+
+
+        $sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
+
+
         echo $sql;
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
-                     
-
     }
 
     public function editIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
