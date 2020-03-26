@@ -9,6 +9,8 @@ import { NgForm } from "@angular/forms";
 import { registerLocaleData } from "@angular/common";
 import localeFr from "@angular/common/locales/fr";
 import { formatDate } from "@angular/common";
+import { ProfilComponent } from 'src/app/profil/profil.component';
+import { Pompier } from 'src/app/models/pompier';
 registerLocaleData(localeFr, "fr");
 @Component({
   selector: "app-intervention-add",
@@ -32,7 +34,7 @@ export class InterventionAddComponent implements OnInit {
     responsable: "admin admin",
     idcreateur: 1
   };
-
+  p:ProfilComponent;
   response: any;
   typesIntervention: TypeIntervention[];
   vehicules: Vehicule[];
@@ -45,6 +47,9 @@ export class InterventionAddComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+  
+ 
+  console.log(JSON.parse(localStorage.getItem("user")).P_ID);
     // this.datepipe.transform(this.interventionForm.dateDeclenchement,'dd/MM/yyyy');
     this.interventionForm.dateDeclenchement = formatDate(
       new Date(),
