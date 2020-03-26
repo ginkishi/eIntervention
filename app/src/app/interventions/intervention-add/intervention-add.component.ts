@@ -11,7 +11,7 @@ import localeFr from "@angular/common/locales/fr";
 import { formatDate } from "@angular/common";
 import { ProfilComponent } from 'src/app/profil/profil.component';
 import { Pompier } from 'src/app/models/pompier';
-
+import { VehiculeUtilise } from 'src/app/models/vehiculeutilise';
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -19,7 +19,7 @@ import { Pompier } from 'src/app/models/pompier';
 })
 export class InterventionAddComponent implements OnInit {
   interventionForm: FormIntervention = {
-    numeroIntervention: +"2515",
+    numeroIntervention: +"2515", //temporaire
     commune: null,
     adresse: null,
     typeIntervention: null,
@@ -33,6 +33,17 @@ export class InterventionAddComponent implements OnInit {
     // ici faudra recuper l'id de la session
     responsable: "",
     idcreateur:'',
+  };
+  VehiculeUtilise: VehiculeUtilise={
+    IdVehicule:null,
+    IDintervention: "1008",
+    DateDepart: null,
+    HeureDepart: null,
+    DateArrive : null,
+    HeureArrive: null,
+    DateRetour: null,
+    HeureRetour: null,
+    Ronde:null,
   };
   listePompier:string[]=[];
   response: any;
@@ -65,6 +76,12 @@ export class InterventionAddComponent implements OnInit {
     );
     this.interventionForm.dateFin = formatDate(new Date(), "yyyy-MM-dd", "fr-FR");
     this.interventionForm.heureFin = formatDate(new Date(), 'shortTime', "fr-FR");
+    this.VehiculeUtilise.DateArrive  = formatDate(new Date(), 'yyyy-MM-dd', "fr-FR");
+    this.VehiculeUtilise.DateDepart  = formatDate(new Date(), 'yyyy-MM-dd', "fr-FR");
+    this.VehiculeUtilise.DateRetour  = formatDate(new Date(), 'yyyy-MM-dd', "fr-FR");
+    this.VehiculeUtilise.HeureArrive= formatDate(new Date(), 'shortTime', "fr-FR");
+    this.VehiculeUtilise.HeureDepart= formatDate(new Date(), 'shortTime', "fr-FR");
+    this.VehiculeUtilise.HeureRetour= formatDate(new Date(), 'shortTime', "fr-FR");
     this.createListTypeIntervention();
     this.createListVehicule();
     this.createListAllPompier();
@@ -133,5 +150,12 @@ export class InterventionAddComponent implements OnInit {
       },
       error => console.log("erreur", error)
     );
+     this.dataService.postVehiculeUsedForm(this.VehiculeUtilise).subscribe(
+      result => {
+        console.log("success bitchez", JSON.parse(JSON.stringify(result)));
+      },
+      error => console.log("erreur", error)
+    );
+    
   }
 }

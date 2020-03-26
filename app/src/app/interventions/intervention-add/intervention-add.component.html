@@ -66,14 +66,14 @@
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Nom du v&eacute;hicule</label>
-                        <select name="vehicule[]" id="vehicule[]" class="form-control" [(ngModel)]="selectedvehicule" (change)="addTeam($event.target.value)">
+                        <select name="vehicule[]" id="vehicule[]" class="form-control" [(ngModel)]="VehiculeUtilise.IdVehicule" (change)="addTeam($event.target.value)">
                             <option value="">Selectionnez un véhicule</option>
                             <option *ngFor="let v of vehicules" value="{{v.V_ID}}">
                                 {{v.V_INDICATIF}}
                             </option>
                         </select>
                     </div>
-                    <div class="champ mycheckbox"><label for="">Ronde</label><input type="checkbox" name="ronde" id="ronde"></div>
+                    <div class="champ mycheckbox"><label for="">Ronde</label><input type="checkbox" [(ngModel)]="VehiculeUtilise.Ronde" name="ronde" id="ronde"></div>
                 </div>
                 <div class="group-champ col1" *ngIf="selectedvehicule !== ''">
                     <div class="champ" *ngFor="let ro of usedVehicule">
@@ -86,16 +86,16 @@
                     </div>
                 </div>
                 <div class="group-champ col2">
-                    <div class="champ"><label for="">Date de d&eacute;part</label><input type="date" autocomplete="off" required id="datadepart" name="datadepart"></div>
-                    <div class="champ"><label for="">Heure de d&eacute;part</label><input type="time" autocomplete="off" required id="heuredepart" name="heuredepart"></div>
+                    <div class="champ"><label for="">Date de d&eacute;part</label><input type="date" autocomplete="off" required id="datadepart" name="datadepart"  [(ngModel)]="VehiculeUtilise.DateDepart"></div>
+                    <div class="champ"><label for="">Heure de d&eacute;part</label><input type="time" autocomplete="off" required id="heuredepart" name="heuredepart"  [(ngModel)]="VehiculeUtilise.HeureDepart"></div>
                 </div>
                 <div class="group-champ col2">
-                    <div class="champ"><label for="">Date d'arriv&eacute;e</label><input type="date" autocomplete="off" required id="datearrivee" name="datearrivee"></div>
-                    <div class="champ"><label for="">Heure d'arriv&eacute;e</label><input type="time" autocomplete="off" required id="heurearrivee" name="heurearrivee"></div>
+                    <div class="champ"><label for="">Date d'arriv&eacute;e</label><input type="date" autocomplete="off" required id="datearrivee" name="datearrivee"  [(ngModel)]="VehiculeUtilise.DateArrive"></div>
+                    <div class="champ"><label for="">Heure d'arriv&eacute;e</label><input type="time" autocomplete="off" required id="heurearrivee" name="heurearrive"  [(ngModel)]="VehiculeUtilise.HeureArrive"></div>
                 </div>
                 <div class="group-champ col2">
-                    <div class="champ"><label for="">Date de retour</label><input type="date" autocomplete="off" id="dateretour" name="dateretour" required></div>
-                    <div class="champ"><label for="">Heure de retour</label><input type="time" autocomplete="off" id="heureretour" name="dateretour" required></div>
+                    <div class="champ"><label for="">Date de retour</label><input type="date" autocomplete="off" id="dateretour" name="dateretour" required  [(ngModel)]="VehiculeUtilise.DateRetour"></div>
+                    <div class="champ"><label for="">Heure de retour</label><input type="time" autocomplete="off" id="heureretour" name="heureretour" required  [(ngModel)]="VehiculeUtilise.HeureRetour"></div>
                 </div>
             </div>
             <button type="button" class="btn btn-danger btn-lg" id="addVehicule">Ajouter un v&eacute;hicule</button>
@@ -117,3 +117,4 @@
     </form>
 </div>
 {{interventionForm | json }}
+{{VehiculeUtilise|json}}
