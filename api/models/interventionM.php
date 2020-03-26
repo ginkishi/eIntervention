@@ -104,10 +104,7 @@ class Intervention
 
 
         $dateretour = $dateretour . " " . $heureretour;
-        echo $datedepart . "<br>";
-        echo $datearrive . "<br>";
-        echo $dateretour . "<br>";
-        echo $ronde . "<br>";
+
 
         $sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
 
