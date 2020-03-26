@@ -34,9 +34,11 @@ export class InterventionAddComponent implements OnInit {
     responsable: "",
     idcreateur: ""
   };
+
   VehiculeUtilise: VehiculeUtilise = {
     IdVehicule: null,
     IDintervention: "1008",
+
     DateDepart: null,
     HeureDepart: null,
     DateArrive: null,

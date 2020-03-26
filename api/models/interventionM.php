@@ -91,6 +91,7 @@ class Intervention
         return $stmt;
     }
 
+
     public function  addVehiculeToIntervention($IdVehicule, $IDintervention, $datedepart, $heuredepart, $datearrive, $heurearrive, $dateretour, $heureretour, $ronde)
     {
         $datedepart = $datedepart . " " . $heuredepart;
@@ -107,6 +108,7 @@ class Intervention
 
 
         $sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
+
 
         echo $sql;
         $dbh = BDD::getInstanceOfEIntervention();
