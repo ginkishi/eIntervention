@@ -24,16 +24,15 @@ export class InterventionAddComponent implements OnInit {
     adresse: null,
     typeIntervention: null,
     requerant: null,
-    opm:false,
-    important:false,
+    opm:0,
+    important:0,
     dateDeclenchement:null,
     heureDeclenchement:null,
     dateFin:null,
     heureFin:null,
     // ici faudra recuper l'id de la session
     responsable:'admin admin',
-    idcreateur: '1',
-    status:'0',
+    idcreateur: 1,
   };
 
   response: any;
@@ -102,7 +101,7 @@ export class InterventionAddComponent implements OnInit {
    console.log('in onSubmit:',form.valid);
    this.dataService.postInterventionForm(this.interventionForm).subscribe(
      result =>{
-       console.log("succes bitchez",result)
+       console.log("success bitchez",JSON.parse(JSON.stringify(result)));
      },
      error => console.log("erreur",error),
    );

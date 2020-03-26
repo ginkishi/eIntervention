@@ -13,11 +13,7 @@ export class DataService {
 
   postInterventionForm( formIntervention: FormIntervention):Observable<any>{
          console.log(formIntervention);
-       return this.http.post(`${this.PHP_API_SERVER}/intervention`,formIntervention,{
-         headers: new HttpHeaders({
-           'content-type': 'application/json'
-         })
-       });
+       return this.http.post(`${this.PHP_API_SERVER}/intervention`,formIntervention);
    // return of(formIntervention);
 
   }

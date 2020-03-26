@@ -5,15 +5,14 @@ export interface FormIntervention
     adresse: string;
     typeIntervention: string;
     requerant: string;
-    opm: boolean;
-    important: boolean;
+    opm: number;
+    important: number;
     dateDeclenchement:string;
     heureDeclenchement: string;
     dateFin: string;
     heureFin:string;
     responsable: string;
-    idcreateur: string;
-    status: string;
+    idcreateur: number;
 
 
 
