@@ -5,13 +5,13 @@ import { Vehicule } from "../../models/vehicule";
 import { RoleVhicule } from "../../models/rolevehicule";
 import { FormIntervention } from "../../models/formIntervention";
 import { DataService } from "src/app/services/data.service";
-import { NgForm, FormControl  } from "@angular/forms";
+import { NgForm, FormControl } from "@angular/forms";
 import { registerLocaleData } from "@angular/common";
 import localeFr from "@angular/common/locales/fr";
 import { formatDate } from "@angular/common";
-import { ProfilComponent } from 'src/app/profil/profil.component';
-import { Pompier } from 'src/app/models/pompier';
-import { VehiculeUtilise } from 'src/app/models/vehiculeutilise';
+import { ProfilComponent } from "src/app/profil/profil.component";
+import { Pompier } from "src/app/models/pompier";
+import { VehiculeUtilise } from "src/app/models/vehiculeutilise";
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -32,20 +32,20 @@ export class InterventionAddComponent implements OnInit {
     heureFin: null,
     // ici faudra recuper l'id de la session
     responsable: "",
-    idcreateur:'',
+    idcreateur: ""
   };
-  VehiculeUtilise: VehiculeUtilise={
-    IdVehicule:null,
+  VehiculeUtilise: VehiculeUtilise = {
+    IdVehicule: null,
     IDintervention: "1008",
     DateDepart: null,
     HeureDepart: null,
-    DateArrive : null,
+    DateArrive: null,
     HeureArrive: null,
     DateRetour: null,
     HeureRetour: null,
-    Ronde:null,
+    Ronde: null
   };
-  listePompier:string[]=[];
+  listePompier: string[] = [];
   response: any;
   typesIntervention: TypeIntervention[];
   vehicules: Vehicule[];
@@ -60,9 +60,13 @@ export class InterventionAddComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-  
-    this.interventionForm.idcreateur=JSON.parse(localStorage.getItem("user")).P_ID;
-    this.interventionForm.requerant=JSON.parse(localStorage.getItem("user")).P_PRENOM+" "+JSON.parse(localStorage.getItem("user")).P_NOM;
+    this.interventionForm.idcreateur = JSON.parse(
+      localStorage.getItem("user")
+    ).P_ID;
+    this.interventionForm.requerant =
+      JSON.parse(localStorage.getItem("user")).P_PRENOM +
+      " " +
+      JSON.parse(localStorage.getItem("user")).P_NOM;
     // this.datepipe.transform(this.interventionForm.dateDeclenchement,'dd/MM/yyyy');
     this.interventionForm.dateDeclenchement = formatDate(
       new Date(),
@@ -71,17 +75,49 @@ export class InterventionAddComponent implements OnInit {
     );
     this.interventionForm.heureDeclenchement = formatDate(
       new Date(),
-      'shortTime',
+      "shortTime",
       "fr-FR"
     );
-    this.interventionForm.dateFin = formatDate(new Date(), "yyyy-MM-dd", "fr-FR");
-    this.interventionForm.heureFin = formatDate(new Date(), 'shortTime', "fr-FR");
-    this.VehiculeUtilise.DateArrive  = formatDate(new Date(), 'yyyy-MM-dd', "fr-FR");
-    this.VehiculeUtilise.DateDepart  = formatDate(new Date(), 'yyyy-MM-dd', "fr-FR");
-    this.VehiculeUtilise.DateRetour  = formatDate(new Date(), 'yyyy-MM-dd', "fr-FR");
-    this.VehiculeUtilise.HeureArrive= formatDate(new Date(), 'shortTime', "fr-FR");
-    this.VehiculeUtilise.HeureDepart= formatDate(new Date(), 'shortTime', "fr-FR");
-    this.VehiculeUtilise.HeureRetour= formatDate(new Date(), 'shortTime', "fr-FR");
+    this.interventionForm.dateFin = formatDate(
+      new Date(),
+      "yyyy-MM-dd",
+      "fr-FR"
+    );
+    this.interventionForm.heureFin = formatDate(
+      new Date(),
+      "shortTime",
+      "fr-FR"
+    );
+    this.VehiculeUtilise.DateArrive = formatDate(
+      new Date(),
+      "yyyy-MM-dd",
+      "fr-FR"
+    );
+    this.VehiculeUtilise.DateDepart = formatDate(
+      new Date(),
+      "yyyy-MM-dd",
+      "fr-FR"
+    );
+    this.VehiculeUtilise.DateRetour = formatDate(
+      new Date(),
+      "yyyy-MM-dd",
+      "fr-FR"
+    );
+    this.VehiculeUtilise.HeureArrive = formatDate(
+      new Date(),
+      "shortTime",
+      "fr-FR"
+    );
+    this.VehiculeUtilise.HeureDepart = formatDate(
+      new Date(),
+      "shortTime",
+      "fr-FR"
+    );
+    this.VehiculeUtilise.HeureRetour = formatDate(
+      new Date(),
+      "shortTime",
+      "fr-FR"
+    );
     this.createListTypeIntervention();
     this.createListVehicule();
     this.createListAllPompier();
@@ -105,21 +141,19 @@ export class InterventionAddComponent implements OnInit {
     });
   }
   createListAllPompier(): void {
-    this.apiService
-      . readAllPompier()
-      .subscribe((resultat: Pompier[]) => {
-        //   console.log(resultat);
-        this.response = JSON.parse(JSON.stringify(resultat));
-        for (let i of this.response.pompiers)
-         { let c:string =i.P_PRENOM+" "+i.P_NOM;
-           this.listePompier.push(c);
-         }
-      
-           console.log(this.listePompier);
-     //  this.typesIntervention = this.response.typeIntervention;
-        //console.log(this.typesIntervention[0]);
-      });
-    }
+    this.apiService.readAllPompier().subscribe((resultat: Pompier[]) => {
+      //   console.log(resultat);
+      this.response = JSON.parse(JSON.stringify(resultat));
+      for (let i of this.response.pompiers) {
+        let c: string = i.P_PRENOM + " " + i.P_NOM;
+        this.listePompier.push(c);
+      }
+
+      console.log(this.listePompier);
+      //  this.typesIntervention = this.response.typeIntervention;
+      //console.log(this.typesIntervention[0]);
+    });
+  }
   // rajouter l'equipe d'apres le vehicule selectionnée
   addTeam(value: string) {
     var val = +value;
@@ -138,9 +172,8 @@ export class InterventionAddComponent implements OnInit {
     return null;
   }
 
-  
-  selectEvent(item:string) {
-    this.interventionForm.responsable=item;
+  selectEvent(item: string) {
+    this.interventionForm.responsable = item;
   }
   onSubmit(form: NgForm) {
     console.log("in onSubmit:", form.valid);
@@ -150,12 +183,11 @@ export class InterventionAddComponent implements OnInit {
       },
       error => console.log("erreur", error)
     );
-     this.dataService.postVehiculeUsedForm(this.VehiculeUtilise).subscribe(
+    this.dataService.postVehiculeUsedForm(this.VehiculeUtilise).subscribe(
       result => {
         console.log("success bitchez", JSON.parse(JSON.stringify(result)));
       },
       error => console.log("erreur", error)
     );
-    
   }
 }

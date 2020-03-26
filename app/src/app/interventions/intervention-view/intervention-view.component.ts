@@ -35,7 +35,7 @@ export class InterventionViewComponent implements OnInit {
         //console.log(this.response);
         this.intervention = this.response.intervention[0];
         this.getResponsable();
-        //console.log(this.intervention);
+        console.log(this.intervention);
       });
   }
 

@@ -7,7 +7,8 @@ class InterventionController
     public function __construct()
     {
     }
-    public function vehiculeUtilise(){
+    public function vehiculeUtilise()
+    {
 
         $model = new Intervention();
         $stmt = $model->listAllvehiculeUtilise();
@@ -180,10 +181,11 @@ class InterventionController
             );
         }
     }
-   
+
     public function addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde)
     {
         $model = new Intervention();
+        echo $Ronde . "<br>";
         $stmt = $model->addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde);
     }
     public function addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
