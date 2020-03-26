@@ -41,11 +41,20 @@
 <div class="last-intervention">
     <div class="title">Derni&egrave;res interventions</div>
     <div class="grille">
-        <span *ngFor="let i of intervention">{{i.Adresse}}</span>
+        <div class="cards" *ngFor="let i of intervention">
+            <div class="info">
+                <div class="number">{{i.NIntervention}}</div>
+                <div class="dateIntervention">
+                    <div class="dateDec">{{i.DateDeclenchement}}</div>
+                    <div class="dateFin">{{i.DateFin}}</div>
+                </div>
+                <div class="location">
+                    <div class="adresse">{{i.Adresse}}</div>
+                    <div class="commune">{{i.Commune}}</div>
+                </div>
+                <div class="type">{{i.TypeIntervention}}</div>
+                <a href="#" class="see-more" routerLinkActive="active" routerLink='/intervention/{{i.IDIntervention}}'>Voir</a>
+            </div>
+        </div>
     </div>
 </div>
-<!--<ul class="vehicules">
-    <li *ngFor="let v of vehicules">
-        {{v.V_INDICATIF}}
-    </li>
-</ul> -->
