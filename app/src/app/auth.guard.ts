@@ -21,8 +21,15 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (localStorage.getItem("statut") != null) {
-      return true;
+    if (localStorage.getItem("setupTime") != null) {
+      var now = new Date().getTime();
+      var setupTime = localStorage.getItem("setupTime");
+      var hour = 1;
+      if (now - Number(setupTime) < hour * 60 * 60 * 1000) {
+        return true;
+      } else {
+        this.authService.signOut();
+      }
     } else {
       this.router.navigate(["/login"]);
     }
