@@ -19,7 +19,6 @@
                 <div class="champ">
                     <label for="">Type d'intervention</label>
                     <select name="typeIntervention" id="typeIntervention" ngModel class="form-control" [(ngModel)]="interventionForm.typeIntervention">
-                        <option value="">Selectionnez un type</option>
                         <option value=t[TI_CODE] *ngFor="let t of typesIntervention" value={{t.TI_CODE}}>
                             {{t.TI_DESCRIPTION}}</option>
                     </select>
@@ -28,8 +27,6 @@
                     <div class="champ">
                         <label for="">Requ&eacute;rant</label>
                         <select name="requerant" id="requerant" class="form-control" [(ngModel)]="interventionForm.requerant">
-                            <option value="">
-                                Selectionnez un type</option>
                             <option value="CODIS">
                                 CODIS</option>
                             <option value="Alerte locale">
@@ -106,7 +103,11 @@
         <div class="section resp">
             <h2 class="title">Responsable</h2>
             <div class="body">
-                <div class="champ"><label for="">Responsable</label><input type="text" id="responsable" name="responsable" [(ngModel)]="interventionForm.responsable"></div>
+                
+                <div class="champ"><label for="">Responsable </label>
+                    <input input-autocomplete  [items]="listePompier"   id="responsable" name="responsable" [(ngModel)]="interventionForm.responsable">
+                   
+            </div>
             </div>
         </div>
         <div class="group-champ col2">
