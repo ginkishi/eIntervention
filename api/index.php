@@ -133,8 +133,6 @@ $router->post('/intervention', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
     $data = json_decode(file_get_contents('php://input'), true);
-
-
     $s->addIntervention($data["numeroIntervention"], $data["adresse"], $data["commune"], 1, $data["typeIntervention"], $data["important"], $data["requerant"], $data["dateDeclenchement"], $data["heureDeclenchement"], $data["dateFin"], $data["heureFin"], $data["responsable"], $data["idcreateur"], "0");
 
 });
