@@ -106,7 +106,11 @@
         <div class="section resp">
             <h2 class="title">Responsable</h2>
             <div class="body">
-                <div class="champ"><label for="">Responsable</label><input type="text" id="responsable" name="responsable" [(ngModel)]="interventionForm.responsable"></div>
+                
+                <div class="champ"><label for="">Responsable </label>
+                    <input input-autocomplete [items]="listePompier"   id="responsable" name="responsable" [(ngModel)]="interventionForm.responsable">
+                   
+            </div>
             </div>
         </div>
         <div class="group-champ col2">

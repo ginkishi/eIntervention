@@ -5,7 +5,7 @@ import { Vehicule } from "../../models/vehicule";
 import { RoleVhicule } from "../../models/rolevehicule";
 import { FormIntervention } from "../../models/formIntervention";
 import { DataService } from "src/app/services/data.service";
-import { NgForm } from "@angular/forms";
+import { NgForm, FormControl  } from "@angular/forms";
 import { registerLocaleData } from "@angular/common";
 import localeFr from "@angular/common/locales/fr";
 import { formatDate } from "@angular/common";
@@ -31,15 +31,17 @@ export class InterventionAddComponent implements OnInit {
     dateFin: null,
     heureFin: null,
     // ici faudra recuper l'id de la session
-    responsable: "admin admin",
+    responsable: "",
     idcreateur:'',
   };
-  p:ProfilComponent;
+  listePompier:string[]=[];
   response: any;
   typesIntervention: TypeIntervention[];
   vehicules: Vehicule[];
   selectedvehicule: string = "";
   usedVehicule: RoleVhicule[];
+
+  myControl = new FormControl();
 
   constructor(
     private apiService: BrigadeApiService,
@@ -65,6 +67,7 @@ export class InterventionAddComponent implements OnInit {
     this.interventionForm.heureFin = formatDate(new Date(), "hh-mm-ss", "fr");
     this.createListTypeIntervention();
     this.createListVehicule();
+    this.createListAllPompier();
   }
   createListTypeIntervention(): void {
     this.apiService
@@ -84,6 +87,22 @@ export class InterventionAddComponent implements OnInit {
       // console.log(this.vehicules);
     });
   }
+  createListAllPompier(): void {
+    this.apiService
+      . readAllPompier()
+      .subscribe((resultat: Pompier[]) => {
+        //   console.log(resultat);
+        this.response = JSON.parse(JSON.stringify(resultat));
+        for (let i of this.response.pompiers)
+         { let c:string =i.P_PRENOM+" "+i.P_NOM;
+           this.listePompier.push(c);
+         }
+      
+           console.log(this.listePompier);
+     //  this.typesIntervention = this.response.typeIntervention;
+        //console.log(this.typesIntervention[0]);
+      });
+    }
   // rajouter l'equipe d'apres le vehicule selectionnée
   addTeam(value: string) {
     var val = +value;
@@ -102,6 +121,10 @@ export class InterventionAddComponent implements OnInit {
     return null;
   }
 
+  
+  selectEvent(item:string) {
+    this.interventionForm.responsable=item;
+  }
   onSubmit(form: NgForm) {
     console.log("in onSubmit:", form.valid);
     this.dataService.postInterventionForm(this.interventionForm).subscribe(

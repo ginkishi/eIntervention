@@ -2,9 +2,9 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 
-import { FormsModule } from "@angular/forms";
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { DatePipe } from '@angular/common';
-
+import { AutocompleteModule } from 'ng2-input-autocomplete';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { MenuComponent } from "./menu/menu.component";
@@ -46,8 +46,12 @@ import { InterventionListComponent } from './interventions/intervention-list/int
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    AutocompleteModule.forRoot()
+
   ],
+
 
   providers: [BrigadeApiService, AuthentificationService, AuthGuard,DatePipe],
   bootstrap: [AppComponent]
