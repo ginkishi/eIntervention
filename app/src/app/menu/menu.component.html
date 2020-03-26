@@ -11,7 +11,7 @@
                     Interventions
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#" routerLink='/home'>Liste</a>
+                    <a class="dropdown-item" routerLinkActive="active" routerLink='/intervention/list' href="#">Liste</a>
                     <a class="dropdown-item" routerLinkActive="active" routerLink='/intervention/add' href="#">Ajouter</a>
                     <a class="dropdown-item" routerLinkActive="active" routerLink='/intervention/export' href="#">Exporter</a>
                 </div>
@@ -29,8 +29,8 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" routerLinkActive="active" routerLink='/profil' href="#">Mon Profil
                     </a>
-                    <a class="dropdown-item text-danger font-weight-bold" routerLinkActive="active" routerLink='/logout' href="#">Se déconnecter
-                    </a>
+                    <div class="dropdown-item text-danger font-weight-bold" (click)="signout()">Se déconnecter
+                    </div>
                 </div>
             </li>
         </ul>

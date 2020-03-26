@@ -31,7 +31,7 @@ class InterventionController
                     "Important" => utf8_encode($Important),
                     "IDResponsable" => utf8_encode($IDResponsable),
                     "Requerant" => utf8_encode($Requerant),
-                    "IDStatus" => utf8_encode($IDStatus),
+                    "IDStatut" => utf8_encode($IDStatus),
                     "Statut" => utf8_encode($label)
                 );
                 array_push($farr["interventions"], $f);
@@ -69,7 +69,7 @@ class InterventionController
                 "Important" => utf8_encode($Important),
                 "IDResponsable" => utf8_encode($IDResponsable),
                 "Requerant" => utf8_encode($Requerant),
-                "IDStatus" => utf8_encode($IDStatus),
+                "IDStatut" => utf8_encode($IDStatus),
                 "Statut" => utf8_encode($label),
                 "Vehicules" => array(),
             );
@@ -116,6 +116,11 @@ class InterventionController
     {
         $model = new Intervention();
         $stmt = $model->addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status);
+    }
+    public function editIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
+    {
+        $model = new Intervention();
+        $stmt = $model->editIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status);
     }
 
     public function deleteIntervention($id)

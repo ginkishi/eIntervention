@@ -8,7 +8,7 @@ import { Droit } from "../models/droit";
 import { User } from "../models/user";
 
 import { TypeIntervention } from "../models/typeIntervention";
-
+import { Intervention } from "../models/intervention";
 
 @Injectable({
   providedIn: "root"
@@ -20,8 +20,15 @@ export class BrigadeApiService {
   readAllVehicule(): Observable<Vehicule[]> {
     return this.httpClient.get<Vehicule[]>(`${this.PHP_API_SERVER}/vehicule`);
   }
-  readAllTypeIntervention():Observable<TypeIntervention[]> {
-    return this.httpClient.get<TypeIntervention[]>(`${this.PHP_API_SERVER}/typeIntervention`);
+  readAllIntervention(): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/intervention`
+    );
+  }
+  readAllTypeIntervention(): Observable<TypeIntervention[]> {
+    return this.httpClient.get<TypeIntervention[]>(
+      `${this.PHP_API_SERVER}/typeIntervention`
+    );
   }
   readAllPompier(): Observable<Pompier[]> {
     return this.httpClient.get<Pompier[]>(`${this.PHP_API_SERVER}/pompier`);

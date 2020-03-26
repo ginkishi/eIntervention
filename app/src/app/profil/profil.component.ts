@@ -20,11 +20,18 @@ export class ProfilComponent implements OnInit {
   }
 
   getPompierProfil() {
-    this.apiService.readOnePompier(1).subscribe((res: Pompier) => {
-      this.response = JSON.parse(JSON.stringify(res));
-      this.unPompier = this.response.pompier[0];
+    if (localStorage.getItem("user") != null) {
+      console.log(JSON.parse(localStorage.getItem("user")));
+
+      this.unPompier = JSON.parse(localStorage.getItem("user"));
       this.ProfileLoaded = Promise.resolve(true);
-      // console.log(this.unPompier.ROLE);
-    });
+    } else {
+      this.apiService.readOnePompier(1).subscribe((res: Pompier) => {
+        this.response = JSON.parse(JSON.stringify(res));
+        this.unPompier = this.response.pompier[0];
+        this.ProfileLoaded = Promise.resolve(true);
+        // console.log(this.unPompier.ROLE);
+      });
+    }
   }
 }

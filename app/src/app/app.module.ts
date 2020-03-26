@@ -25,6 +25,7 @@ import { ProfilComponent } from "./profil/profil.component";
 import { AuthentificationService } from "./services/authentification.service";
 import { AuthGuard } from "./auth.guard";
 import { BrigadeApiService } from "./services/brigade-api.service";
+import { InterventionListComponent } from './interventions/intervention-list/intervention-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { BrigadeApiService } from "./services/brigade-api.service";
     InterventionAddComponent,
     InterventionEditComponent,
     InterventionExportComponent,
-    ProfilComponent
+    ProfilComponent,
+    InterventionListComponent
   ],
   imports: [
     BrowserModule,
