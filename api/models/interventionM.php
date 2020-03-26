@@ -91,9 +91,9 @@ class Intervention
         return $stmt;
     }   
 
-    public function  addVehiculeToIntervention($IdVehicule, $IDintervention, $datedepart, $heuredepart, $datearrive, $heurearrive, $dateretour, $heureretour, $ronde){
-        $dateepart = $datedepart . " " . $heuredepart;
-
+    public function  addVehiculeToIntervention($IdVehicule, $IDIntervention, $datedepart, $heuredepart, $datearrive, $heurearrive, $dateretour, $heureretour, $ronde){
+        $datedepart = $datedepart . " " . $heuredepart;
+      echo $heuredepart;
 	//	echo $datearrive . "<br>";
 	//	echo $heurearrive . "<br>";
 		$datearrive = $datearrive . " " . $heurearrive;
@@ -102,9 +102,9 @@ class Intervention
 	//	echo $heureretour . "<br>";
 
 		$dateretour = $dateretour . " " . $heureretour;
-		$sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
+		$sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDIntervention,'$datedepart','$datearrive','$dateretour',$ronde);";
     
-        //echo $sql;
+        echo $sql;
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
