@@ -59,11 +59,17 @@ class Intervention
         //DELETE FROM interventions WHERE IDIntervention = $id;
 
         //$this->addVehiculeFromIntervention($id);
+
         $res = explode(" ", $responsable); // $res[0] = prenom
         $datedec = $dateDeclenchement . " " . $heureDeclenchement;
-        $idresp = Pompier::getPompierID($res[0], $res[1]);
+        $result = Pompier::getPompierID($res[0], $res[1])->fetch();
+        $idresp = $result[0];
+
         $datef = $dateFin . " " . $heureFin;
-        $sql = "INSERT INTO interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur,IDstatus) VALUES($numIntervention,$opm,'$commune','$adresse', '$typeIntervention',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur, $status);";
+
+        //$sql = "INSERT INTO interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur,IDstatus) VALUES($numIntervention,$opm,'$commune','$adresse', '$typeIntervention',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur, $status);";
+        $sql = "INSERT INTO interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur,IDstatus) VALUES('$numIntervention',$opm,'$commune','$adresse','$typeIntervention',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur,$status);";
+        //echo $sql;
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
