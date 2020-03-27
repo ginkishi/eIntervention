@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: "profil", canActivate: [AuthGuard], component: ProfilComponent },
   { path: "home", canActivate: [AuthGuard], component: HomeComponent },
   { path: "login", component: LoginComponent },
+  { path: "pompier/:id", canActivate: [AuthGuard], component: ProfilComponent },
   {
     path: "intervention/add",
     canActivate: [AuthGuard],
