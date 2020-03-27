@@ -19,7 +19,7 @@ import { VehiculeUtilise } from 'src/app/models/vehiculeutilise';
 })
 export class InterventionAddComponent implements OnInit {
   interventionForm: FormIntervention = {
-    numeroIntervention: +"2515", //temporaire
+    numeroIntervention: 25, //temporaire
     commune: null,
     adresse: null,
     typeIntervention: null,
@@ -36,14 +36,14 @@ export class InterventionAddComponent implements OnInit {
   };
   VehiculeUtilise: VehiculeUtilise={
     IdVehicule:null,
-    IDIntervention: "1008",
+    IDIntervention: 25,
     DateDepart: null,
     HeureDepart: null,
     DateArrive : null,
     HeureArrive: null,
     DateRetour: null,
     HeureRetour: null,
-    Ronde:null,
+    Ronde:"false",
   };
   listePompier:string[]=[];
   response: any;

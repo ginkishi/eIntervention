@@ -1,6 +1,6 @@
 export interface VehiculeUtilise{
     IdVehicule:string;
-    IDIntervention: string;
+    IDIntervention: number;
     DateDepart: string;
     HeureDepart: string;
     DateArrive : string;
