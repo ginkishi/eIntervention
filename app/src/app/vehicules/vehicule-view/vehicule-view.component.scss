@@ -48,12 +48,14 @@
   font-weight: bold;
   text-transform: capitalize;
 }
-.vehicule-container .body .info .label {
+.vehicule-container .body .info .label,
+.vehicule-container .body .composition .label {
   font-weight: bold;
   color: black;
   font-size: 24px;
   padding-left: 15px;
 }
+
 .vehicule-container .body .info .title {
   background: #ff512f; /* fallback for old browsers */
   background: -webkit-linear-gradient(
