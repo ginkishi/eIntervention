@@ -1,19 +1,24 @@
 <app-menu></app-menu>
 <div class="vehicule-container">
     <div class="bandeau-title">
-        <div class="logo"></div>
+        <div class="logo">
+            <fa-icon [icon]="['fas', 'car']"></fa-icon>
+        </div>
         <div class="title">Véhicules</div>
     </div>
     <div class="body" *ngIf="ProfileLoaded | async">
         <div class="vehicule-card" *ngFor="let v of vehicules">
-            <div class="logo"></div>
-            <div class="title"><a href="">{{v.V_INDICATIF}}</a></div>
+            <div class="logo">
+                <fa-icon [icon]="['fas', 'car-alt']"></fa-icon>
+            </div>
+            <div class="title">{{v.V_INDICATIF}}</div>
             <div class="model"><span class="label">Modèle : </span>{{v.V_MODELE}}</div>
             <div class="type"><span class="label">Type : </span>{{v.TV_CODE}}</div>
             <div class="imma"><span class="label">Immatriculation : </span>{{v.V_IMMATRICULATION}}</div>
             <div class="km"><span class="label">Kilometrage : </span>{{v.V_KM}}</div>
             <div class="annee"><span class="label">Ann&eacute;e : </span>{{v.V_ANNEE}}</div>
             <div class="statut"><span class="label">Statut : </span>{{v.VP_LIBELLE}}</div>
+            <div class="goto"><a class="see-more" href="#" routerLinkActive="active" routerLink='/vehicule/{{v.V_ID}}'>Voir</a></div>
         </div>
     </div>
 </div>
