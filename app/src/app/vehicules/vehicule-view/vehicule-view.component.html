@@ -6,7 +6,7 @@
         </div>
         <div class="title">NOM</div>
     </div>
-    <div class="body">
+    <div class="body" *ngIf="ProfileLoaded | async">
         <div class="info">
             <div class="title">Informations</div>
             <div class="model"><span class="label">Modèle : </span></div>

@@ -20,8 +20,8 @@ export class BrigadeApiService {
   readAllVehicule(): Observable<Vehicule[]> {
     return this.httpClient.get<Vehicule[]>(`${this.PHP_API_SERVER}/vehicule`);
   }
-  readOneVehicule(id): Observable<Vehicule[]> {
-    return this.httpClient.get<Vehicule[]>(
+  readOneVehicule(id): Observable<Vehicule> {
+    return this.httpClient.get<Vehicule>(
       `${this.PHP_API_SERVER}/vehicule/` + id
     );
   }
