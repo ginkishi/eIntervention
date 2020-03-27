@@ -151,7 +151,7 @@ export class InterventionAddComponent implements OnInit {
         this.listePompier.push(c);
       }
 
-      console.log(this.listePompier);
+      //console.log(this.listePompier);
       //  this.typesIntervention = this.response.typeIntervention;
       //console.log(this.typesIntervention[0]);
     });
@@ -159,7 +159,7 @@ export class InterventionAddComponent implements OnInit {
   // rajouter l'equipe d'apres le vehicule selectionnée
   addTeam(value: string) {
     var val = +value;
-    console.log(value);
+    //console.log(value);
     for (let i of this.vehicules) {
       if (i.V_ID == val) {
         this.usedVehicule = i.ROLE;

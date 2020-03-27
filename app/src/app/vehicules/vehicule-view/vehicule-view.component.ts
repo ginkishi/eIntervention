@@ -31,7 +31,7 @@ export class VehiculeViewComponent implements OnInit {
       //console.log(this.response);
       this.vehicule = this.response.vehicule[0];
       this.ProfileLoaded = Promise.resolve(true);
-      console.log(this.vehicule);
+      //console.log(this.vehicule);
     });
   }
 }
