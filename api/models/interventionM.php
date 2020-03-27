@@ -88,7 +88,26 @@ class Intervention
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
-        return $stmt;
+        
+    }
+
+    public function getThisInterventionId($numIntervention,$datedec,$heuredec)
+    {   
+       $datedec=$datedec.' '.$heuredec;
+      
+      // $numIntervention=2515;
+      //  echo"hello".   $datedec. "<br>";
+    //  echo $numIntervention;
+    //  echo $datedec;
+    //  echo $heuredec.'c';
+        $dbh = BDD::getInstanceOfEIntervention();
+        $sql="SELECT IDIntervention FROM  interventions where NIntervention=$numIntervention AND DateDeclenchement='$datedec'";
+     //  echo $sql. "<br>";
+        $query = $dbh->prepare($sql);
+        $query->execute();
+        $ID = $query->fetch();
+        //return 5;
+        return $ID['IDIntervention'];
     }
 
 
@@ -110,7 +129,7 @@ class Intervention
         $sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
 
 
-        echo $sql;
+      echo $sql;
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
