@@ -10,6 +10,8 @@ import { ProfilComponent } from "./profil/profil.component";
 import { AuthGuard } from "./auth.guard";
 import { InterventionListComponent } from "./interventions/intervention-list/intervention-list.component";
 import { InterventionViewComponent } from "./interventions/intervention-view/intervention-view.component";
+import { VehiculeListComponent } from "./vehicules/vehicule-list/vehicule-list.component";
+import { VehiculeViewComponent } from "./vehicules/vehicule-view/vehicule-view.component";
 
 const routes: Routes = [
   {
@@ -21,18 +23,14 @@ const routes: Routes = [
   { path: "profil", canActivate: [AuthGuard], component: ProfilComponent },
   { path: "home", canActivate: [AuthGuard], component: HomeComponent },
   { path: "login", component: LoginComponent },
+  { path: "pompier/:id", canActivate: [AuthGuard], component: ProfilComponent },
   {
     path: "intervention/add",
     canActivate: [AuthGuard],
     component: InterventionAddComponent
   },
   {
-    path: "intervention/:id",
-    canActivate: [AuthGuard],
-    component: InterventionViewComponent
-  },
-  {
-    path: "intervention/list",
+    path: "intervention",
     canActivate: [AuthGuard],
     component: InterventionListComponent
   },
@@ -45,6 +43,21 @@ const routes: Routes = [
     path: "intervention/edit/:id",
     canActivate: [AuthGuard],
     component: InterventionEditComponent
+  },
+  {
+    path: "intervention/:id",
+    canActivate: [AuthGuard],
+    component: InterventionViewComponent
+  },
+  {
+    path: "vehicule",
+    canActivate: [AuthGuard],
+    component: VehiculeListComponent
+  },
+  {
+    path: "vehicule/:id",
+    canActivate: [AuthGuard],
+    component: VehiculeViewComponent
   },
   { path: "logout", component: LoginComponent },
   { path: "**", component: NoPageFoundComponent }

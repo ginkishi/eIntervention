@@ -1,3 +1,8 @@
 export class PersonnelIntervention {
-  constructor(public IDPersone: number, public IDrole: number) {}
+  constructor(
+    public IDPersonne: number,
+    public Personne: string,
+    public IDrole: number,
+    public Role: string
+  ) {}
 }

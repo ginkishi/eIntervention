@@ -17,7 +17,7 @@
             <div class="requerant"><span class="label">Requérant : </span>{{intervention.Requerant}}</div>
             <div id="responsable" class="responsable" *ngIf="responsable">
                 <span class="label">Responsable : </span>
-                <a href="">{{responsable.P_PRENOM}} {{responsable.P_NOM}}</a>
+                <a href="#" routerLinkActive="active" routerLink='/pompier/{{intervention.IDResponsable}}'>{{responsable.P_PRENOM}} {{responsable.P_NOM}}</a>
             </div>
             <div class="important"><span class="label">Important : </span>{{intervention.Important == 1 ? "OUI" : "NON" }}</div>
             <div class="opm"><span class="label">OPM : </span>{{intervention.OPM == 1 ? "OUI" : "NON"}}</div>
@@ -25,11 +25,12 @@
         <div class="vehicule-container">
             <div class="title">Véhicules</div>
             <div class="vehicule" *ngFor="let v of intervention.Vehicules">
-                <div class="nom"><span class="label">Nom : </span></div>
-                <div class="modele"><span class="label">Modèle : </span></div>
-                <div class="immatriculation"><span class="label">Immatriculation : </span></div>
+                <div class="nom"><span class="label">Nom : </span><a href="#" routerLinkActive="active" routerLink='/vehicule/{{v.IDVehicule}}'>{{v.V_INDICATIF}}</a></div>
+                <div class="modele"><span class="label">Modèle : </span>{{v.V_MODELE}}</div>
+                <div class="immatriculation"><span class="label">Immatriculation : </span>{{v.V_IMMATRICULATION}}</div>
                 <div class="comp"><span class="label">Composition : </span></div>
-                <div class="poste"><span class="label"></span><a href="#"></a></div>
+                <div class="poste" *ngFor="let p of v.Personnels"><span class="label">{{p.Role}} : </span><a href="#" routerLinkActive="active"
+                        routerLink='/pompier/{{p.IDPersonne}}'>{{p.Pompier}}</a></div>
             </div>
         </div>
     </div>

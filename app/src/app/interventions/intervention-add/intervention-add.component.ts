@@ -12,7 +12,7 @@ import { formatDate } from "@angular/common";
 import { ProfilComponent } from "src/app/profil/profil.component";
 import { Pompier } from "src/app/models/pompier";
 import { VehiculeUtilise } from "src/app/models/vehiculeutilise";
-import {getInterventionID} from 'src/app/models/getIntervention';
+import { getInterventionID } from "src/app/models/getIntervention";
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -38,7 +38,7 @@ export class InterventionAddComponent implements OnInit {
 
   VehiculeUtilise: VehiculeUtilise = {
     IdVehicule: null,
-    IDIntervention:null,
+    IDIntervention: null,
 
     DateDepart: null,
     HeureDepart: null,
@@ -56,10 +56,10 @@ export class InterventionAddComponent implements OnInit {
   usedVehicule: RoleVhicule[];
 
   myControl = new FormControl();
-  infotosend: getInterventionID={
-    numeroIntervention:null,
-    dateDeclenchement:null,
-    heureDeclenchement: null,
+  infotosend: getInterventionID = {
+    numeroIntervention: null,
+    dateDeclenchement: null,
+    heureDeclenchement: null
   };
   constructor(
     private apiService: BrigadeApiService,
@@ -156,7 +156,7 @@ export class InterventionAddComponent implements OnInit {
         this.listePompier.push(c);
       }
 
-      console.log(this.listePompier);
+      //console.log(this.listePompier);
       //  this.typesIntervention = this.response.typeIntervention;
       //console.log(this.typesIntervention[0]);
     });
@@ -164,7 +164,7 @@ export class InterventionAddComponent implements OnInit {
   // rajouter l'equipe d'apres le vehicule selectionnée
   addTeam(value: string) {
     var val = +value;
-    console.log(value);
+    //console.log(value);
     for (let i of this.vehicules) {
       if (i.V_ID == val) {
         this.usedVehicule = i.ROLE;
@@ -190,22 +190,26 @@ export class InterventionAddComponent implements OnInit {
       },
       error => console.log("erreur", error)
     );
-     
-      this.infotosend.numeroIntervention=this.interventionForm.numeroIntervention;
-      this.infotosend.dateDeclenchement=this.interventionForm.dateDeclenchement;
-      this.infotosend.heureDeclenchement=this.interventionForm.heureDeclenchement;
-   
-      this.dataService.getInterventionID(this.infotosend).subscribe((resultat: number) => { 
-        console.log(resultat);
-        this.VehiculeUtilise.IDIntervention=JSON.parse(JSON.stringify(resultat)).intervention;});
 
-        console.log('num',this.VehiculeUtilise.IDIntervention);
+    this.infotosend.numeroIntervention = this.interventionForm.numeroIntervention;
+    this.infotosend.dateDeclenchement = this.interventionForm.dateDeclenchement;
+    this.infotosend.heureDeclenchement = this.interventionForm.heureDeclenchement;
+
+    this.dataService
+      .getInterventionID(this.infotosend)
+      .subscribe((resultat: number) => {
+        console.log(resultat);
+        this.VehiculeUtilise.IDIntervention = JSON.parse(
+          JSON.stringify(resultat)
+        ).intervention;
+      });
+
+    console.log("num", this.VehiculeUtilise.IDIntervention);
     this.dataService.postVehiculeUsedForm(this.VehiculeUtilise).subscribe(
       result => {
         console.log("success bitchez", JSON.parse(JSON.stringify(result)));
       },
       error => console.log("erreur", error)
     );
-    
   }
 }
