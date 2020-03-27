@@ -25,7 +25,7 @@
         <div class="vehicule-container">
             <div class="title">Véhicules</div>
             <div class="vehicule" *ngFor="let v of intervention.Vehicules">
-                <div class="nom"><span class="label">Nom : </span>{{v.V_INDICATIF}}</div>
+                <div class="nom"><span class="label">Nom : </span><a href="#" routerLinkActive="active" routerLink='/vehicule/{{v.IDVehicule}}'>{{v.V_INDICATIF}}</a></div>
                 <div class="modele"><span class="label">Modèle : </span>{{v.V_MODELE}}</div>
                 <div class="immatriculation"><span class="label">Immatriculation : </span>{{v.V_IMMATRICULATION}}</div>
                 <div class="comp"><span class="label">Composition : </span></div>
