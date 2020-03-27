@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormIntervention } from '../models/formIntervention';
 import { VehiculeUtilise} from '../models/vehiculeutilise';
+import {getInterventionID} from '../models/getIntervention';
 import { Observable,of } from 'rxjs';
 import { HttpClient,HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { CATCH_ERROR_VAR } from '@angular/compiler/src/output/output_ast';
@@ -23,5 +24,11 @@ export class DataService {
   return this.http.post(`${this.PHP_API_SERVER}/vehicule`,vehiculeUtilise);
 // return of(formIntervention);
 
+} 
+getInterventionID( getIntervention: getInterventionID):Observable<any>{
+  console.log(getIntervention);
+return this.http.get(`${this.PHP_API_SERVER}/intervention1/`+getIntervention.numeroIntervention+"/"+getIntervention.dateDeclenchement+"/"+getIntervention.heureDeclenchement);
+// return of(formIntervention);
 }
+
 }
