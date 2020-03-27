@@ -1,0 +1,100 @@
+.vehicule-container {
+  font-family: "Montserrat", sans-serif;
+}
+.bandeau-title {
+  min-height: 75px;
+  max-height: 75px;
+  background: #6a3093; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #a044ff,
+    #6a3093
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #a044ff,
+    #6a3093
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+  min-width: 80%;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-weight: bold;
+}
+.bandeau-title .title {
+  font-size: 2em;
+  margin-left: 20px;
+}
+.bandeau-title .logo {
+  font-size: 52px;
+}
+.vehicule-container .body .info,
+.vehicule-container .body .composition {
+  color: black;
+  font-size: 24px;
+  font-family: "Prompt", sans-serif;
+  display: grid;
+  text-align: left;
+  row-gap: 10px;
+  padding: 10px 50px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.vehicule-container .body .info .label {
+  font-weight: bold;
+  color: black;
+  font-size: 24px;
+  padding-left: 15px;
+}
+.vehicule-container .body .info .title {
+  background: #ff512f; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #f09819,
+    #ff512f
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #f09819,
+    #ff512f
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  font-size: 1.3em;
+  text-align: center;
+  border-radius: 8px;
+  margin: 10px 0px;
+  font-weight: bold;
+  padding: 5px 0px;
+  color: white;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+}
+.vehicule-container .body .composition .title {
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  font-size: 1.3em;
+  text-align: center;
+  border-radius: 8px;
+  margin: 10px 0px;
+  font-weight: bold;
+  padding: 5px 0px;
+  color: white;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+}

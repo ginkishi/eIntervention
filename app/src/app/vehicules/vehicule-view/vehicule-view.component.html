@@ -1,16 +1,24 @@
 <app-menu></app-menu>
 <div class="vehicule-container">
     <div class="bandeau-title">
-        <div class="logo"></div>
-        <div class="title"></div>
+        <div class="logo">
+            <fa-icon [icon]="['fas', 'car-alt']"></fa-icon>
+        </div>
+        <div class="title">NOM</div>
     </div>
     <div class="body">
-        <div class="model"><span class="label">Modèle : </span></div>
-        <div class="type"><span class="label">Type de véhicule : </span></div>
-        <div class="imma"><span class="label">Immatriculation : </span></div>
-        <div class="km"><span class="label">Kilométrage : </span></div>
-        <div class="annee"><span class="label">Année : </span></div>
-        <div class="statut"><span class="label">Statut : </span></div>
-        <div class="comp"><span class="label">Composition : </span></div>
+        <div class="info">
+            <div class="title">Informations</div>
+            <div class="model"><span class="label">Modèle : </span></div>
+            <div class="type"><span class="label">Catégorie : </span></div>
+            <div class="type"><span class="label">Type de véhicule : </span></div>
+            <div class="imma"><span class="label">Immatriculation : </span></div>
+            <div class="km"><span class="label">Kilométrage : </span></div>
+            <div class="annee"><span class="label">Année : </span></div>
+            <div class="statut"><span class="label">Statut : </span></div>
+        </div>
+        <div class="composition">
+            <div class="title">Composition</div>
+        </div>
     </div>
 </div>
