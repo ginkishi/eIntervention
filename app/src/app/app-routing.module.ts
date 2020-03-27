@@ -27,11 +27,6 @@ const routes: Routes = [
     component: InterventionAddComponent
   },
   {
-    path: "intervention/:id",
-    canActivate: [AuthGuard],
-    component: InterventionViewComponent
-  },
-  {
     path: "intervention/list",
     canActivate: [AuthGuard],
     component: InterventionListComponent
@@ -45,6 +40,11 @@ const routes: Routes = [
     path: "intervention/edit/:id",
     canActivate: [AuthGuard],
     component: InterventionEditComponent
+  },
+  {
+    path: "intervention/:id",
+    canActivate: [AuthGuard],
+    component: InterventionViewComponent
   },
   { path: "logout", component: LoginComponent },
   { path: "**", component: NoPageFoundComponent }

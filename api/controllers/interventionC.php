@@ -1,7 +1,7 @@
 <?php
 require_once(MODELS . DS . "interventionM.php");
+require_once(MODELS . DS . "role_vehiculeM.php");
 require_once(MODELS . DS . "vehiculeM.php");
-
 class InterventionController
 {
     public function __construct()
@@ -120,6 +120,8 @@ class InterventionController
     public function UneIntervention($id)
     {
         $model = new Intervention();
+        $modelP =  new Pompier();
+        $modelV =  new Vehicule();
         $stmt = $model->OneIntervByID($id);
         $num = $stmt->rowCount();
         if ($num > 0) {
@@ -149,9 +151,14 @@ class InterventionController
             if ($numV > 0) {
                 while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                     extract($row2);
-
+                    $stmt22 = $modelV->OneVehiculeByID($IDVehicule);
+                    $vehicule = $stmt22->fetch(PDO::FETCH_ASSOC);
+                    extract($vehicule);
                     $v = array(
                         "IDVehicule" => $IDVehicule,
+                        "V_IMMATRICULATION" => $V_IMMATRICULATION,
+                        "V_MODELE" => $V_MODELE,
+                        "V_INDICATIF" => $V_INDICATIF,
                         "DateDepart" => utf8_encode($DateDepart),
                         "DateArrive" => utf8_encode($DateArrive),
                         "DateRetour" => utf8_encode($DateRetour),
@@ -159,11 +166,34 @@ class InterventionController
                         "Personnels" => array()
                     );
                     $stmt3 = $model->listPersonalForOneVehicule($IDIntervention, $IDVehicule);
+
+
+
                     while ($row3 = $stmt3->fetch(PDO::FETCH_ASSOC)) {
                         extract($row3);
+                        $stmt4 = $modelP->OnePompierByID($IDPersonne);
+                        $idr = "";
+                        if ($IDrole != "0") {
+                            $stmt5 = $modelV->listOneRole($TV_CODE, $IDrole);
+                            $role = $stmt5->fetch(PDO::FETCH_ASSOC);
+                            extract($role);
+                            $idr = $ROLE_NAME;
+                        } else {
+                            $idr = "apprenti";
+                        }
+
+
+                        //echo $ROLE_NAME . "\n";
+
+                        $pompier = $stmt4->fetch(PDO::FETCH_ASSOC);
+
+                        extract($pompier);
                         $p = array(
                             "IDPersonne" => $IDPersonne,
-                            "IDRole" => $IDrole
+                            "Pompier" => utf8_encode($P_PRENOM . " " . $P_NOM),
+                            "IDRole" => $IDrole,
+                            "Role" => utf8_encode($idr)
+
                         );
                         array_push($v["Personnels"], $p);
                     }
