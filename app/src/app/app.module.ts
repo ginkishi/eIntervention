@@ -30,6 +30,7 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import localeFrExtra from '@angular/common/locales/extra/fr';
 import { InterventionViewComponent } from './interventions/intervention-view/intervention-view.component';
+import { VehiculeListComponent } from './vehicules/vehicule-list/vehicule-list.component';
 
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 @NgModule({
@@ -45,7 +46,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     InterventionExportComponent,
     ProfilComponent,
     InterventionListComponent,
-    InterventionViewComponent
+    InterventionViewComponent,
+    VehiculeListComponent
   ],
   imports: [
     BrowserModule,
