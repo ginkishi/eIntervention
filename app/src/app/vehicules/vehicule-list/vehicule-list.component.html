@@ -4,7 +4,7 @@
         <div class="logo"></div>
         <div class="title">Véhicules</div>
     </div>
-    <div class="body">
+    <div class="body" *ngIf="ProfileLoaded | async">
         <div class="vehicule-card">
             <div class="logo"></div>
             <div class="title"><a href="">Nom</a></div>
