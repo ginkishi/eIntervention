@@ -78,6 +78,7 @@ class InterventionController
             );
         }
     }
+  
     public function interventionsForUser($id)
     {
         $model = new Intervention();
@@ -116,7 +117,23 @@ class InterventionController
             );
         }
     }
-
+    public function getInterventionID($numIntervention,$datedec,$heuredec){
+        $model = new Intervention();
+       // echo $numIntervention;
+        // echo $datedec."coucou";
+        // echo $heuredec;
+        $stmt = $model-> getThisInterventionId($numIntervention,$datedec,$heuredec);
+       
+       
+            $farr = array();
+            $farr["intervention"] = $stmt;
+          
+        
+        header('Content-Type: application/json');
+        http_response_code(200);
+        echo json_encode($farr);
+    
+}
     public function UneIntervention($id)
     {
         $model = new Intervention();
@@ -185,7 +202,7 @@ class InterventionController
     public function addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde)
     {
         $model = new Intervention();
-        echo $Ronde . "<br>";
+   // echo $IDintervention ;
         $stmt = $model->addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde);
     }
     public function addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
