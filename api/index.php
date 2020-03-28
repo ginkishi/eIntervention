@@ -139,7 +139,12 @@ $router->get('/intervention1/:numeroIntervention/:dateDeclenchement/:heureDeclen
 
 });
 
+$router->get('/lastintervention',function(){
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->getlastInterventionID();
 
+});
 
 
 // Get list of all intervention for user
