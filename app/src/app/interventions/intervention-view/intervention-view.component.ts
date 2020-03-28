@@ -45,7 +45,7 @@ export class InterventionViewComponent implements OnInit {
       .subscribe((res: Pompier) => {
         this.response = JSON.parse(JSON.stringify(res));
         this.responsable = this.response.pompier[0];
-        console.log(this.responsable.P_NOM);
+        //console.log(this.responsable.P_NOM);
       });
   }
 }
