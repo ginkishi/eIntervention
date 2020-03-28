@@ -109,7 +109,17 @@ class Intervention
         //return 5;
         return $ID['IDIntervention'];
     }
+    
+    public function getlastInterventionID()
+    { 
+        $dbh = BDD::getInstanceOfEIntervention();
+        $sql="SELECT IDIntervention FROM interventions ORDER BY IDIntervention DESC LIMIT 1";
+        $query = $dbh->prepare($sql);
+        $query->execute();
+        $ID = $query->fetch();
+        return $ID['IDIntervention'];
 
+    }
 
     public function  addVehiculeToIntervention($IdVehicule, $IDintervention, $datedepart, $heuredepart, $datearrive, $heurearrive, $dateretour, $heureretour, $ronde)
     {
