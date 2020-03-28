@@ -12,7 +12,7 @@ import { formatDate } from "@angular/common";
 import { ProfilComponent } from "src/app/profil/profil.component";
 import { Pompier } from "src/app/models/pompier";
 import { VehiculeUtilise } from "src/app/models/vehiculeutilise";
-import {getInterventionID} from 'src/app/models/getIntervention';
+import { NotExpr } from '@angular/compiler';
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -39,7 +39,6 @@ export class InterventionAddComponent implements OnInit {
   VehiculeUtilise: VehiculeUtilise = {
     IdVehicule: null,
     IDIntervention:null,
-
     DateDepart: null,
     HeureDepart: null,
     DateArrive: null,
@@ -56,11 +55,6 @@ export class InterventionAddComponent implements OnInit {
   usedVehicule: RoleVhicule[];
 
   myControl = new FormControl();
-  infotosend: getInterventionID={
-    numeroIntervention:null,
-    dateDeclenchement:null,
-    heureDeclenchement: null,
-  };
   constructor(
     private apiService: BrigadeApiService,
     private dataService: DataService
@@ -126,8 +120,19 @@ export class InterventionAddComponent implements OnInit {
       "fr-FR"
     );
     this.createListTypeIntervention();
+    this.setIDintervention();
     this.createListVehicule();
     this.createListAllPompier();
+  }
+  setIDintervention():void{
+
+ // recuperer l'id d'une intervention 
+      this.dataService.getInterventionID().subscribe((resultat :number)=>{
+      this.response=JSON.parse(JSON.stringify(resultat));
+      let c:number=1+Number(this.response.ID);;
+      this.VehiculeUtilise.IDIntervention=""+c;
+      console.log(this.VehiculeUtilise.IDIntervention);
+    });
   }
   createListTypeIntervention(): void {
     this.apiService
@@ -171,41 +176,39 @@ export class InterventionAddComponent implements OnInit {
       }
     }
   }
-  // a utiliser apres
-  parseDate(dateString: string): Date {
-    if (dateString) {
-      return new Date(dateString);
-    }
-    return null;
-  }
 
   selectEvent(item: string) {
     this.interventionForm.responsable = item;
   }
-  onSubmit(form: NgForm) {
-    console.log("in onSubmit:", form.valid);
-    this.dataService.postInterventionForm(this.interventionForm).subscribe(
-      result => {
-        console.log("success bitchez1", JSON.parse(JSON.stringify(result)));
-      },
-      error => console.log("erreur", error)
-    );
-     
-      this.infotosend.numeroIntervention=this.interventionForm.numeroIntervention;
-      this.infotosend.dateDeclenchement=this.interventionForm.dateDeclenchement;
-      this.infotosend.heureDeclenchement=this.interventionForm.heureDeclenchement;
-   
-      this.dataService.getInterventionID(this.infotosend).subscribe((resultat: number) => { 
-        console.log(resultat);
-        this.VehiculeUtilise.IDIntervention=JSON.parse(JSON.stringify(resultat)).intervention;});
 
-        console.log('num',this.VehiculeUtilise.IDIntervention);
+  async onSubmit(form: NgForm) {
+    console.log("in onSubmit:", form.valid);
+       //ajout d'une intervention
+     this.dataService.postInterventionForm(this.interventionForm).subscribe(
+      result =>
+      {
+        console.log("success hallelujah", JSON.parse(JSON.stringify(result)));
+       console.log('num',this.VehiculeUtilise.IDIntervention);
+      }
+   
+    );
+    // ajout d'un vehicule a une intervention
     this.dataService.postVehiculeUsedForm(this.VehiculeUtilise).subscribe(
-      result => {
-        console.log("success bitchez", JSON.parse(JSON.stringify(result)));
+      result => 
+      {
+        console.log("success", JSON.parse(JSON.stringify(result)));
       },
       error => console.log("erreur", error)
     );
     
+
   }
+     
+      
+     
+      
+
+      
+    
+  
 }
