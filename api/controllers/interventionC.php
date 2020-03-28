@@ -198,7 +198,19 @@ class InterventionController
             );
         }
     }
+    public function getlastInterventionID(){
+        $model = new Intervention();
+        $stmt = $model->getlastInterventionID();
+        $farr = array();
+        $farr["ID"] = $stmt;
+      
+    
+    header('Content-Type: application/json');
+    http_response_code(200);
+    echo json_encode($farr);
 
+
+    }
     public function addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde)
     {
         $model = new Intervention();
