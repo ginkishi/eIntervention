@@ -13,7 +13,7 @@ import { ProfilComponent } from "src/app/profil/profil.component";
 import { Pompier } from "src/app/models/pompier";
 import { VehiculeUtilise } from "src/app/models/vehiculeutilise";
 import { NotExpr } from '@angular/compiler';
-
+import { PompierRoles } from 'src/app/models/pompierRoles';
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -49,6 +49,7 @@ export class InterventionAddComponent implements OnInit {
     HeureRetour: null,
     Ronde: null
   };
+  
   listePompier: string[] = [];
   response: any;
   typesIntervention: TypeIntervention[];
@@ -57,7 +58,7 @@ export class InterventionAddComponent implements OnInit {
   usedVehicule: RoleVhicule[];
 
   myControl = new FormControl();
-
+  
   constructor(
     private apiService: BrigadeApiService,
     private dataService: DataService
@@ -67,10 +68,7 @@ export class InterventionAddComponent implements OnInit {
     this.interventionForm.idcreateur = JSON.parse(
       localStorage.getItem("user")
     ).P_ID;
-    this.interventionForm.requerant =
-      JSON.parse(localStorage.getItem("user")).P_PRENOM +
-      " " +
-      JSON.parse(localStorage.getItem("user")).P_NOM;
+   
     // this.datepipe.transform(this.interventionForm.dateDeclenchement,'dd/MM/yyyy');
     this.interventionForm.dateDeclenchement = formatDate(
       new Date(),
@@ -178,6 +176,12 @@ export class InterventionAddComponent implements OnInit {
         this.usedVehicule = i.ROLE;
       }
     }
+    this.usedVehicule.push(new RoleVhicule('0','Apprenti(Optionel)',''));
+    
+    this.usedVehicule[0].POMPIER_NAME=
+    JSON.parse(localStorage.getItem("user")).P_PRENOM +
+    " " +
+    JSON.parse(localStorage.getItem("user")).P_NOM;
   }
 
   selectEvent(item: string) {
