@@ -75,16 +75,14 @@
                     </div>
                     <div class="champ mycheckbox"><label for="">Ronde</label><input type="checkbox" [(ngModel)]="VehiculeUtilise.Ronde" name="ronde" id="ronde"></div>
                 </div>
-                <div class="group-champ col1" *ngIf="selectedvehicule !== ''">
+       
+                <div class="group-champ col1" *ngIf="VehiculeUtilise.IdVehicule !== ''">
                     <div class="champ" *ngFor="let ro of usedVehicule">
                         <label for="name">{{ro.ROLE_NAME}}</label>
                         <input type="text" id="apprenti[]" name="apprenti[]" required>
-                    </div>
-                    <div class="champ">
-                        <label for="name">Apprenti(Optionel):</label>
-                        <input type="text" id="apprenti[]" name="apprenti[]" required>
-                    </div>
+                  
                 </div>
+               </div>
                 <div class="group-champ col2">
                     <div class="champ"><label for="">Date de d&eacute;part</label><input type="date" autocomplete="off" required id="datadepart" name="datadepart"
                             [(ngModel)]="VehiculeUtilise.DateDepart"></div>
