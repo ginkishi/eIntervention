@@ -77,9 +77,9 @@
                 </div>
        
                 <div class="group-champ col1" *ngIf="VehiculeUtilise.IdVehicule !== ''">
-                    <div class="champ" *ngFor="let ro of usedVehicule">
-                        <label for="name">{{ro.ROLE_NAME}}</label>
-                        <input type="text" id="apprenti[]" name="apprenti[]" required>
+                    <div class="champ" *ngFor="let role of usedVehicule"> 
+                        <label for="name">{{role.ROLE_NAME}}</label>
+                        <input type="text" id="role.ROLE_ID" [(ngModel)]="role.POMPIER_NAME" name="role.ROLE_ID" required>
                   
                 </div>
                </div>
