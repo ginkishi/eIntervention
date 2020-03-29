@@ -56,7 +56,7 @@ export class InterventionAddComponent implements OnInit {
   vehicules: Vehicule[];
   selectedvehicule: string = "";
   usedVehicule: RoleVhicule[];
-
+  idvehicule: string;
   myControl = new FormControl();
   
   constructor(
@@ -169,15 +169,20 @@ export class InterventionAddComponent implements OnInit {
   }
   // rajouter l'equipe d'apres le vehicule selectionnée
   addTeam(value: string) {
+    this.idvehicule=value;
+    this.usedVehicule=[];
     var val = +value;
     //console.log(value);
     for (let i of this.vehicules) {
       if (i.V_ID == val) {
-        this.usedVehicule = i.ROLE;
+        for( let c of  i.ROLE)
+        {
+          this.usedVehicule.push((new RoleVhicule(c.ROLE_ID,c.ROLE_NAME,'')));
+        }
+       
       }
     }
     this.usedVehicule.push(new RoleVhicule('0','Apprenti(Optionel)',''));
-    
     this.usedVehicule[0].POMPIER_NAME=
     JSON.parse(localStorage.getItem("user")).P_PRENOM +
     " " +
@@ -200,9 +205,10 @@ export class InterventionAddComponent implements OnInit {
       }
    
     );
+    
     // ajout d'un vehicule a une intervention
 
-    this.dataService.postVehiculeUsedForm(this.VehiculeUtilise).subscribe(
+   this.dataService.postVehiculeUsedForm(this.VehiculeUtilise).subscribe(
       result => 
       {
         console.log("success", JSON.parse(JSON.stringify(result)));
@@ -210,6 +216,21 @@ export class InterventionAddComponent implements OnInit {
       error => console.log("erreur", error)
     );
 
+
+    console.log(this.idvehicule);
+    console.log(this.usedVehicule);
+    for(let pom of this.usedVehicule)
+    {if(pom.ROLE_ID!=='0' || pom.POMPIER_NAME!="")
+      this.dataService.postMembertoInntervention(this.idvehicule,this.VehiculeUtilise.IDIntervention,pom.ROLE_ID,pom.POMPIER_NAME).subscribe(
+        result => 
+        {
+          console.log("success", JSON.parse(JSON.stringify(result)));
+        },
+        error => console.log("erreur", error)
+      );
+  
+    }
+   
   }
      
       
