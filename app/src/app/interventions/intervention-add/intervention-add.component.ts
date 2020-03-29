@@ -13,6 +13,7 @@ import { ProfilComponent } from "src/app/profil/profil.component";
 import { Pompier } from "src/app/models/pompier";
 import { VehiculeUtilise } from "src/app/models/vehiculeutilise";
 import { NotExpr } from '@angular/compiler';
+
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -38,6 +39,7 @@ export class InterventionAddComponent implements OnInit {
 
   VehiculeUtilise: VehiculeUtilise = {
     IdVehicule: null,
+
     IDIntervention:null,
     DateDepart: null,
     HeureDepart: null,
@@ -55,6 +57,7 @@ export class InterventionAddComponent implements OnInit {
   usedVehicule: RoleVhicule[];
 
   myControl = new FormControl();
+
   constructor(
     private apiService: BrigadeApiService,
     private dataService: DataService
@@ -161,7 +164,7 @@ export class InterventionAddComponent implements OnInit {
         this.listePompier.push(c);
       }
 
-      console.log(this.listePompier);
+      //console.log(this.listePompier);
       //  this.typesIntervention = this.response.typeIntervention;
       //console.log(this.typesIntervention[0]);
     });
@@ -169,7 +172,7 @@ export class InterventionAddComponent implements OnInit {
   // rajouter l'equipe d'apres le vehicule selectionnée
   addTeam(value: string) {
     var val = +value;
-    console.log(value);
+    //console.log(value);
     for (let i of this.vehicules) {
       if (i.V_ID == val) {
         this.usedVehicule = i.ROLE;
@@ -183,6 +186,7 @@ export class InterventionAddComponent implements OnInit {
 
   async onSubmit(form: NgForm) {
     console.log("in onSubmit:", form.valid);
+
        //ajout d'une intervention
      this.dataService.postInterventionForm(this.interventionForm).subscribe(
       result =>
@@ -193,6 +197,7 @@ export class InterventionAddComponent implements OnInit {
    
     );
     // ajout d'un vehicule a une intervention
+
     this.dataService.postVehiculeUsedForm(this.VehiculeUtilise).subscribe(
       result => 
       {
@@ -200,7 +205,6 @@ export class InterventionAddComponent implements OnInit {
       },
       error => console.log("erreur", error)
     );
-    
 
   }
      

@@ -38,6 +38,18 @@
 }
 .intervention-container .body .info .title {
   color: white;
+  background: #ff512f; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #f09819,
+    #ff512f
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #f09819,
+    #ff512f
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
 }
 .intervention-container .body .vehicule-container {
   padding: 10px 50px;
@@ -71,7 +83,6 @@
   font-size: 20px;
 }
 .intervention-container .body .info .title {
-  background-color: rgb(38, 105, 192);
   font-size: 1.5em;
   text-align: center;
   border-radius: 8px;
@@ -80,13 +91,24 @@
   padding: 5px 0px;
 }
 .intervention-container .body .vehicule-container .title {
-  background-color: rgb(38, 105, 192);
   font-size: 1.5em;
   text-align: center;
   border-radius: 8px;
   margin: 10px 0px;
   font-weight: bold;
   padding: 5px 0px;
+  background: #6a3093; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #a044ff,
+    #6a3093
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #a044ff,
+    #6a3093
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
 }
 .intervention-container .body .vehicule-container .vehicule a,
 #responsable a {

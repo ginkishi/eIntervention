@@ -1,0 +1,26 @@
+<app-menu></app-menu>
+<div class="vehicule-container" *ngIf="ProfileLoaded | async">
+    <div class="bandeau-title">
+        <div class="logo">
+            <fa-icon [icon]="['fas', 'car-alt']"></fa-icon>
+        </div>
+        <div class="title">{{vehicule.V_INDICATIF}}</div>
+    </div>
+    <div class="body">
+        <div class="info">
+            <div class="title">Informations</div>
+            <div class="model"><span class="label">Modèle : </span>{{vehicule.V_MODELE}}</div>
+            <div class="type"><span class="label">Catégorie : </span>{{vehicule.TV_CODE}}</div>
+            <div class="type"><span class="label">Type de véhicule : </span>{{vehicule.TV_LIBELLE}}</div>
+            <div class="imma"><span class="label">Immatriculation : </span>{{vehicule.V_IMMATRICULATION}}</div>
+            <div class="km"><span class="label">Kilométrage : </span>{{vehicule.V_KM}}</div>
+            <div class="annee"><span class="label">Année : </span>{{vehicule.V_ANNEE}}</div>
+            <div class="statut"><span class="label">Statut : </span>{{vehicule.VP_LIBELLE}}</div>
+        </div>
+        <div class="composition">
+            <div class="title">Composition</div>
+            <div class="poste" *ngFor="let p of vehicule.ROLE"><span class="label">Poste n°{{p.ROLE_ID}} : </span>{{p.ROLE_NAME}}</div>
+            <div class="poste"><span class="label">Poste optionnel : </span>Apprenti</div>
+        </div>
+    </div>
+</div>
