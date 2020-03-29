@@ -241,6 +241,13 @@ class InterventionController
 
 
     }
+    public function AddMemberToVehicule($IDvehicule, $IDintervention,$IDrole,$nom)
+    {
+        $model = new Intervention();
+        // echo $IDintervention ;
+        $stmt = $model->AddMemberToVehicule($IDvehicule, $IDintervention,$IDrole,$nom);
+    }
+
     public function addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde)
     {
         $model = new Intervention();
