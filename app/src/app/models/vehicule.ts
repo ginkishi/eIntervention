@@ -1,3 +1,5 @@
+import { RoleVhicule } from './rolevehicule';
+
 export class Vehicule {
   constructor(
     public V_ID: number,
@@ -9,6 +11,6 @@ export class Vehicule {
     public V_KM: number,
     public VP_LIBELLE: string,
     public TV_LIBELLE: String,
-    public ROLE: []
+    public ROLE: RoleVhicule []
   ) {}
 }
