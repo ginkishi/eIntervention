@@ -175,6 +175,13 @@ $router->delete('/intervention/:id', function ($id) {
     $s = new InterventionController();
     $s->deleteIntervention($id);
 });
+$router->post('/addMember', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $data = json_decode(file_get_contents('php://input'), true);
+    $s->AddMemberToVehicule($data["IDvehicule"], $data["IDintervention"], $data["IDrole"],$data["nom"] );
+});
+
 
 // Delete one intervention by id
 // $router->delete('/vehicule', function ($id) {

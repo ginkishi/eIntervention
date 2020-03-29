@@ -13,7 +13,7 @@ import { ProfilComponent } from "src/app/profil/profil.component";
 import { Pompier } from "src/app/models/pompier";
 import { VehiculeUtilise } from "src/app/models/vehiculeutilise";
 import { NotExpr } from '@angular/compiler';
-
+import { PompierRoles } from 'src/app/models/pompierRoles';
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -49,15 +49,16 @@ export class InterventionAddComponent implements OnInit {
     HeureRetour: null,
     Ronde: null
   };
+  
   listePompier: string[] = [];
   response: any;
   typesIntervention: TypeIntervention[];
   vehicules: Vehicule[];
   selectedvehicule: string = "";
   usedVehicule: RoleVhicule[];
-
+  idvehicule: string;
   myControl = new FormControl();
-
+  
   constructor(
     private apiService: BrigadeApiService,
     private dataService: DataService
@@ -67,10 +68,7 @@ export class InterventionAddComponent implements OnInit {
     this.interventionForm.idcreateur = JSON.parse(
       localStorage.getItem("user")
     ).P_ID;
-    this.interventionForm.requerant =
-      JSON.parse(localStorage.getItem("user")).P_PRENOM +
-      " " +
-      JSON.parse(localStorage.getItem("user")).P_NOM;
+   
     // this.datepipe.transform(this.interventionForm.dateDeclenchement,'dd/MM/yyyy');
     this.interventionForm.dateDeclenchement = formatDate(
       new Date(),
@@ -171,13 +169,24 @@ export class InterventionAddComponent implements OnInit {
   }
   // rajouter l'equipe d'apres le vehicule selectionnée
   addTeam(value: string) {
+    this.idvehicule=value;
+    this.usedVehicule=[];
     var val = +value;
     //console.log(value);
     for (let i of this.vehicules) {
       if (i.V_ID == val) {
-        this.usedVehicule = i.ROLE;
+        for( let c of  i.ROLE)
+        {
+          this.usedVehicule.push((new RoleVhicule(c.ROLE_ID,c.ROLE_NAME,'')));
+        }
+       
       }
     }
+    this.usedVehicule.push(new RoleVhicule('0','Apprenti(Optionel)',''));
+    this.usedVehicule[0].POMPIER_NAME=
+    JSON.parse(localStorage.getItem("user")).P_PRENOM +
+    " " +
+    JSON.parse(localStorage.getItem("user")).P_NOM;
   }
 
   selectEvent(item: string) {
@@ -196,9 +205,10 @@ export class InterventionAddComponent implements OnInit {
       }
    
     );
+    
     // ajout d'un vehicule a une intervention
 
-    this.dataService.postVehiculeUsedForm(this.VehiculeUtilise).subscribe(
+   this.dataService.postVehiculeUsedForm(this.VehiculeUtilise).subscribe(
       result => 
       {
         console.log("success", JSON.parse(JSON.stringify(result)));
@@ -206,6 +216,21 @@ export class InterventionAddComponent implements OnInit {
       error => console.log("erreur", error)
     );
 
+
+    console.log(this.idvehicule);
+    console.log(this.usedVehicule);
+    for(let pom of this.usedVehicule)
+    {if(pom.ROLE_ID!=='0' || pom.POMPIER_NAME!="")
+      this.dataService.postMembertoInntervention(this.idvehicule,this.VehiculeUtilise.IDIntervention,pom.ROLE_ID,pom.POMPIER_NAME).subscribe(
+        result => 
+        {
+          console.log("success", JSON.parse(JSON.stringify(result)));
+        },
+        error => console.log("erreur", error)
+      );
+  
+    }
+   
   }
      
       

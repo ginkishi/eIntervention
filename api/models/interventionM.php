@@ -139,11 +139,22 @@ class Intervention
         $sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
 
 
-      echo $sql;
+     // echo $sql;
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
+    }
+    public function AddMemberToVehicule($IDvehicule, $IDintervention,$IDrole,$nom){
+             $dbh = BDD::getInstanceOfEIntervention();
+             $pieces = explode(" ", $nom);
+             $IDPompier =Pompier::getPompierID($pieces[0], $pieces[1])->fetch();
+             $IDPompier = $IDPompier[0];
+            
+            $sql="INSERT INTO  `personnelduvehicule` (IDVehicule, IDPersonne, IDIntervention, IDrole) VALUES($IDvehicule, $IDPompier,$IDintervention, $IDrole);";
+            $stmt = $dbh->prepare($sql);
+            $stmt->execute();
+
     }
 
     public function editIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
