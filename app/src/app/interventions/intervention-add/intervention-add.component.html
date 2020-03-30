@@ -47,8 +47,7 @@
                 <div class="group-champ col2">
                     <div class="champ"><label for="">Date de d&eacute;clenchement</label>
                         <input type="date" autocomplete="off" required id="dateDeclenchement" name="dateDeclenchement"
-                            formControlName="dateDeclenchement"
-                         ></div>
+                            formControlName="dateDeclenchement"></div>
                     <div class="champ"><label for="">Heure de d&eacute;clenchement</label>
                         <input type="time" autocomplete="off" required id="heureDeclenchement" name="heureDeclenchement"
                             formControlName="heureDeclenchement"></div>
@@ -68,50 +67,67 @@
         <div class="section engin">
             <h2 class="title">Engins et Personels</h2>
             <div class="body">
-                <div class="group-champ col2">
-                    <div class="champ">
-                        <label for="">Nom du v&eacute;hicule</label>
-                        <select name="vehicule[]" id="vehicule[]" class="form-control">
-                            <option value="">Selectionnez un véhicule</option>
-                            <option *ngFor="let v of vehicules" value="{{v.V_ID}}">
-                                {{v.V_INDICATIF}}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="champ mycheckbox"><label for="">Ronde</label><input type="checkbox" name="ronde"
-                            id="ronde"></div>
-                </div>
+                <div formArrayName="vehiculesintervention" *ngFor="let v of vehiculesintervention.controls; let i=index ">
+                    <div [formGroupName]="i">
+                        <div class="group-champ col2">
+                            <div class="champ">
 
-                <div class="group-champ col2">
-                    <div class="champ"><label for="">Date de d&eacute;part</label><input type="date" autocomplete="off"
-                            required id="datadepart" name="datadepart"></div>
-                    <div class="champ"><label for="">Heure de d&eacute;part</label><input type="time" autocomplete="off"
-                            required id="heuredepart" name="heuredepart" >
-                    </div>
-                </div>
-                <div class="group-champ col2">
-                    <div class="champ"><label for="">Date d'arriv&eacute;e</label><input type="date" autocomplete="off"
-                            required id="datearrivee" name="datearrivee" ></div>
-                    <div class="champ"><label for="">Heure d'arriv&eacute;e</label><input type="time" autocomplete="off"
-                            required id="heurearrivee" name="heurearrive" >
-                    </div>
-                </div>
-                <div class="group-champ col2">
-                    <div class="champ"><label for="">Date de retour</label><input type="date" autocomplete="off"
-                            id="dateretour" name="dateretour" required ></div>
-                    <div class="champ"><label for="">Heure de retour</label><input type="time" autocomplete="off"
-                            id="heureretour" name="heureretour" required >
+                                <label for="">Nom du v&eacute;hicule</label>
+                                <select name="vehicule[]" id="{{'vehicule'+i}}" class="form-control"
+                                    formControlName="vehicule">
+                                    <option value="">Selectionnez un véhicule</option>
+                                    <option *ngFor="let v of vehicules" value="{{v.V_ID}}">
+                                        {{v.V_INDICATIF}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="champ mycheckbox"><label for="">Ronde</label><input
+                                    formControlName="ronde" type="checkbox" name="ronde"
+                                    id="{{'ronde'+i}}" >
+                            </div>
+                        </div>
+                        <div class="group-champ col4">
+                            <div class="champ" *ngFor="let role of usedVehicule">
+                                <label for="name">{{role.ROLE_NAME}}</label>
+                                <input type="text" id="role.ROLE_ID" name="role.ROLE_ID"  required>
+
+                            </div>
+                        </div>
+
+                        <div class="group-champ col2">
+                            <div class="champ"><label for="">Date de d&eacute;part</label><input type="date"
+                                    autocomplete="off" required  id="{{'dateDepart'+i}}"  formControlName="dateDepart"></div>
+                            <div class="champ"><label for="">Heure de d&eacute;part</label><input type="time"
+                                    autocomplete="off" required id="{{'heureDepart'+i}}" formControlName="heureDepart">
+                            </div>
+                        </div>
+                        <div class="group-champ col2">
+                            <div class="champ"><label for="">Date d'arriv&eacute;e</label><input type="date"
+                                    autocomplete="off" required formControlName="dateArrivee" id="{{'dateArrivee'+i}}"></div>
+                            <div class="champ"><label for="">Heure d'arriv&eacute;e</label><input type="time"
+                                    autocomplete="off" required formControlName="heureArrivee" id="{{'heureArrivee'+i}}">
+                            </div>
+                        </div>
+                        <div class="group-champ col2">
+                            <div class="champ"><label for="">Date de retour</label><input type="date" autocomplete="off"
+                                    formControlName="dateRetour" id="{{'dateRetour'+i}}" required></div>
+                            <div class="champ"><label for="">Heure de retour</label><input type="time"
+                                    autocomplete="off" formControlName="heureRetour" id="{{'heureRetour'+i}}" required>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-danger btn-lg" id="addVehicule">Ajouter un v&eacute;hicule</button>
+
+            <button type="button" class="btn btn-danger btn-lg" id="addVehicule" (click)="addVehicule()">Ajouter un v&eacute;hicule</button>
         </div>
         <div class="section resp">
             <h2 class="title">Responsable</h2>
             <div class="body">
                 <div class="champ"><label for="">Responsable</label>
                     <input input-autocomplete [items]="listePompier" id="responsable" name="responsable"
-                       >
+                        formControlName="responsable">
                 </div>
             </div>
         </div>
@@ -121,3 +137,4 @@
         </div>
     </form>
 </div>
+{{AddInterventionForm.value}}

@@ -5,9 +5,7 @@ import { Vehicule } from "../../models/vehicule";
 import { RoleVhicule } from "../../models/rolevehicule";
 import { FormIntervention } from "../../models/formIntervention";
 import { DataService } from "src/app/services/data.service";
-import { NgForm, FormControl,FormGroup } from "@angular/forms";
-import { registerLocaleData } from "@angular/common";
-import localeFr from "@angular/common/locales/fr";
+import { FormBuilder, FormControl,FormGroup, FormArray } from "@angular/forms";
 import { formatDate } from "@angular/common";
 import { ProfilComponent } from "src/app/profil/profil.component";
 import { Pompier } from "src/app/models/pompier";
@@ -58,88 +56,122 @@ export class InterventionAddComponent implements OnInit {
   selectedvehicule: string = "";
   usedVehicule: RoleVhicule[];
   idvehicule: string;
-  myControl = new FormControl();
+  
+  get vehiculesintervention():FormArray{
+
+    return <FormArray>this.AddInterventionForm.get('vehiculesintervention');
+  }
   
   constructor(
     private apiService: BrigadeApiService,
-    private dataService: DataService
+    private dataService: DataService,
+    private fb:FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.AddInterventionForm=new FormGroup({
-      numeroIntervention: new FormControl(),
-      commune: new FormControl(),
-      adresse: new FormControl(),
-      typeIntervention:new FormControl(),
-      requerant:new FormControl(),
-      opm:new FormControl(true),
-      important: new FormControl(true),
-      dateDeclenchement: new FormControl(),
-      heureDeclenchement: new FormControl(),
-      dateFin: new FormControl(),
-      heureFin: new FormControl(),
+    this.AddInterventionForm=this.fb.group({
+      numeroIntervention:258,
+      commune: "",
+      adresse: "",
+      typeIntervention:"",
+      requerant:"Alerte locale",
+      opm:false,
+      important: false,
+      dateDeclenchement: formatDate(
+        new Date(),
+        "yyyy-MM-dd",
+        "fr-FR"
+      ),
+      heureDeclenchement:  formatDate(
+        new Date(),
+        "shortTime",
+        "fr-FR"
+      ),
+      dateFin: formatDate(
+        new Date(),
+        "yyyy-MM-dd",
+        "fr-FR"
+      ),
+      heureFin: formatDate(
+        new Date(),
+        "shortTime",
+        "fr-FR"
+      ),
+     
+      vehiculesintervention:this.fb.array([this.buildVehicule()]),
+      responsable:'admin admin'
     });
+  /*  this.AddInterventionForm.get("vehiculesintervention.vehicule").valueChanges.subscribe(
 
-
+      value => 
+      { console.log(value);
+        this.idvehicule=value;
+        this.usedVehicule=[];
+        var val = +value;
+        //console.log(value);
+        for (let i of this.vehicules) {
+          if (i.V_ID == val) {
+            for( let c of  i.ROLE)
+            {
+              this.usedVehicule.push((new RoleVhicule(c.ROLE_ID,c.ROLE_NAME,'')));
+            }
+           
+          }
+        }
+        this.usedVehicule.push(new RoleVhicule('0','Apprenti(Optionel)',''));
+        this.usedVehicule[0].POMPIER_NAME=
+        JSON.parse(localStorage.getItem("user")).P_PRENOM +
+        " " +
+        JSON.parse(localStorage.getItem("user")).P_NOM;
+      }
+    )
+   */
     this.interventionForm.idcreateur = JSON.parse(
       localStorage.getItem("user")
     ).P_ID;
    
     // this.datepipe.transform(this.interventionForm.dateDeclenchement,'dd/MM/yyyy');
-    this.interventionForm.dateDeclenchement = formatDate(
-      new Date(),
-      "yyyy-MM-dd",
-      "fr-FR"
-    );
-    this.interventionForm.heureDeclenchement = formatDate(
-      new Date(),
-      "shortTime",
-      "fr-FR"
-    );
-    this.interventionForm.dateFin = formatDate(
-      new Date(),
-      "yyyy-MM-dd",
-      "fr-FR"
-    );
-    this.interventionForm.heureFin = formatDate(
-      new Date(),
-      "shortTime",
-      "fr-FR"
-    );
-    this.VehiculeUtilise.DateArrive = formatDate(
-      new Date(),
-      "yyyy-MM-dd",
-      "fr-FR"
-    );
-    this.VehiculeUtilise.DateDepart = formatDate(
-      new Date(),
-      "yyyy-MM-dd",
-      "fr-FR"
-    );
-    this.VehiculeUtilise.DateRetour = formatDate(
-      new Date(),
-      "yyyy-MM-dd",
-      "fr-FR"
-    );
-    this.VehiculeUtilise.HeureArrive = formatDate(
-      new Date(),
-      "shortTime",
-      "fr-FR"
-    );
-    this.VehiculeUtilise.HeureDepart = formatDate(
-      new Date(),
-      "shortTime",
-      "fr-FR"
-    );
-    this.VehiculeUtilise.HeureRetour = formatDate(
-      new Date(),
-      "shortTime",
-      "fr-FR"
-    );
+
     this.createListTypeIntervention();
     this.setIDintervention();
     this.createListVehicule();
     this.createListAllPompier();
+  }
+  buildVehicule(): FormGroup{
+    return this.fb.group({
+      vehicule: "",
+      ronde:'false',
+      dateDepart:formatDate(
+        new Date(),
+        "yyyy-MM-dd",
+        "fr-FR"
+      ),
+      heureDepart:formatDate(
+        new Date(),
+        "shortTime",
+        "fr-FR"
+      ),
+      dateArrivee:formatDate(
+        new Date(),
+        "yyyy-MM-dd",
+        "fr-FR"
+      ),
+      heureArrivee:formatDate(
+        new Date(),
+        "shortTime",
+        "fr-FR"
+      ),
+      dateRetour:formatDate(
+        new Date(),
+        "yyyy-MM-dd",
+        "fr-FR"
+      ),
+      heureRetour:formatDate(
+        new Date(),
+        "shortTime",
+        "fr-FR"
+      ),
+    });
   }
   setIDintervention():void{
 
@@ -198,7 +230,7 @@ export class InterventionAddComponent implements OnInit {
        
       }
     }
-    this.usedVehicule.push(new RoleVhicule('0','Apprenti(Optionel)',''));
+    this.usedVehicule.push(new RoleVhicule('0','apprenti(Optionel)',''));
     this.usedVehicule[0].POMPIER_NAME=
     JSON.parse(localStorage.getItem("user")).P_PRENOM +
     " " +
@@ -209,6 +241,10 @@ export class InterventionAddComponent implements OnInit {
     this.interventionForm.responsable = item;
   }
 
+  addVehicule():void{
+
+    this.vehiculesintervention.push(this.buildVehicule());
+  }
  onSubmit() {
 
    console.log(this.AddInterventionForm);
