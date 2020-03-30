@@ -5,7 +5,7 @@ import { Vehicule } from "../../models/vehicule";
 import { RoleVhicule } from "../../models/rolevehicule";
 import { FormIntervention } from "../../models/formIntervention";
 import { DataService } from "src/app/services/data.service";
-import { NgForm, FormControl } from "@angular/forms";
+import { NgForm, FormControl,FormGroup } from "@angular/forms";
 import { registerLocaleData } from "@angular/common";
 import localeFr from "@angular/common/locales/fr";
 import { formatDate } from "@angular/common";
@@ -20,6 +20,7 @@ import { PompierRoles } from 'src/app/models/pompierRoles';
   styleUrls: ["./intervention-add.component.scss"]
 })
 export class InterventionAddComponent implements OnInit {
+  AddInterventionForm: FormGroup;
   interventionForm: FormIntervention = {
     numeroIntervention: 2515, //temporaire
     commune: null,
@@ -65,6 +66,21 @@ export class InterventionAddComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.AddInterventionForm=new FormGroup({
+      numeroIntervention: new FormControl(),
+      commune: new FormControl(),
+      adresse: new FormControl(),
+      typeIntervention:new FormControl(),
+      requerant:new FormControl(),
+      opm:new FormControl(true),
+      important: new FormControl(true),
+      dateDeclenchement: new FormControl(),
+      heureDeclenchement: new FormControl(),
+      dateFin: new FormControl(),
+      heureFin: new FormControl(),
+    });
+
+
     this.interventionForm.idcreateur = JSON.parse(
       localStorage.getItem("user")
     ).P_ID;
@@ -193,7 +209,11 @@ export class InterventionAddComponent implements OnInit {
     this.interventionForm.responsable = item;
   }
 
-  async onSubmit(form: NgForm) {
+ onSubmit() {
+
+   console.log(this.AddInterventionForm);
+   console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
+    /*
     console.log("in onSubmit:", form.valid);
 
        //ajout d'une intervention
@@ -228,9 +248,9 @@ export class InterventionAddComponent implements OnInit {
         },
         error => console.log("erreur", error)
       );
-  
+ 
     }
-   
+    */
   }
      
       
