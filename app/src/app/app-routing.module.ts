@@ -15,6 +15,7 @@ import { VehiculeViewComponent } from "./vehicules/vehicule-view/vehicule-view.c
 import { ExportAccessGuard } from "./guards/export-access.guard";
 import { ForbiddenPageComponent } from "./forbidden-page/forbidden-page.component";
 import { WritingAccessGuard } from "./guards/writing-access.guard";
+import { EditingAccessGuard } from "./guards/editing-access.guard";
 
 const routes: Routes = [
   {
@@ -46,7 +47,7 @@ const routes: Routes = [
   },
   {
     path: "intervention/edit/:id",
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, EditingAccessGuard],
     component: InterventionEditComponent
   },
   {
