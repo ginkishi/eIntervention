@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { BrigadeApiService } from "src/app/services/brigade-api.service";
 import { Intervention } from "src/app/models/intervention";
 import { ExportService } from "src/app/services/export.service";
@@ -9,6 +9,7 @@ import { ExportService } from "src/app/services/export.service";
   styleUrls: ["./intervention-list.component.scss"]
 })
 export class InterventionListComponent implements OnInit {
+  @ViewChild("epltable", { static: false }) epltable: ElementRef;
   intervention: Intervention[];
   response: any;
 
@@ -50,5 +51,8 @@ export class InterventionListComponent implements OnInit {
       ]
     };
     this.exportService.exportToCSV(this.intervention, "TestExport", csvOptions);
+  }
+  exportToExcel() {
+    this.exportService.exportToExcel(this.epltable);
   }
 }

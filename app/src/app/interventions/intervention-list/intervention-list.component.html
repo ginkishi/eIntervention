@@ -1,6 +1,7 @@
 <app-menu></app-menu>
-<div class="table-responsive">
-    <button class="btn btn-lg btn-success" (click)="exportToCSV()">EXPORTER</button>
+<button class="btn btn-lg btn-success" (click)="exportToCSV()">EXPORTER CSV</button>
+<button class="btn btn-lg btn-success" (click)="exportToExcel()">EXPORTER Excel</button>
+<div class="table-responsive" #epltable>
     <table class="table text-center">
         <thead>
             <tr class="bg-primary">
