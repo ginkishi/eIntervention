@@ -40,12 +40,15 @@ export class RightAccessService {
   }
 
   searchRight(id) {
-    this.getRight().forEach(element => {
+    let check = false;
+    this.getRight().some(element => {
       if (element.F_ID == id) {
+        check = true;
         return true;
       }
     });
-    return false;
+
+    return check;
   }
 
   getRight() {
@@ -56,7 +59,6 @@ export class RightAccessService {
   }
   checkRight() {
     this.writingAccess = this.searchRight(78);
-    if (this.writingAccess) console.log("A le droit d'écriture d'intervention");
     this.editingAccess = this.searchRight(79);
     this.validatingAccess = this.searchRight(80);
     this.readingAccess = this.searchRight(81);

@@ -2,9 +2,9 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 
-import { FormsModule,ReactiveFormsModule } from "@angular/forms";
-import { DatePipe } from '@angular/common';
-import { AutocompleteModule } from 'ng2-input-autocomplete';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DatePipe } from "@angular/common";
+import { AutocompleteModule } from "ng2-input-autocomplete";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { MenuComponent } from "./menu/menu.component";
@@ -25,15 +25,16 @@ import { ProfilComponent } from "./profil/profil.component";
 import { AuthentificationService } from "./services/authentification.service";
 import { AuthGuard } from "./auth.guard";
 import { BrigadeApiService } from "./services/brigade-api.service";
-import { InterventionListComponent } from './interventions/intervention-list/intervention-list.component';
-import { registerLocaleData } from '@angular/common';
-import localeFr from '@angular/common/locales/fr';
-import localeFrExtra from '@angular/common/locales/extra/fr';
-import { InterventionViewComponent } from './interventions/intervention-view/intervention-view.component';
-import { VehiculeListComponent } from './vehicules/vehicule-list/vehicule-list.component';
-import { VehiculeViewComponent } from './vehicules/vehicule-view/vehicule-view.component';
+import { InterventionListComponent } from "./interventions/intervention-list/intervention-list.component";
+import { registerLocaleData } from "@angular/common";
+import localeFr from "@angular/common/locales/fr";
+import localeFrExtra from "@angular/common/locales/extra/fr";
+import { InterventionViewComponent } from "./interventions/intervention-view/intervention-view.component";
+import { VehiculeListComponent } from "./vehicules/vehicule-list/vehicule-list.component";
+import { VehiculeViewComponent } from "./vehicules/vehicule-view/vehicule-view.component";
+import { RightAccessService } from "./services/right-access.service";
 
-registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
+registerLocaleData(localeFr, "fr-FR", localeFrExtra);
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,11 +60,15 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     FormsModule,
     ReactiveFormsModule,
     AutocompleteModule.forRoot()
-
   ],
 
-
-  providers: [BrigadeApiService, AuthentificationService, AuthGuard,DatePipe],
+  providers: [
+    BrigadeApiService,
+    AuthentificationService,
+    AuthGuard,
+    DatePipe,
+    RightAccessService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
