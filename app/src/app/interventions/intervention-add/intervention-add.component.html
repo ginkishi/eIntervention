@@ -67,14 +67,15 @@
         <div class="section engin">
             <h2 class="title">Engins et Personels</h2>
             <div class="body">
-                <div formArrayName="vehiculesintervention" *ngFor="let v of vehiculesintervention.controls; let i=index ">
+                <div formArrayName="vehiculesintervention"
+                    *ngFor="let v of AddInterventionForm['controls'].vehiculesintervention['controls']; let i=index ">
                     <div [formGroupName]="i">
                         <div class="group-champ col2">
                             <div class="champ">
 
                                 <label for="">Nom du v&eacute;hicule</label>
-                                <select name="vehicule[]" id="{{'vehicule'+i}}" class="form-control"
-                                    formControlName="vehicule">
+                                <select name="{{'vehicule'+i}}" id="{{'vehicule'+i}}" class="form-control"
+                                    formControlName="vehicule" (change)="addTeam(i,$event.target.value)">
                                     <option value="">Selectionnez un véhicule</option>
                                     <option *ngFor="let v of vehicules" value="{{v.V_ID}}">
                                         {{v.V_INDICATIF}}
@@ -82,31 +83,43 @@
                                 </select>
                             </div>
 
-                            <div class="champ mycheckbox"><label for="">Ronde</label><input
-                                    formControlName="ronde" type="checkbox" name="ronde"
-                                    id="{{'ronde'+i}}" >
+                            <div class="champ mycheckbox"><label for="">Ronde</label><input formControlName="ronde"
+                                    type="checkbox" name="ronde" id="{{'ronde'+i}}">
                             </div>
                         </div>
                         <div class="group-champ col4">
-                            <div class="champ" *ngFor="let role of usedVehicule">
-                                <label for="name">{{role.ROLE_NAME}}</label>
-                                <input type="text" id="role.ROLE_ID" name="role.ROLE_ID"  required>
+                            <div formArrayName="roles">
+                                <div *ngFor="let Y of v['controls'].roles['controls']; let iy=index">
+                                    <div formGroupName="{{iy}}" class="roles">
+                                        <div class="champ">
 
+                                            <label for="name">{{Y.value.rolename}}</label>
+                                            <input  type="text"
+                                                formControlName="pompiername" required>
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
+
                         <div class="group-champ col2">
                             <div class="champ"><label for="">Date de d&eacute;part</label><input type="date"
-                                    autocomplete="off" required  id="{{'dateDepart'+i}}"  formControlName="dateDepart"></div>
+                                    autocomplete="off" required id="{{'dateDepart'+i}}" formControlName="dateDepart">
+                            </div>
                             <div class="champ"><label for="">Heure de d&eacute;part</label><input type="time"
                                     autocomplete="off" required id="{{'heureDepart'+i}}" formControlName="heureDepart">
                             </div>
                         </div>
                         <div class="group-champ col2">
                             <div class="champ"><label for="">Date d'arriv&eacute;e</label><input type="date"
-                                    autocomplete="off" required formControlName="dateArrivee" id="{{'dateArrivee'+i}}"></div>
+                                    autocomplete="off" required formControlName="dateArrivee" id="{{'dateArrivee'+i}}">
+                            </div>
                             <div class="champ"><label for="">Heure d'arriv&eacute;e</label><input type="time"
-                                    autocomplete="off" required formControlName="heureArrivee" id="{{'heureArrivee'+i}}">
+                                    autocomplete="off" required formControlName="heureArrivee"
+                                    id="{{'heureArrivee'+i}}">
                             </div>
                         </div>
                         <div class="group-champ col2">
@@ -120,15 +133,26 @@
                 </div>
             </div>
 
-            <button type="button" class="btn btn-danger btn-lg" id="addVehicule" (click)="addVehicule()">Ajouter un v&eacute;hicule</button>
+            <button type="button" class="btn btn-danger btn-lg" id="addVehicule" (click)="addVehicule()">Ajouter un
+                v&eacute;hicule</button>
         </div>
         <div class="section resp">
             <h2 class="title">Responsable</h2>
             <div class="body">
-                <div class="champ"><label for="">Responsable</label>
-                    <input input-autocomplete [items]="listePompier" id="responsable" name="responsable"
-                        formControlName="responsable">
+
+                <div class="group-champ col2">
+
+                    <div class="champ">
+
+                        <label for="name">Responsable</label>
+                        <div class="autocomplete">
+                        <input input-autocomplete [items]="listePompier" id="responsable" name="responsable"
+                            formControlName="responsable">
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
         </div>
         <div class="group-champ col2">
@@ -137,4 +161,3 @@
         </div>
     </form>
 </div>
-{{AddInterventionForm.value}}

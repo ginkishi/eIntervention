@@ -12,6 +12,7 @@ import { Pompier } from "src/app/models/pompier";
 import { VehiculeUtilise } from "src/app/models/vehiculeutilise";
 import { NotExpr } from '@angular/compiler';
 import { PompierRoles } from 'src/app/models/pompierRoles';
+import { stringify } from 'querystring';
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -38,7 +39,6 @@ export class InterventionAddComponent implements OnInit {
 
   VehiculeUtilise: VehiculeUtilise = {
     IdVehicule: null,
-
     IDIntervention:null,
     DateDepart: null,
     HeureDepart: null,
@@ -60,6 +60,9 @@ export class InterventionAddComponent implements OnInit {
   get vehiculesintervention():FormArray{
 
     return <FormArray>this.AddInterventionForm.get('vehiculesintervention');
+  }
+  get roles():FormArray{
+    return <FormArray>this.vehiculesintervention.get('roles');
   }
   
   constructor(
@@ -101,24 +104,7 @@ export class InterventionAddComponent implements OnInit {
       vehiculesintervention:this.fb.array([this.buildVehicule()]),
       responsable:'admin admin'
     });
-  /*  this.AddInterventionForm.get("vehiculesintervention.vehicule").valueChanges.subscribe(
-
-      value => 
-      { console.log(value);
-        this.idvehicule=value;
-        this.usedVehicule=[];
-        var val = +value;
-        //console.log(value);
-        for (let i of this.vehicules) {
-          if (i.V_ID == val) {
-            for( let c of  i.ROLE)
-            {
-              this.usedVehicule.push((new RoleVhicule(c.ROLE_ID,c.ROLE_NAME,'')));
-            }
-           
-          }
-        }
-        this.usedVehicule.push(new RoleVhicule('0','Apprenti(Optionel)',''));
+  /*his.usedVehicule.push(new RoleVhicule('0','Apprenti(Optionel)',''));
         this.usedVehicule[0].POMPIER_NAME=
         JSON.parse(localStorage.getItem("user")).P_PRENOM +
         " " +
@@ -140,6 +126,7 @@ export class InterventionAddComponent implements OnInit {
   buildVehicule(): FormGroup{
     return this.fb.group({
       vehicule: "",
+      usedVehicule: "",
       ronde:'false',
       dateDepart:formatDate(
         new Date(),
@@ -171,8 +158,44 @@ export class InterventionAddComponent implements OnInit {
         "shortTime",
         "fr-FR"
       ),
+     roles:this.fb.array([]),
     });
+    
   }
+  buildRoles(name,id):FormGroup{
+
+    return this.fb.group({
+      roleid:id,
+      rolename:name,
+      pompiername:'',
+    });
+
+  }
+  addTeam(index:number,value: string) {
+    this.idvehicule=value;
+    this.usedVehicule=[];
+    var val = +value;
+    let c= (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(index).get('roles') as FormArray;
+    c.clear();
+    //console.log(value);
+    for (let i of this.vehicules) {
+      if (i.V_ID == val) {
+        for( let c of  i.ROLE)
+        {  
+          this.usedVehicule.push((new RoleVhicule(c.ROLE_ID,c.ROLE_NAME,'')));
+          const control = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(index).get('roles') as FormArray;
+          control.push(this.buildRoles(c.ROLE_NAME,c.ROLE_ID));
+        }
+
+          
+       
+      }
+    }
+    this.usedVehicule.push(new RoleVhicule('0','apprenti(Optionel)',''));
+    const control = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(index).get('roles') as FormArray;
+          control.push(this.buildRoles("apprenti(Optionel)","0"));
+  }
+ 
   setIDintervention():void{
 
  // recuperer l'id d'une intervention 
@@ -216,26 +239,7 @@ export class InterventionAddComponent implements OnInit {
     });
   }
   // rajouter l'equipe d'apres le vehicule selectionnée
-  addTeam(value: string) {
-    this.idvehicule=value;
-    this.usedVehicule=[];
-    var val = +value;
-    //console.log(value);
-    for (let i of this.vehicules) {
-      if (i.V_ID == val) {
-        for( let c of  i.ROLE)
-        {
-          this.usedVehicule.push((new RoleVhicule(c.ROLE_ID,c.ROLE_NAME,'')));
-        }
-       
-      }
-    }
-    this.usedVehicule.push(new RoleVhicule('0','apprenti(Optionel)',''));
-    this.usedVehicule[0].POMPIER_NAME=
-    JSON.parse(localStorage.getItem("user")).P_PRENOM +
-    " " +
-    JSON.parse(localStorage.getItem("user")).P_NOM;
-  }
+ 
 
   selectEvent(item: string) {
     this.interventionForm.responsable = item;
@@ -247,8 +251,10 @@ export class InterventionAddComponent implements OnInit {
   }
  onSubmit() {
 
-   console.log(this.AddInterventionForm);
+   console.log(this.AddInterventionForm.value);
    console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
+   console.log( this.usedVehicule);
+ 
     /*
     console.log("in onSubmit:", form.valid);
 
