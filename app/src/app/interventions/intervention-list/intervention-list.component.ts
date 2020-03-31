@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { BrigadeApiService } from "src/app/services/brigade-api.service";
 import { Intervention } from "src/app/models/intervention";
+import { ExportService } from "src/app/services/export.service";
 
 @Component({
   selector: "app-intervention-list",
@@ -11,7 +12,10 @@ export class InterventionListComponent implements OnInit {
   intervention: Intervention[];
   response: any;
 
-  constructor(public api: BrigadeApiService) {}
+  constructor(
+    public api: BrigadeApiService,
+    public exportService: ExportService
+  ) {}
 
   ngOnInit(): void {
     this.getInterventions();
@@ -24,5 +28,27 @@ export class InterventionListComponent implements OnInit {
       this.intervention = this.response.interventions;
       //console.log(this.intervention);
     });
+  }
+  exportToCSV() {
+    let csvOptions = {
+      fieldSeparator: ",",
+      quoteStrings: '"',
+      decimalseparator: ".",
+      showLabels: true,
+      showTitle: true,
+      title: "Your Holiday List :",
+      useBom: true,
+      noDownload: false,
+      headers: [
+        "Numero",
+        "Date de declechement",
+        "Date de fin",
+        "Adresse",
+        "Commune",
+        "Type d'intervention",
+        "Statut"
+      ]
+    };
+    this.exportService.exportToCSV(this.intervention, "TestExport", csvOptions);
   }
 }

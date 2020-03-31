@@ -37,6 +37,7 @@ import { ExportAccessGuard } from "./guards/export-access.guard";
 import { ForbiddenPageComponent } from "./forbidden-page/forbidden-page.component";
 import { WritingAccessGuard } from "./guards/writing-access.guard";
 import { EditingAccessGuard } from "./guards/editing-access.guard";
+import { ExportService } from "./services/export.service";
 
 registerLocaleData(localeFr, "fr-FR", localeFrExtra);
 @NgModule({
@@ -75,7 +76,8 @@ registerLocaleData(localeFr, "fr-FR", localeFrExtra);
     DatePipe,
     RightAccessService,
     WritingAccessGuard,
-    EditingAccessGuard
+    EditingAccessGuard,
+    ExportService
   ],
   bootstrap: [AppComponent]
 })
