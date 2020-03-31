@@ -22,19 +22,19 @@ export class InterventionAddComponent implements OnInit {
   AddInterventionForm: FormGroup;
   interventionForm: FormIntervention = {
     numeroIntervention: 2515, //temporaire
-    commune: null,
+    commune: "boumerdes",
     adresse: null,
     typeIntervention: null,
-    requerant: null,
+    requerant: "Alerte locale",
     opm: 0,
     important: 0,
-    dateDeclenchement: null,
-    heureDeclenchement: null,
-    dateFin: null,
-    heureFin: null,
+    dateDeclenchement: "2020-03-31",
+    heureDeclenchement:"16:52",
+    dateFin: "2020-03-31",
+    heureFin:"16:52",
     // ici faudra recuper l'id de la session
-    responsable: "",
-    idcreateur: ""
+    responsable: "admin admin",
+    idcreateur: "1"
   };
 
   VehiculeUtilise: VehiculeUtilise = {
@@ -248,23 +248,29 @@ export class InterventionAddComponent implements OnInit {
     this.vehiculesintervention.push(this.buildVehicule());
   }
  onSubmit() {
-//13
+
 
   // console.log(this.AddInterventionForm.value);
   // console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
+  console.log("-----------numerointer ",this.AddInterventionForm.value.numeroIntervention);
+  
    this.interventionForm.numeroIntervention=this.AddInterventionForm.value.numeroIntervention;
    this.interventionForm.commune=this.AddInterventionForm.value.commune;
    this.interventionForm.adresse=this.AddInterventionForm.value.adresse;
    this.interventionForm.typeIntervention=this.AddInterventionForm.value.typeIntervention;
    this.interventionForm.requerant=this.AddInterventionForm.value.requerant;
    this.interventionForm.opm=this.AddInterventionForm.value.opm;
-   this.interventionForm.important=this.AddInterventionForm.value.important;
+   console.log(this.AddInterventionForm.value.important);
+   if(this.AddInterventionForm.value.important=="false")
+   this.interventionForm.important=0;
+   else  this.interventionForm.important=1;
    this.interventionForm.dateDeclenchement=this.AddInterventionForm.value.dateDeclenchement;
    this.interventionForm.dateFin=this.AddInterventionForm.value.dateFin;
    this.interventionForm.heureDeclenchement=this.AddInterventionForm.value.heureDeclenchement;
    this.interventionForm.heureFin=this.AddInterventionForm.value.heureFin;
    this.interventionForm.responsable=this.AddInterventionForm.value.responsable;
    this.interventionForm.idcreateur=JSON.parse(localStorage.getItem("user")).P_ID;
+  
    console.log(this.interventionForm);
   console.log("in onSubmit:");
 
@@ -276,15 +282,51 @@ export class InterventionAddComponent implements OnInit {
       }
    
     );
-    
+    var c:VehiculeUtilise;
+for(let vi of this.AddInterventionForm.value.vehiculesintervention)
+{ c={
+  IdVehicule:vi.vehicule,
+  IDIntervention:this.interventionID,
+  DateDepart: vi.dateDepart,
+  HeureDepart: vi.heureDepart,
+  DateArrive: vi.dateArrivee,
+  HeureArrive: vi.heureArrivee,
+  DateRetour: vi.dateRetour,
+  HeureRetour: vi.heureRetour,
+  Ronde: vi.ronde
+};
+console.log(2);
+   console.log(c);
+   console.log(3);
+  this.dataService.postVehiculeUsedForm(c).subscribe(
+    result => 
+    {
+      console.log("success", JSON.parse(JSON.stringify(result)));
+    },
+    error => console.log("erreur", error)
+  );
+  
+  for(let pom of vi.roles)
+  {if(pom.roleid!=='0' || pom.pompiername!="")
+  {
+  console.log(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername);
+    this.dataService.postMembertoInntervention(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername).subscribe(
+      result => 
+      {
+        console.log("success", JSON.parse(JSON.stringify(result)));
+      },
+      error => console.log("erreur", error)
+    );
+    }
+  }
+
   
   
      
-      
+}    
      
   }
 
-      
+}  
     
  
-}
