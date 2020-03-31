@@ -14,7 +14,7 @@ export class RightAccessService {
   private deletingAccess: boolean;
   private validatingAccess: boolean;
   constructor() {
-    this.checkRight();
+    if (RightAccessService.right != null) this.checkRight();
   }
 
   haveWritingAccess() {
@@ -59,7 +59,7 @@ export class RightAccessService {
     return RightAccessService.right;
   }
   checkRight() {
-    // console.log("Cheking Access !!");
+    console.log("Cheking Access !!");
 
     RightAccessService.right = null;
     this.writingAccess = this.searchRight(78);
