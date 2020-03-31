@@ -24,15 +24,16 @@ const routes: Routes = [
   { path: "home", canActivate: [AuthGuard], component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "pompier/:id", canActivate: [AuthGuard], component: ProfilComponent },
-  {
-    path: "intervention/add",
-    canActivate: [AuthGuard],
-    component: InterventionAddComponent
-  },
+
   {
     path: "intervention",
     canActivate: [AuthGuard],
     component: InterventionListComponent
+  },
+  {
+    path: "intervention/add",
+    canActivate: [AuthGuard],
+    component: InterventionAddComponent
   },
   {
     path: "intervention/export",
