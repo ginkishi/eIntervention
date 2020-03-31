@@ -152,6 +152,7 @@ class Intervention
              $IDPompier = $IDPompier[0];
             
             $sql="INSERT INTO  `personnelduvehicule` (IDVehicule, IDPersonne, IDIntervention, IDrole) VALUES($IDvehicule, $IDPompier,$IDintervention, $IDrole);";
+          //  echo $sql;
             $stmt = $dbh->prepare($sql);
             $stmt->execute();
 
