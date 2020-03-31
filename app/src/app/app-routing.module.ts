@@ -12,6 +12,7 @@ import { InterventionListComponent } from "./interventions/intervention-list/int
 import { InterventionViewComponent } from "./interventions/intervention-view/intervention-view.component";
 import { VehiculeListComponent } from "./vehicules/vehicule-list/vehicule-list.component";
 import { VehiculeViewComponent } from "./vehicules/vehicule-view/vehicule-view.component";
+import { ExportAccessGuard } from "./guards/export-access.guard";
 
 const routes: Routes = [
   {
@@ -37,7 +38,7 @@ const routes: Routes = [
   },
   {
     path: "intervention/export",
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, ExportAccessGuard],
     component: InterventionExportComponent
   },
   {
