@@ -1,0 +1,10 @@
+.error-template {
+  font-family: "Montserrat", sans-serif;
+  min-width: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 20px;
+  place-content: center;
+  margin-top: 50px;
+}
