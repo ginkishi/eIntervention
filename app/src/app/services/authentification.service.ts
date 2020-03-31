@@ -48,6 +48,7 @@ export class AuthentificationService {
     console.log("deconnexion");
     localStorage.removeItem("statut");
     localStorage.removeItem("user");
+    localStorage.clear();
     this.router.navigate(["logout", { msg: "Vous avez été déconnecté" }]);
   }
 }
