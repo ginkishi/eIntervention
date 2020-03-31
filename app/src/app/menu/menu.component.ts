@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { AuthentificationService } from "../services/authentification.service";
 import { Router } from "@angular/router";
+import { RightAccessService } from "../services/right-access.service";
 
 @Component({
   selector: "app-menu",

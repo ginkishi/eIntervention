@@ -59,7 +59,7 @@ export class BrigadeApiService {
     );
   }
 
-  authentificate(user: User): Observable<User> {
-    return this.httpClient.post<User>(`${this.PHP_API_SERVER}/auth`, user);
+  authentificate(user: User): Observable<Pompier[]> {
+    return this.httpClient.post<Pompier[]>(`${this.PHP_API_SERVER}/auth`, user);
   }
 }

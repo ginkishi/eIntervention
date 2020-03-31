@@ -37,15 +37,29 @@ export class LoginComponent implements OnInit {
     const username = form.value["username"];
     const password = form.value["password"];
     let user = new User(username, password);
-    this.authService.signIn(user);
-    setTimeout(() => {
-      this.authStatus = this.authService.isAuth;
-      if (this.authStatus) {
-        this.router.navigate(["home"]);
-      } else {
-        //console.log(this.authStatus);
+
+    this.authService.signIn(user).then(
+      resolve => {
+        this.authStatus = this.authService.isAuth;
+        if (this.authStatus) {
+          this.router.navigate(["home"]);
+        } else {
+          this.errormessage = true;
+        }
+      },
+      reject => {
         this.errormessage = true;
       }
-    }, 500);
+    );
+
+    // setTimeout(() => {
+    //   console.log(this.authService.isAuth);
+    //   if (this.authStatus) {
+    //     this.router.navigate(["home"]);
+    //   } else {
+    //     //console.log(this.authStatus);
+    //     this.errormessage = true;
+    //   }
+    // }, 500);
   }
 }
