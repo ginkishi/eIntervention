@@ -24,7 +24,7 @@ export class ExportAccessGuard implements CanActivate {
     if (this.auth.rights.haveExportingAccess()) {
       return true;
     } else {
-      this.router.navigate(["**"]);
+      this.router.navigate(["forbidden"]);
     }
   }
   constructor(private auth: AuthentificationService, private router: Router) {}
