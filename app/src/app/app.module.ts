@@ -23,7 +23,7 @@ import { InterventionEditComponent } from "./interventions/intervention-edit/int
 import { InterventionExportComponent } from "./interventions/intervention-export/intervention-export.component";
 import { ProfilComponent } from "./profil/profil.component";
 import { AuthentificationService } from "./services/authentification.service";
-import { AuthGuard } from "./auth.guard";
+import { AuthGuard } from "./guards/auth.guard";
 import { BrigadeApiService } from "./services/brigade-api.service";
 import { InterventionListComponent } from "./interventions/intervention-list/intervention-list.component";
 import { registerLocaleData } from "@angular/common";

@@ -7,7 +7,7 @@ import { InterventionAddComponent } from "./interventions/intervention-add/inter
 import { InterventionEditComponent } from "./interventions/intervention-edit/intervention-edit.component";
 import { InterventionExportComponent } from "./interventions/intervention-export/intervention-export.component";
 import { ProfilComponent } from "./profil/profil.component";
-import { AuthGuard } from "./auth.guard";
+import { AuthGuard } from "./guards/auth.guard";
 import { InterventionListComponent } from "./interventions/intervention-list/intervention-list.component";
 import { InterventionViewComponent } from "./interventions/intervention-view/intervention-view.component";
 import { VehiculeListComponent } from "./vehicules/vehicule-list/vehicule-list.component";
