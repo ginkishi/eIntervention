@@ -13,6 +13,7 @@ import { InterventionViewComponent } from "./interventions/intervention-view/int
 import { VehiculeListComponent } from "./vehicules/vehicule-list/vehicule-list.component";
 import { VehiculeViewComponent } from "./vehicules/vehicule-view/vehicule-view.component";
 import { ExportAccessGuard } from "./guards/export-access.guard";
+import { ForbiddenPageComponent } from "./forbidden-page/forbidden-page.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     redirectTo: "/home",
     pathMatch: "full"
   },
+  { path: "forbidden", component: ForbiddenPageComponent },
   { path: "profil", canActivate: [AuthGuard], component: ProfilComponent },
   { path: "home", canActivate: [AuthGuard], component: HomeComponent },
   { path: "login", component: LoginComponent },

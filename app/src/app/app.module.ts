@@ -34,6 +34,7 @@ import { VehiculeListComponent } from "./vehicules/vehicule-list/vehicule-list.c
 import { VehiculeViewComponent } from "./vehicules/vehicule-view/vehicule-view.component";
 import { RightAccessService } from "./services/right-access.service";
 import { ExportAccessGuard } from "./guards/export-access.guard";
+import { ForbiddenPageComponent } from './forbidden-page/forbidden-page.component';
 
 registerLocaleData(localeFr, "fr-FR", localeFrExtra);
 @NgModule({
@@ -51,7 +52,8 @@ registerLocaleData(localeFr, "fr-FR", localeFrExtra);
     InterventionListComponent,
     InterventionViewComponent,
     VehiculeListComponent,
-    VehiculeViewComponent
+    VehiculeViewComponent,
+    ForbiddenPageComponent
   ],
   imports: [
     BrowserModule,
