@@ -16,30 +16,6 @@ export class AuthentificationService {
     this.rights = new RightAccessService();
   }
   signIn(user: User) {
-    // this.apiService.authentificate(user).subscribe(
-    //   response => {
-    //     this.response = JSON.parse(JSON.stringify(response));
-    //     if (this.response.message) {
-    //       this.isAuth = false;
-    //     } else {
-    //       this.isAuth = true;
-    //       var now = new Date().getTime();
-    //       localStorage.setItem("statut", "connecte");
-    //       localStorage.setItem("setupTime", now.toString());
-    //       localStorage.setItem(
-    //         "user",
-    //         JSON.stringify(this.response.pompier[0])
-    //       );
-    //       this.rights.checkRight();
-    //     }
-    //   },
-    //   error => {
-    //     //Next callback
-    //     console.log("response error");
-    //     this.isAuth = false;
-    //   }
-    // );
-    // return this.isAuth;
     let promise = new Promise((resolve, reject) => {
       this.apiService
         .authentificate(user)
