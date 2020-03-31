@@ -10,43 +10,69 @@ import { RightAccessService } from "./right-access.service";
 export class AuthentificationService {
   isAuth = false;
   response: any;
-  constructor(
-    private apiService: BrigadeApiService,
-    public router: Router,
-    public rights: RightAccessService
-  ) {}
+  rights: RightAccessService;
+  static complete: boolean;
+  constructor(private apiService: BrigadeApiService, public router: Router) {
+    this.rights = new RightAccessService();
+  }
   signIn(user: User) {
-    this.apiService.authentificate(user).subscribe(
-      response => {
-        //Next callback
-        // console.log("response received");
-        this.response = JSON.parse(JSON.stringify(response));
-        //console.log(this.response.message ? this.response.message : "Connection réussi");
-        if (this.response.message) {
-          this.isAuth = false;
-        } else {
-          this.isAuth = true;
-          var now = new Date().getTime();
-          localStorage.setItem("statut", "connecte");
-          localStorage.setItem("setupTime", now.toString());
-          localStorage.setItem(
-            "user",
-            JSON.stringify(this.response.pompier[0])
-          );
-          this.rights.checkRight();
-        }
-      },
-      error => {
-        //Next callback
-        console.log("response error");
-        this.isAuth = false;
-      }
-      // res => {
-      //   this.response = JSON.parse(JSON.stringify(res));
-      //   console.log(this.response.message ? false : "Connection réussi");
-      // }
-    );
-    return this.isAuth;
+    // this.apiService.authentificate(user).subscribe(
+    //   response => {
+    //     this.response = JSON.parse(JSON.stringify(response));
+    //     if (this.response.message) {
+    //       this.isAuth = false;
+    //     } else {
+    //       this.isAuth = true;
+    //       var now = new Date().getTime();
+    //       localStorage.setItem("statut", "connecte");
+    //       localStorage.setItem("setupTime", now.toString());
+    //       localStorage.setItem(
+    //         "user",
+    //         JSON.stringify(this.response.pompier[0])
+    //       );
+    //       this.rights.checkRight();
+    //     }
+    //   },
+    //   error => {
+    //     //Next callback
+    //     console.log("response error");
+    //     this.isAuth = false;
+    //   }
+    // );
+    // return this.isAuth;
+    let promise = new Promise((resolve, reject) => {
+      this.apiService
+        .authentificate(user)
+        .toPromise()
+        .then(
+          res => {
+            if (typeof Object.values(res)[0] != "string") {
+              this.isAuth = true;
+              var now = new Date().getTime();
+              localStorage.setItem("statut", "connecte");
+              localStorage.setItem("setupTime", now.toString());
+
+              localStorage.setItem(
+                "user",
+                JSON.stringify(Object.values(res)[0][0])
+              );
+              this.rights.checkRight();
+              // console.log("fini");
+              resolve();
+            } else {
+              this.isAuth = false;
+              reject("Erreur de login");
+            }
+          },
+          msg => {
+            // Error
+            //console.log("Problem");
+
+            reject(msg);
+          }
+        );
+    });
+    return promise;
   }
 
   signOut() {
@@ -56,5 +82,10 @@ export class AuthentificationService {
     localStorage.removeItem("user");
     localStorage.clear();
     this.router.navigate(["logout", { msg: "Vous avez été déconnecté" }]);
+  }
+  public static finisht() {
+    console.log("fini");
+
+    this.complete = true;
   }
 }
