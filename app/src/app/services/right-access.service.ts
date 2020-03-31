@@ -53,15 +53,17 @@ export class RightAccessService {
 
   getRight() {
     if (RightAccessService.right == null) {
+      //console.log("Creation");
+
       RightAccessService.right = JSON.parse(localStorage.getItem("user")).ROLE;
     }
+    //console.log("Utilisation");
 
     return RightAccessService.right;
   }
   checkRight() {
-    console.log("Cheking Access !!");
+    console.log("Checking Access !!");
 
-    RightAccessService.right = null;
     this.writingAccess = this.searchRight(78);
     this.editingAccess = this.searchRight(79);
     this.validatingAccess = this.searchRight(80);
