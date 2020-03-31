@@ -29,7 +29,7 @@ export class RightAccessService {
   haveExportingAccess() {
     return this.exportingAccess;
   }
-  haveReadinggAccess() {
+  haveReadingAccess() {
     return this.readingAccess;
   }
   haveDeletingAccess() {
@@ -55,9 +55,13 @@ export class RightAccessService {
     if (RightAccessService.right == null) {
       RightAccessService.right = JSON.parse(localStorage.getItem("user")).ROLE;
     }
+
     return RightAccessService.right;
   }
   checkRight() {
+    // console.log("Cheking Access !!");
+
+    RightAccessService.right = null;
     this.writingAccess = this.searchRight(78);
     this.editingAccess = this.searchRight(79);
     this.validatingAccess = this.searchRight(80);

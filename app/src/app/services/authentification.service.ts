@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { BrigadeApiService } from "./brigade-api.service";
 import { User } from "../models/user";
 import { Router } from "@angular/router";
+import { RightAccessService } from "./right-access.service";
 
 @Injectable({
   providedIn: "root"
@@ -9,7 +10,11 @@ import { Router } from "@angular/router";
 export class AuthentificationService {
   isAuth = false;
   response: any;
-  constructor(private apiService: BrigadeApiService, public router: Router) {}
+  constructor(
+    private apiService: BrigadeApiService,
+    public router: Router,
+    public rights: RightAccessService
+  ) {}
   signIn(user: User) {
     this.apiService.authentificate(user).subscribe(
       response => {
@@ -28,6 +33,7 @@ export class AuthentificationService {
             "user",
             JSON.stringify(this.response.pompier[0])
           );
+          this.rights.checkRight();
         }
       },
       error => {

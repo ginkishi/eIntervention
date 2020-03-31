@@ -16,10 +16,7 @@ export class HomeComponent implements OnInit {
   unPompier: Pompier;
   intervention: Intervention[];
 
-  constructor(
-    private apiService: BrigadeApiService,
-    private rightAccess: RightAccessService
-  ) {}
+  constructor(private apiService: BrigadeApiService) {}
 
   ngOnInit(): void {
     // console.log(localStorage.getItem("setupTime"));
