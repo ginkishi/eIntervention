@@ -30,6 +30,11 @@ const routes: Routes = [
     component: InterventionAddComponent
   },
   {
+    path: "intervention/edit/:id",
+    canActivate: [AuthGuard],
+    component: InterventionEditComponent
+  },
+  {
     path: "intervention",
     canActivate: [AuthGuard],
     component: InterventionListComponent
@@ -38,11 +43,6 @@ const routes: Routes = [
     path: "intervention/export",
     canActivate: [AuthGuard],
     component: InterventionExportComponent
-  },
-  {
-    path: "intervention/edit/:id",
-    canActivate: [AuthGuard],
-    component: InterventionEditComponent
   },
   {
     path: "intervention/:id",
