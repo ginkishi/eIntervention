@@ -13,12 +13,14 @@ import { VehiculeUtilise } from "src/app/models/vehiculeutilise";
 import { NotExpr } from '@angular/compiler';
 import { PompierRoles } from 'src/app/models/pompierRoles';
 import { stringify } from 'querystring';
+import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-intervention-edit",
   templateUrl: "./intervention-edit.component.html",
   styleUrls: ["./intervention-edit.component.scss"]
 })
 export class InterventionEditComponent implements OnInit {
+  idIntervention:number;
   AddInterventionForm: FormGroup;
   interventionForm: FormIntervention = {
     numeroIntervention: 2515, //temporaire
@@ -67,9 +69,12 @@ export class InterventionEditComponent implements OnInit {
   constructor(
     private apiService: BrigadeApiService,
     private dataService: DataService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    public routeActive: ActivatedRoute
   ) {}
-
+  getID() {
+    this.idIntervention = this.routeActive.snapshot.params.id;
+  }
   ngOnInit(): void {
     this.AddInterventionForm=this.fb.group({
       numeroIntervention:258,
