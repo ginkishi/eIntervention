@@ -5,7 +5,7 @@ import { InterventionEditComponent } from './intervention-edit.component';
 describe('InterventionEditComponent', () => {
   let component: InterventionEditComponent;
   let fixture: ComponentFixture<InterventionEditComponent>;
-
+ 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ InterventionEditComponent ]
