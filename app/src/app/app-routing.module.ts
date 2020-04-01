@@ -31,6 +31,11 @@ const routes: Routes = [
   { path: "pompier/:id", canActivate: [AuthGuard], component: ProfilComponent },
 
   {
+    path: "intervention/edit/:id",
+    canActivate: [AuthGuard],
+    component: InterventionEditComponent
+  },
+  {
     path: "intervention",
     canActivate: [AuthGuard],
     component: InterventionListComponent
@@ -51,6 +56,7 @@ const routes: Routes = [
     component: InterventionEditComponent
   },
   {
+
     path: "intervention/:id",
     canActivate: [AuthGuard],
     component: InterventionViewComponent
