@@ -8,7 +8,7 @@
                 <div class="group-champ col3">
                     <div class="champ"><label for="">Num&eacute;ro d'intervention</label>
                         <input id="numeroIntervention" name="numeroIntervention" type="text" autocomplete="off" required
-                            formControlName="numeroIntervention" >
+                            formControlName="numeroIntervention">
                     </div>
                     <div class="champ"><label for="">Commune</label>
                         <input type="text" autocomplete="off" required id="commune" name="commune"
@@ -94,8 +94,7 @@
                                         <div class="champ">
 
                                             <label for="name">{{Y.value.rolename}}</label>
-                                            <input  type="text"
-                                                formControlName="pompiername" required>
+                                            <input type="text" formControlName="pompiername" required>
 
                                         </div>
 
@@ -146,8 +145,8 @@
 
                         <label for="name">Responsable</label>
                         <div class="autocomplete">
-                        <input input-autocomplete [items]="listePompier" id="responsable" name="responsable"
-                            formControlName="responsable">
+                            <input input-autocomplete [items]="listePompier" id="responsable" name="responsable"
+                                formControlName="responsable">
                         </div>
                     </div>
 
