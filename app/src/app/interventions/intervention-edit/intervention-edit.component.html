@@ -1,1 +1,120 @@
-<p>intervention-edit works!</p>
+<app-menu></app-menu>
+<div class="form-container">
+    <h1 class="header">Rapport d'intervention</h1>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="section">
+            <h2 class="title">Intervention</h2>
+            <div class="body">
+                <div class="group-champ col3">
+                    <div class="champ"><label for="">Num&eacute;ro d'intervention</label>
+                        <input id="Nintervention" name="Nintervention" type="text" autocomplete="off" required [(ngModel)]="interventionForm.numeroIntervention">
+                    </div>
+                    <div class="champ"><label for="">Commune</label>
+                        <input type="text" autocomplete="off" required id="commune" name="commune" [(ngModel)]="interventionForm.commune">
+                    </div>
+                    <div class="champ"><label for="">Adresse</label>
+                        <input type="text" autocomplete="off" required id="adresse" name="adresse" [(ngModel)]="interventionForm.adresse">
+                    </div>
+                </div>
+                <div class="champ">
+                    <label for="">Type d'intervention</label>
+                    <select name="typeIntervention" id="typeIntervention" ngModel class="form-control" [(ngModel)]="interventionForm.typeIntervention">
+                        <option value=t[TI_CODE] *ngFor="let t of typesIntervention" value={{t.TI_CODE}}>
+                            {{t.TI_DESCRIPTION}}</option>
+                    </select>
+                </div>
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Requ&eacute;rant</label>
+                        <select name="requerant" id="requerant" class="form-control" [(ngModel)]="interventionForm.requerant">
+                            <option value="CODIS">
+                                CODIS</option>
+                            <option value="Alerte locale">
+                                Alerte locale</option>
+                        </select>
+                    </div>
+                    <div class="group-champ col2">
+                        <div class="champ mycheckbox"><label for="opm">OPM</label>
+                            <input type="checkbox" name="opm" id="opm" [(ngModel)]="interventionForm.opm"></div>
+                        <div class="champ mycheckbox"><label for="important">Important</label>
+                            <input type="checkbox" name="important" id="important" [(ngModel)]="interventionForm.important"></div>
+                    </div>
+                </div>
+                <div class="group-champ col2">
+                    <div class="champ"><label for="">Date de d&eacute;clenchement</label>
+                        <input type="date" autocomplete="off" required id="datedeclenchement" name="datedeclenchement" [ngModel]="interventionForm.dateDeclenchement"
+                            (ngModelChange)="interventionForm.dateDeclenchement = $event"></div>
+                    <div class="champ"><label for="">Heure de d&eacute;clenchement</label>
+                        <input type="time" autocomplete="off" required id="heuredeclenchement" name="heuredeclenchement" [ngModel]="interventionForm.heureDeclenchement"
+                            (ngModelChange)="interventionForm.heureDeclenchement = $event"></div>
+                </div>
+                <div class="group-champ col2">
+                    <div class="champ"><label for="">Date de fin</label>
+                        <input type="date" autocomplete="off" required id="datefin" name="datefin" [ngModel]="interventionForm.dateFin"
+                            (ngModelChange)="interventionForm.dateFin = $event">
+                    </div>
+                    <div class="champ"><label for="">Heure de fin</label>
+                        <input type="time" autocomplete="off" required id="heurefin" name="heurefin" [ngModel]="interventionForm.heureFin"
+                            (ngModelChange)="interventionForm.heureFin = $event">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section engin">
+            <h2 class="title">Engins et Personels</h2>
+            <div class="body">
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Nom du v&eacute;hicule</label>
+                        <select name="vehicule[]" id="vehicule[]" class="form-control" [(ngModel)]="VehiculeUtilise.IdVehicule" (change)="addTeam($event.target.value)">
+                            <option value="">Selectionnez un véhicule</option>
+                            <option *ngFor="let v of vehicules" value="{{v.V_ID}}">
+                                {{v.V_INDICATIF}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="champ mycheckbox"><label for="">Ronde</label><input type="checkbox" [(ngModel)]="VehiculeUtilise.Ronde" name="ronde" id="ronde"></div>
+                </div>
+       
+                <div class="group-champ col1" *ngIf="VehiculeUtilise.IdVehicule !== ''">
+                    <div class="champ" *ngFor="let role of usedVehicule"> 
+                        <label for="name">{{role.ROLE_NAME}}</label>
+                        <input type="text" id="role.ROLE_ID" [(ngModel)]="role.POMPIER_NAME" name="role.ROLE_ID" required>
+                  
+                </div>
+               </div>
+                <div class="group-champ col2">
+                    <div class="champ"><label for="">Date de d&eacute;part</label><input type="date" autocomplete="off" required id="datadepart" name="datadepart"
+                            [(ngModel)]="VehiculeUtilise.DateDepart"></div>
+                    <div class="champ"><label for="">Heure de d&eacute;part</label><input type="time" autocomplete="off" required id="heuredepart" name="heuredepart"
+                            [(ngModel)]="VehiculeUtilise.HeureDepart"></div>
+                </div>
+                <div class="group-champ col2">
+                    <div class="champ"><label for="">Date d'arriv&eacute;e</label><input type="date" autocomplete="off" required id="datearrivee" name="datearrivee"
+                            [(ngModel)]="VehiculeUtilise.DateArrive"></div>
+                    <div class="champ"><label for="">Heure d'arriv&eacute;e</label><input type="time" autocomplete="off" required id="heurearrivee" name="heurearrive"
+                            [(ngModel)]="VehiculeUtilise.HeureArrive"></div>
+                </div>
+                <div class="group-champ col2">
+                    <div class="champ"><label for="">Date de retour</label><input type="date" autocomplete="off" id="dateretour" name="dateretour" required
+                            [(ngModel)]="VehiculeUtilise.DateRetour"></div>
+                    <div class="champ"><label for="">Heure de retour</label><input type="time" autocomplete="off" id="heureretour" name="heureretour" required
+                            [(ngModel)]="VehiculeUtilise.HeureRetour"></div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-danger btn-lg" id="addVehicule">Ajouter un v&eacute;hicule</button>
+        </div>
+        <div class="section resp">
+            <h2 class="title">Responsable</h2>
+            <div class="body">
+                <div class="champ"><label for="">Responsable</label>
+                    <input input-autocomplete [items]="listePompier" id="responsable" name="responsable" [(ngModel)]="interventionForm.responsable">
+                </div>
+            </div>
+        </div>
+        <div class="group-champ col2">
+            <div class="champ"><input type="submit" value="Sauvegarder" class="btn btn-primary btn-lg"></div>
+            <div class="champ"><input type="submit" value="Valider" class="btn btn-success btn-lg"></div>
+        </div>
+    </form>
+</div>
