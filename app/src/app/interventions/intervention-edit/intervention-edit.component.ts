@@ -146,7 +146,7 @@ export class InterventionEditComponent implements OnInit {
           responsable:this.responsable.P_PRENOM+" "+this.responsable.P_NOM,
         });
         console.log("***********");
-     
+        this.populatevehicule(this.intervention.Vehicules[0].Personnels);
         console.log(this.AddInterventionForm.value);
         console.log("***********");
         console.log(this.intervention);
@@ -182,12 +182,31 @@ export class InterventionEditComponent implements OnInit {
       heureArrivee:spliteddatearrivee[1],
       dateRetour:spliteddateretour[0],
       heureRetour:spliteddateretour[1],
-     roles:this.fb.array([this.buildedRoles(v.Personnels)]),
+     roles:this.fb.array([]),
     });
    }
     
   }
+  populatevehicule(liste: PersonnelIntervention[]){
+
+
   
+    this.usedVehicule=[];
+    let c= (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(0).get('roles') as FormArray;
+    c.clear();
+    //console.log(value);
+    for (let i of liste) {
+    
+       console.log(i);
+          const control = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(0).get('roles') as FormArray;
+          control.push(this.buildedRoles(i.Role,i.IDrole,i.Pompier));
+        
+
+          
+       
+      }
+
+  }
   buildVehicule(): FormGroup{
     return this.fb.group({
       vehicule: "",
@@ -227,14 +246,14 @@ export class InterventionEditComponent implements OnInit {
     
   }
 
-  buildedRoles(p:PersonnelIntervention[]):FormGroup{
+  buildedRoles(role,idrole,personne):FormGroup{
    
      
    return   this.fb.group(
             {
-              roleid:p[0].IDrole,
-              rolename:p[0].Role,
-              pompiername:p[0].Pompier,
+              roleid:idrole,
+              rolename:role,
+              pompiername:personne,
             }
             );
 
@@ -243,9 +262,6 @@ export class InterventionEditComponent implements OnInit {
      }
    
 
-    
-
-  
   buildRoles(name,id):FormGroup{
  
     return this.fb.group({
