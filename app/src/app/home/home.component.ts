@@ -3,6 +3,7 @@ import { BrigadeApiService } from "../services/brigade-api.service";
 import { Vehicule } from "../models/vehicule";
 import { Pompier } from "../models/pompier";
 import { Intervention } from "../models/intervention";
+import { RightAccessService } from "../services/right-access.service";
 
 @Component({
   selector: "app-home",

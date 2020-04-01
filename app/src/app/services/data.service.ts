@@ -22,9 +22,7 @@ postInterventionForm( formIntervention: FormIntervention){
 
   }
   postVehiculeUsedForm(vehiculeUtilise: VehiculeUtilise):Observable<any>{
-    console.log("coucou");
-    console.log(vehiculeUtilise);
-    console.log("coucou1");
+
  const t=  this.http.post(`${this.PHP_API_SERVER}/vehicule`,vehiculeUtilise);
  
   return t;
