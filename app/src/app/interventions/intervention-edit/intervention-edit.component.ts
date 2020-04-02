@@ -16,6 +16,7 @@ import { stringify } from 'querystring';
 import { ActivatedRoute } from "@angular/router";
 import { Intervention } from 'src/app/models/intervention';
 import { PersonnelIntervention } from 'src/app/models/personnelIntervention';
+import { VehiculeIntervention } from 'src/app/models/vehiculeIntervention';
 @Component({
   selector: "app-intervention-edit",
   templateUrl: "./intervention-edit.component.html",
@@ -142,11 +143,12 @@ export class InterventionEditComponent implements OnInit {
               heureDeclenchement: splitteddatedeclenchement[1],
               dateFin: splitteddatedefin[0],
               heureFin: splitteddatedefin[1],
-              vehiculesintervention: this.fb.array([this.buildedVehicule()]),
+              vehiculesintervention: this.fb.array([]),
               responsable: this.responsable.P_PRENOM + " " + this.responsable.P_NOM,
             });
             console.log("***********");
-            this.populatevehicule(this.intervention.Vehicules[0].Personnels);
+            this.populatevehicules(this.intervention.Vehicules);
+           // this.populatevehicule(this.intervention.Vehicules[0].Personnels,0);
             console.log(this.AddInterventionForm.value);
             console.log("***********");
             console.log(this.intervention);
@@ -166,9 +168,21 @@ export class InterventionEditComponent implements OnInit {
     this.createListVehicule();
     this.createListAllPompier();
   }
+  populatevehicules(liste:VehiculeIntervention[]){
 
-  buildedVehicule(): FormGroup {
-    for (let v of this.intervention.Vehicules) {
+    for (let i =0; i <liste.length;i++){
+   
+      
+       const control = (<FormArray>this.AddInterventionForm.get('vehiculesintervention')) as FormArray ;
+       console.log('-------',control);
+       control.push( this.buildedVehicule(liste[i]));
+       this.populatevehicule(liste[i].Personnels,i);
+
+    }
+
+  }
+  buildedVehicule(v:VehiculeIntervention): FormGroup {
+   
       let splitedatedepart = v.DateDepart.toString().split(" ");
       let spliteddatearrivee = v.DateArrive.toString().split(" ");
       let spliteddateretour = v.DateRetour.toString().split(" ");
@@ -183,22 +197,22 @@ export class InterventionEditComponent implements OnInit {
         heureRetour: spliteddateretour[1],
         roles: this.fb.array([]),
       });
-    }
+    
 
   }
-  populatevehicule(liste: PersonnelIntervention[]) {
+  populatevehicule(liste: PersonnelIntervention[],index:number) {
 
 
 
     this.usedVehicule = [];
-    let c = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(0).get('roles') as FormArray;
+    let c = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(index).get('roles') as FormArray;
     c.clear();
     //console.log(value);
     for (let i of liste) {
 
       console.log(i);
-      const control = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(0).get('roles') as FormArray;
-      control.push(this.buildedRoles(i.Role, i.IDrole, i.Pompier));
+      const control = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(index).get('roles') as FormArray;
+      control.push(this.buildedRoles(i.Role, i.IDrole, i.Personne));
 
 
 
@@ -330,7 +344,7 @@ export class InterventionEditComponent implements OnInit {
         let c: string = i.P_PRENOM + " " + i.P_NOM;
         this.listePompier.push(c);
       }
-
+      console.log(this.listePompier);
       //console.log(this.listePompier);
       //  this.typesIntervention = this.response.typeIntervention;
       //console.log(this.typesIntervention[0]);
