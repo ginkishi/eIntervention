@@ -170,10 +170,11 @@ $router->get('/intervention/:id', function ($id) {
 });
 
 // Delete one intervention by id
-$router->delete('/intervention/:id', function ($id) {
+$router->delete('/deleteintervention/:id', function ($id) {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
     $s->deleteIntervention($id);
+
 });
 $router->post('/addMember', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
