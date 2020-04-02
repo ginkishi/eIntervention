@@ -208,7 +208,7 @@ class InterventionController
                         $p = array(
                             "IDPersonne" => $IDPersonne,
                             "Personne" => utf8_encode($P_PRENOM . " " . $P_NOM),
-                            "IDRole" => $IDrole,
+                            "IDrole" => $IDrole,
                             "Role" => utf8_encode($idr)
 
                         );
@@ -241,6 +241,7 @@ class InterventionController
 
 
     }
+  
     public function AddMemberToVehicule($IDvehicule, $IDintervention,$IDrole,$nom)
     {
         $model = new Intervention();
@@ -270,6 +271,7 @@ class InterventionController
         $model = new Intervention();
         $stmt = $model->deleteIntervention($id);
     }
+  
     public function deleteVehiculeFromIntervention($idIntervention, $idVehicule)
     {
         $model = new Intervention();

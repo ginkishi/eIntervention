@@ -152,6 +152,7 @@ class Intervention
              $IDPompier = $IDPompier[0];
             
             $sql="INSERT INTO  `personnelduvehicule` (IDVehicule, IDPersonne, IDIntervention, IDrole) VALUES($IDvehicule, $IDPompier,$IDintervention, $IDrole);";
+      //  echo $sql;
             $stmt = $dbh->prepare($sql);
             $stmt->execute();
 
@@ -187,6 +188,12 @@ class Intervention
         $sql = "DELETE FROM interventions WHERE IDIntervention = " . $id . ";";
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        $sql1="DELETE FROM vehiculeutilise WHERE IDIntervention = $id;";
+        $stmt = $dbh->prepare($sql1);
+        $stmt->execute();
+        $sql2="DELETE FROM vehiculeutilise WHERE IDIntervention = $id;";
+        $stmt = $dbh->prepare($sql2);
         $stmt->execute();
         return $stmt;
     }

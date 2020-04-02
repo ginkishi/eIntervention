@@ -38,6 +38,13 @@ getInterventionID( ):Observable<any>{
   return result;
 // return of(formIntervention);
 }
+DeleteInterventionID(id:number ):Observable<{}>{
+  console.log("recuperer id de l'intervention");
+  const result= this.http.delete(`${this.PHP_API_SERVER}/deleteintervention/`+id);
+  console.log('resultat requete',result);
+  return result;
+// return of(formIntervention);
+}
 //$IDvehicule, $IDintervention,$IDrole,$nom
 postMembertoInntervention(IDvehicule:string, IDintervention:string,IDrole:string,nom:string ):Observable<any>{
   let format:Formatmember={IDvehicule, IDintervention,IDrole,nom};
