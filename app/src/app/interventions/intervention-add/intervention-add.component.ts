@@ -279,51 +279,53 @@ export class InterventionAddComponent implements OnInit {
       result =>
       {
         console.log("success hallelujah",result);
+        var c:VehiculeUtilise;
+        for(let vi of this.AddInterventionForm.value.vehiculesintervention)
+        { c={
+          IdVehicule:vi.vehicule,
+          IDIntervention:this.interventionID,
+          DateDepart: vi.dateDepart,
+          HeureDepart: vi.heureDepart,
+          DateArrive: vi.dateArrivee,
+          HeureArrive: vi.heureArrivee,
+          DateRetour: vi.dateRetour,
+          HeureRetour: vi.heureRetour,
+          Ronde: vi.ronde
+        };
+        console.log(2);
+           console.log(c);
+           console.log(3);
+          this.dataService.postVehiculeUsedForm(c).subscribe(
+            result => 
+            {
+              console.log("success", JSON.parse(JSON.stringify(result)));
+            },
+            error => console.log("erreur", error)
+          );
+          
+          for(let pom of vi.roles)
+          {  console.log("-----",vi.roles);
+            if(pom.roleid!=='0' || pom.pompiername!="")
+          {
+          console.log(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername);
+            this.dataService.postMembertoInntervention(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername).subscribe(
+              result => 
+              {
+                console.log("success", JSON.parse(JSON.stringify(result)));
+              },
+              error => console.log("erreur", error)
+            );
+            }
+          }
+        
+          
+          
+             
+        }    
       }
    
     );
-    var c:VehiculeUtilise;
-for(let vi of this.AddInterventionForm.value.vehiculesintervention)
-{ c={
-  IdVehicule:vi.vehicule,
-  IDIntervention:this.interventionID,
-  DateDepart: vi.dateDepart,
-  HeureDepart: vi.heureDepart,
-  DateArrive: vi.dateArrivee,
-  HeureArrive: vi.heureArrivee,
-  DateRetour: vi.dateRetour,
-  HeureRetour: vi.heureRetour,
-  Ronde: vi.ronde
-};
-console.log(2);
-   console.log(c);
-   console.log(3);
-  this.dataService.postVehiculeUsedForm(c).subscribe(
-    result => 
-    {
-      console.log("success", JSON.parse(JSON.stringify(result)));
-    },
-    error => console.log("erreur", error)
-  );
   
-  for(let pom of vi.roles)
-  {if(pom.roleid!=='0' || pom.pompiername!="")
-  {
-  console.log(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername);
-    this.dataService.postMembertoInntervention(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername).subscribe(
-      result => 
-      {
-        console.log("success", JSON.parse(JSON.stringify(result)));
-      },
-      error => console.log("erreur", error)
-    );
-    }
-  }
-
-  
-  
-     
-}    
      
   }
 

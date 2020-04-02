@@ -33,7 +33,7 @@
                 <td class="align-middle">{{i.Statut}}</td>
                 <td class="align-middle"><a href="" class="btn btn-lg btn-primary" routerLinkActive="active" routerLink='/intervention/{{i.IDIntervention}}'>Voir</a></td>
                 <td class="align-middle"><a *ngIf="i.IDStatut == 0" href="" class="btn btn-lg btn-secondary" routerLinkActive="active"
-                        routerLink='intervention/edit/{{i.IDIntervention}}'>Editer</a></td>
+                        routerLink='/intervention/edit/{{i.IDIntervention}}'>Editer</a></td>
             </tr>
         </tbody>
     </table>
