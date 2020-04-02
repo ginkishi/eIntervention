@@ -207,7 +207,7 @@ class InterventionController
                         extract($pompier);
                         $p = array(
                             "IDPersonne" => $IDPersonne,
-                            "Pompier" => utf8_encode($P_PRENOM . " " . $P_NOM),
+                            "Personne" => utf8_encode($P_PRENOM . " " . $P_NOM),
                             "IDRole" => $IDrole,
                             "Role" => utf8_encode($idr)
 
