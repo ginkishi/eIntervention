@@ -73,7 +73,7 @@
                         <div class="group-champ col2">
                             <div class="champ">
 
-                                <label for="">Nom du v&eacute;hicule</label>
+                                <label for="">Nom du v&eacute;hicule {{i+1}}</label>
                                 <select name="{{'vehicule'+i}}" id="{{'vehicule'+i}}" class="form-control"
                                     formControlName="vehicule" (change)="addTeam(i,$event.target.value)">
                                     <option value="">Selectionnez un véhicule</option>
@@ -85,7 +85,8 @@
 
                             <div class="champ mycheckbox"><label for="">Ronde</label><input formControlName="ronde"
                                     type="checkbox" name="ronde" id="{{'ronde'+i}}">
-                            </div>
+                
+                                </div>
                         </div>
                         <div class="group-champ col4">
                             <div formArrayName="roles">
