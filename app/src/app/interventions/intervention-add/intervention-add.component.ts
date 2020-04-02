@@ -247,6 +247,11 @@ export class InterventionAddComponent implements OnInit {
 
     this.vehiculesintervention.push(this.buildVehicule());
   }
+  deleteVehicule(i:number){
+    const control=this.vehiculesintervention as FormArray;
+    control.removeAt(i);
+
+  }
  onSubmit() {
 
 
