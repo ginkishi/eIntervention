@@ -108,6 +108,13 @@ $router->get('/intervention', function () {
     $s->interventions();
 });
 
+// Get number of intervention
+$router->get('/intervention/number', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->numberOfIntervention();
+});
+
 // Get list of all valid intervention
 $router->get('/intervention/valid', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';

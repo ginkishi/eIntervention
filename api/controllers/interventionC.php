@@ -78,6 +78,15 @@ class InterventionController
             );
         }
     }
+
+    public function numberOfIntervention()
+    {
+        $model = new Intervention();
+        $farr["interventions"] = array();
+        $stmt = $model->getNumberOfIntervention();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function interventionsValid()
     {
         $model = new Intervention();
