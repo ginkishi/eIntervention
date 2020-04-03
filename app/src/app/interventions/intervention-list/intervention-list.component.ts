@@ -55,6 +55,16 @@ export class InterventionListComponent implements OnInit {
         break;
       case "novalid":
         console.log("novalid");
+        this.api
+          .readAllInterventionNoValid()
+          .subscribe((resultat: Intervention[]) => {
+            this.response = JSON.parse(JSON.stringify(resultat));
+            //console.log(this.response);
+            this.intervention = this.response.interventions;
+            console.log(this.intervention);
+
+            //console.log(this.intervention);
+          });
         break;
       default:
         console.log("default");
