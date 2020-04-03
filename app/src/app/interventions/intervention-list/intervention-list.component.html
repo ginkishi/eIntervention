@@ -17,7 +17,7 @@
                     <th scope="col">
                         <fa-icon [icon]="['fas', 'eye']"></fa-icon>
                     </th>
-                    <th scope="col">
+                    <th scope="col" *ngIf="type != 'valid'">
                         <fa-icon [icon]="['fas', 'edit']"></fa-icon>
                     </th>
                 </tr>
@@ -33,7 +33,7 @@
                     <td class="align-middle">{{i.Requerant}}</td>
                     <td class="align-middle">{{i.Statut}}</td>
                     <td class="align-middle"><a href="" class="btn btn-lg btn-primary" routerLinkActive="active" routerLink='/intervention/{{i.IDIntervention}}'>Voir</a></td>
-                    <td class="align-middle"><a *ngIf="i.IDStatut == 0" href="" class="btn btn-lg btn-secondary" routerLinkActive="active"
+                    <td class="align-middle" *ngIf="type != 'valid'"><a *ngIf="i.IDStatut == 0" href="" class="btn btn-lg btn-secondary" routerLinkActive="active"
                             routerLink='/intervention/edit/{{i.IDIntervention}}'>Editer</a></td>
                 </tr>
             </tbody>

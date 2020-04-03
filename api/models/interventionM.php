@@ -15,12 +15,53 @@ class Intervention
     // Récupère la liste des interventions
     public function listAllInterv()
     {
-        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus';
+        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus ORDER BY NIntervention';
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
     }
+
+    //select "All",COUNT(*) Numbers FROM interventions
+    //select "Valid",COUNT(*) Numbers FROM interventions where IDStatus = 1
+    //select "Waiting",COUNT(*) Numbers FROM interventions where IDStatus = 0
+    //select "NoValid",COUNT(*) Numbers FROM interventions where IDStatus = 2 or IDStatus = 3
+
+    public function getNumberOfIntervention()
+    {
+        $sql = 'select "All",COUNT(*) Numbers FROM interventions';
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function getNumberOfValid()
+    {
+        $sql = 'select "Valid",COUNT(*) Numbers FROM interventions where IDStatus = 1';
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function getNumberOfWaiting()
+    {
+        $sql = 'select "Waiting",COUNT(*) Numbers FROM interventions where IDStatus = 0';
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+    public function getNumberOfNoValid()
+    {
+        $sql = 'select "NoValid",COUNT(*) Numbers FROM interventions where IDStatus = 2 or IDStatus = 3';
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
     // Récupère la liste des interventions validées par le chef
     public function listAllIntervValid()
     {

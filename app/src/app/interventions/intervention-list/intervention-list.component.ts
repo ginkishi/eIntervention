@@ -32,18 +32,16 @@ export class InterventionListComponent implements OnInit {
   getInterventions() {
     switch (this.type) {
       case "valid":
-        console.log("valid");
         this.api
           .readAllInterventionValid()
           .subscribe((resultat: Intervention[]) => {
             this.response = JSON.parse(JSON.stringify(resultat));
             //console.log(this.response);
             this.intervention = this.response.interventions;
-            //console.log(this.intervention);
+            console.log(this.intervention);
           });
         break;
       case "waiting":
-        console.log("waiting");
         this.api
           .readAllInterventionWaiting()
           .subscribe((resultat: Intervention[]) => {
@@ -54,20 +52,15 @@ export class InterventionListComponent implements OnInit {
           });
         break;
       case "novalid":
-        console.log("novalid");
         this.api
           .readAllInterventionNoValid()
           .subscribe((resultat: Intervention[]) => {
             this.response = JSON.parse(JSON.stringify(resultat));
             //console.log(this.response);
             this.intervention = this.response.interventions;
-            console.log(this.intervention);
-
-            //console.log(this.intervention);
           });
         break;
       default:
-        console.log("default");
         this.api.readAllIntervention().subscribe((resultat: Intervention[]) => {
           this.response = JSON.parse(JSON.stringify(resultat));
           //console.log(this.response);
