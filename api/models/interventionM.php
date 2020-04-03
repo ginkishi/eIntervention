@@ -21,6 +21,15 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+    public function listAllIntervValid()
+    {
+        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 1';
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
     public function listAllIntervUser($id)
     {
         $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where IDResponsable = ' . $id . ";";
@@ -88,37 +97,35 @@ class Intervention
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
-        
     }
 
-    public function getThisInterventionId($numIntervention,$datedec,$heuredec)
-    {   
-       $datedec=$datedec.' '.$heuredec;
-      
-      // $numIntervention=2515;
-      //  echo"hello".   $datedec. "<br>";
-    //  echo $numIntervention;
-    //  echo $datedec;
-    //  echo $heuredec.'c';
+    public function getThisInterventionId($numIntervention, $datedec, $heuredec)
+    {
+        $datedec = $datedec . ' ' . $heuredec;
+
+        // $numIntervention=2515;
+        //  echo"hello".   $datedec. "<br>";
+        //  echo $numIntervention;
+        //  echo $datedec;
+        //  echo $heuredec.'c';
         $dbh = BDD::getInstanceOfEIntervention();
-        $sql="SELECT IDIntervention FROM  interventions where NIntervention=$numIntervention AND DateDeclenchement='$datedec'";
-     //  echo $sql. "<br>";
+        $sql = "SELECT IDIntervention FROM  interventions where NIntervention=$numIntervention AND DateDeclenchement='$datedec'";
+        //  echo $sql. "<br>";
         $query = $dbh->prepare($sql);
         $query->execute();
         $ID = $query->fetch();
         //return 5;
         return $ID['IDIntervention'];
     }
-    
+
     public function getlastInterventionID()
-    { 
+    {
         $dbh = BDD::getInstanceOfEIntervention();
-        $sql="SELECT IDIntervention FROM interventions ORDER BY IDIntervention DESC LIMIT 1";
+        $sql = "SELECT IDIntervention FROM interventions ORDER BY IDIntervention DESC LIMIT 1";
         $query = $dbh->prepare($sql);
         $query->execute();
         $ID = $query->fetch();
         return $ID['IDIntervention'];
-
     }
 
     public function  addVehiculeToIntervention($IdVehicule, $IDintervention, $datedepart, $heuredepart, $datearrive, $heurearrive, $dateretour, $heureretour, $ronde)
@@ -139,23 +146,23 @@ class Intervention
         $sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
 
 
-     // echo $sql;
+        // echo $sql;
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
     }
-    public function AddMemberToVehicule($IDvehicule, $IDintervention,$IDrole,$nom){
-             $dbh = BDD::getInstanceOfEIntervention();
-             $pieces = explode(" ", $nom);
-             $IDPompier =Pompier::getPompierID($pieces[0], $pieces[1])->fetch();
-             $IDPompier = $IDPompier[0];
-            
-            $sql="INSERT INTO  `personnelduvehicule` (IDVehicule, IDPersonne, IDIntervention, IDrole) VALUES($IDvehicule, $IDPompier,$IDintervention, $IDrole);";
-      //  echo $sql;
-            $stmt = $dbh->prepare($sql);
-            $stmt->execute();
+    public function AddMemberToVehicule($IDvehicule, $IDintervention, $IDrole, $nom)
+    {
+        $dbh = BDD::getInstanceOfEIntervention();
+        $pieces = explode(" ", $nom);
+        $IDPompier = Pompier::getPompierID($pieces[0], $pieces[1])->fetch();
+        $IDPompier = $IDPompier[0];
 
+        $sql = "INSERT INTO  `personnelduvehicule` (IDVehicule, IDPersonne, IDIntervention, IDrole) VALUES($IDvehicule, $IDPompier,$IDintervention, $IDrole);";
+        //  echo $sql;
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
     }
 
     public function editIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
@@ -189,10 +196,10 @@ class Intervention
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
-        $sql1="DELETE FROM vehiculeutilise WHERE IDIntervention = $id;";
+        $sql1 = "DELETE FROM vehiculeutilise WHERE IDIntervention = $id;";
         $stmt = $dbh->prepare($sql1);
         $stmt->execute();
-        $sql2="DELETE FROM vehiculeutilise WHERE IDIntervention = $id;";
+        $sql2 = "DELETE FROM vehiculeutilise WHERE IDIntervention = $id;";
         $stmt = $dbh->prepare($sql2);
         $stmt->execute();
         return $stmt;
