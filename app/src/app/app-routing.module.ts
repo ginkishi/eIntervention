@@ -41,6 +41,24 @@ const routes: Routes = [
     component: InterventionListComponent
   },
   {
+    path: "intervention/valid",
+    canActivate: [AuthGuard],
+    component: InterventionListComponent,
+    data: { type: "valid" }
+  },
+  {
+    path: "intervention/waiting",
+    canActivate: [AuthGuard],
+    component: InterventionListComponent,
+    data: { type: "valid" }
+  },
+  {
+    path: "intervention/novalid",
+    canActivate: [AuthGuard],
+    component: InterventionListComponent,
+    data: { type: "valid" }
+  },
+  {
     path: "intervention/add",
     canActivate: [AuthGuard, WritingAccessGuard],
     component: InterventionAddComponent
@@ -56,7 +74,6 @@ const routes: Routes = [
     component: InterventionEditComponent
   },
   {
-
     path: "intervention/:id",
     canActivate: [AuthGuard],
     component: InterventionViewComponent

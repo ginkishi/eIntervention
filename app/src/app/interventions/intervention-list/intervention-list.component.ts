@@ -12,6 +12,7 @@ export class InterventionListComponent implements OnInit {
   @ViewChild("epltable", { static: false }) epltable: ElementRef;
   intervention: Intervention[];
   response: any;
+  type: string;
 
   constructor(
     public api: BrigadeApiService,
@@ -23,6 +24,21 @@ export class InterventionListComponent implements OnInit {
   }
 
   getInterventions() {
+    switch (this.type) {
+      case "valid":
+        console.log("valid");
+        break;
+      case "waiting":
+        console.log("waiting");
+        break;
+      case "novalid":
+        console.log("novalid");
+        break;
+      default:
+        console.log("default");
+        break;
+    }
+
     this.api.readAllIntervention().subscribe((resultat: Intervention[]) => {
       this.response = JSON.parse(JSON.stringify(resultat));
       //console.log(this.response);
