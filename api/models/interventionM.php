@@ -12,7 +12,7 @@ class Intervention
         $input = htmlentities($input);
         return $input;
     }
-
+    // Récupère la liste des interventions
     public function listAllInterv()
     {
         $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus';
@@ -21,6 +21,7 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+    // Récupère la liste des interventions validées par le chef
     public function listAllIntervValid()
     {
         $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 1';
@@ -29,6 +30,7 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+    // Récupère la liste des interventions en attente de validations du chef
     public function listAllIntervWaiting()
     {
         $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 0';
@@ -37,6 +39,7 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+    // Récupère la liste des interventions non validé par le responsable
     public function listAllIntervNoValid()
     {
         $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 2';
@@ -45,7 +48,7 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
-
+    // Récupère la liste des interventions pour un utilisateur (intervention personnalisée)
     public function listAllIntervUser($id)
     {
         $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where IDResponsable = ' . $id . ";";
@@ -54,7 +57,7 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
-
+    // Récupère l'intervention avec l'id mis en paramètre
     public function OneIntervByID($id)
     {
         $id = self::cleanUserInput($id);
@@ -64,6 +67,8 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+
+    // Récupère la liste des véhicules pour l'id d'interventions 
     public function listVehiculesForOneIntervention($id)
     {
         $id = self::cleanUserInput($id);
@@ -73,6 +78,7 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+    // Récupère la liste du personnel pour un véhicule donné sur une interventions
     public function listPersonalForOneVehicule($idIntervention, $idVehicule)
     {
         $idIntervention = self::cleanUserInput($idIntervention);
@@ -84,6 +90,7 @@ class Intervention
         return $stmt;
     }
 
+    // Récupère les données de la table vehiculeutilise
     public function listAllvehiculeUtilise()
     {
         $sql = "SELECT IDVehicule,DateDepart,DateArrive,DateRetour,Ronde FROM `vehiculeutilise` ;";
@@ -92,6 +99,8 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+
+    // Ajoute une nouvelle intervention
     public function addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
     {
         //DELETE FROM personnelduvehicule WHERE IDIntervention = $id;
@@ -115,15 +124,12 @@ class Intervention
         $stmt->execute();
     }
 
+
+    // Récupère la liste des interventions sur une tranche de date 
     public function getThisInterventionId($numIntervention, $datedec, $heuredec)
     {
         $datedec = $datedec . ' ' . $heuredec;
 
-        // $numIntervention=2515;
-        //  echo"hello".   $datedec. "<br>";
-        //  echo $numIntervention;
-        //  echo $datedec;
-        //  echo $heuredec.'c';
         $dbh = BDD::getInstanceOfEIntervention();
         $sql = "SELECT IDIntervention FROM  interventions where NIntervention=$numIntervention AND DateDeclenchement='$datedec'";
         //  echo $sql. "<br>";
@@ -133,7 +139,7 @@ class Intervention
         //return 5;
         return $ID['IDIntervention'];
     }
-
+    // Récupère l'id de la dernières intervention créée
     public function getlastInterventionID()
     {
         $dbh = BDD::getInstanceOfEIntervention();
@@ -143,18 +149,12 @@ class Intervention
         $ID = $query->fetch();
         return $ID['IDIntervention'];
     }
-
+    // Ajoute un véhicule sur une intervention
     public function  addVehiculeToIntervention($IdVehicule, $IDintervention, $datedepart, $heuredepart, $datearrive, $heurearrive, $dateretour, $heureretour, $ronde)
     {
         $datedepart = $datedepart . " " . $heuredepart;
 
-        //	echo $datearrive . "<br>";
-        //	echo $heurearrive . "<br>";
         $datearrive = $datearrive . " " . $heurearrive;
-        //	echo $ronde . "<br>";
-
-        //	echo $heureretour . "<br>";
-
 
         $dateretour = $dateretour . " " . $heureretour;
 
@@ -168,6 +168,8 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+
+    // Ajoute un pompier dans un véhicule sur une intervention avec un role
     public function AddMemberToVehicule($IDvehicule, $IDintervention, $IDrole, $nom)
     {
         $dbh = BDD::getInstanceOfEIntervention();
@@ -180,7 +182,7 @@ class Intervention
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
     }
-
+    // Edite l'intervention avec l'id
     public function editIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
     {
         //DELETE FROM personnelduvehicule WHERE IDIntervention = $id;
@@ -200,7 +202,7 @@ class Intervention
         return $stmt;
     }
 
-
+    // Supprime l'intervention avec l'id
     public function deleteIntervention($id)
     {
         //DELETE FROM personnelduvehicule WHERE IDIntervention = $id;
@@ -220,6 +222,8 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+
+    // Supprime un véhicule sur une intervention
     public function deleteVehiculeFromIntervention($id)
     {
         //DELETE FROM personnelduvehicule WHERE IDIntervention = $id;
