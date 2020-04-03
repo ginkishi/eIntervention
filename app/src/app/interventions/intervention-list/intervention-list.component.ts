@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { BrigadeApiService } from "src/app/services/brigade-api.service";
 import { Intervention } from "src/app/models/intervention";
 import { ExportService } from "src/app/services/export.service";
+import { ActivatedRoute, Data } from "@angular/router";
 
 @Component({
   selector: "app-intervention-list",
@@ -16,10 +17,15 @@ export class InterventionListComponent implements OnInit {
 
   constructor(
     public api: BrigadeApiService,
-    public exportService: ExportService
+    public exportService: ExportService,
+    public routeActive: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.routeActive.data.subscribe(resp => {
+      this.type = Object.values(resp)[0];
+    });
+
     this.getInterventions();
   }
 
@@ -36,15 +42,14 @@ export class InterventionListComponent implements OnInit {
         break;
       default:
         console.log("default");
+        this.api.readAllIntervention().subscribe((resultat: Intervention[]) => {
+          this.response = JSON.parse(JSON.stringify(resultat));
+          //console.log(this.response);
+          this.intervention = this.response.interventions;
+          //console.log(this.intervention);
+        });
         break;
     }
-
-    this.api.readAllIntervention().subscribe((resultat: Intervention[]) => {
-      this.response = JSON.parse(JSON.stringify(resultat));
-      //console.log(this.response);
-      this.intervention = this.response.interventions;
-      //console.log(this.intervention);
-    });
   }
   exportToCSV() {
     let csvOptions = {
