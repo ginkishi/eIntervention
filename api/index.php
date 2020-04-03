@@ -115,6 +115,13 @@ $router->get('/intervention/valid', function () {
     $s->interventions();
 });
 
+// Get list of all waiting intervention
+$router->get('/intervention/waiting', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->interventions();
+});
+
 $router->get('/vehicule', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
