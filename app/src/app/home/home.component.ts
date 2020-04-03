@@ -4,6 +4,7 @@ import { Vehicule } from "../models/vehicule";
 import { Pompier } from "../models/pompier";
 import { Intervention } from "../models/intervention";
 import { RightAccessService } from "../services/right-access.service";
+import { NumberIntervention } from "../models/numberintervention";
 
 @Component({
   selector: "app-home",
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit {
   vehicules: Vehicule[];
   unPompier: Pompier;
   intervention: Intervention[];
+  number: NumberIntervention;
 
   constructor(private apiService: BrigadeApiService) {}
 
@@ -22,6 +24,7 @@ export class HomeComponent implements OnInit {
     // console.log(localStorage.getItem("setupTime"));
     this.unPompier = JSON.parse(localStorage.getItem("user"));
     this.getInterventions();
+    this.getNumberOfIntervention();
   }
   getInterventions() {
     this.apiService
@@ -37,11 +40,10 @@ export class HomeComponent implements OnInit {
   getNumberOfIntervention() {
     this.apiService
       .readNumberOfINtervention()
-      .subscribe((resultat: Intervention[]) => {
+      .subscribe((resultat: NumberIntervention) => {
         this.response = JSON.parse(JSON.stringify(resultat));
-        //console.log(this.response);
-        this.intervention = this.response.interventions;
-        //console.log(this.intervention);
+        this.number = this.response.Intervention;
+        // console.log(this.number);
       });
   }
 }

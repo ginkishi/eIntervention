@@ -9,6 +9,7 @@ import { User } from "../models/user";
 
 import { TypeIntervention } from "../models/typeIntervention";
 import { Intervention } from "../models/intervention";
+import { NumberIntervention } from "../models/numberintervention";
 
 @Injectable({
   providedIn: "root"
@@ -36,8 +37,8 @@ export class BrigadeApiService {
     );
   }
 
-  readNumberOfINtervention(): Observable<Intervention[]> {
-    return this.httpClient.get<Intervention[]>(
+  readNumberOfINtervention(): Observable<NumberIntervention> {
+    return this.httpClient.get<NumberIntervention>(
       `${this.PHP_API_SERVER}/intervention/number`
     );
   }
