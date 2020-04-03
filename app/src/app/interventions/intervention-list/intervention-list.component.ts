@@ -33,6 +33,14 @@ export class InterventionListComponent implements OnInit {
     switch (this.type) {
       case "valid":
         console.log("valid");
+        this.api
+          .readAllInterventionValid()
+          .subscribe((resultat: Intervention[]) => {
+            this.response = JSON.parse(JSON.stringify(resultat));
+            //console.log(this.response);
+            this.intervention = this.response.interventions;
+            //console.log(this.intervention);
+          });
         break;
       case "waiting":
         console.log("waiting");
