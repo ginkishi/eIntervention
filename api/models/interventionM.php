@@ -22,11 +22,7 @@ class Intervention
         return $stmt;
     }
 
-    //select "All",COUNT(*) Numbers FROM interventions
-    //select "Valid",COUNT(*) Numbers FROM interventions where IDStatus = 1
-    //select "Waiting",COUNT(*) Numbers FROM interventions where IDStatus = 0
-    //select "NoValid",COUNT(*) Numbers FROM interventions where IDStatus = 2 or IDStatus = 3
-
+    // Récupère le nombre d'intervention au total
     public function getNumberOfIntervention()
     {
         $sql = 'select "All",COUNT(*) Numbers FROM interventions';
@@ -35,7 +31,7 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
-
+    // Récupère le nombre d'intervnetion validée
     public function getNumberOfValid()
     {
         $sql = 'select "Valid",COUNT(*) Numbers FROM interventions where IDStatus = 1';
@@ -44,7 +40,7 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
-
+    // Récupère le nombre d'intervention en attente de validation par le chef
     public function getNumberOfWaiting()
     {
         $sql = 'select "Waiting",COUNT(*) Numbers FROM interventions where IDStatus = 0';
@@ -53,6 +49,7 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+    // Récupère le nombre d'intervention non validé par le responsable ou en attente de modifiaction
     public function getNumberOfNoValid()
     {
         $sql = 'select "NoValid",COUNT(*) Numbers FROM interventions where IDStatus = 2 or IDStatus = 3';
