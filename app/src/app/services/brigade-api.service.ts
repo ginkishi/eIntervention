@@ -40,6 +40,11 @@ export class BrigadeApiService {
       `${this.PHP_API_SERVER}/intervention/waiting`
     );
   }
+  readAllInterventionNoValid(): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/intervention/novalid`
+    );
+  }
 
   readOneIntervention(id): Observable<Intervention> {
     return this.httpClient.get<Intervention>(
