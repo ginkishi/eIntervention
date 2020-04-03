@@ -110,7 +110,7 @@ class InterventionController
             http_response_code(200);
             echo json_encode($farr);
         } else {
-            http_response_code(404);
+            http_response_code(200);
             echo json_encode(
                 array("message" => "Pas d'intervention.")
             );
@@ -148,7 +148,7 @@ class InterventionController
             http_response_code(200);
             echo json_encode($farr);
         } else {
-            http_response_code(404);
+            http_response_code(200);
             echo json_encode(
                 array("message" => "Pas d'intervention.")
             );
@@ -186,7 +186,7 @@ class InterventionController
             http_response_code(200);
             echo json_encode($farr);
         } else {
-            http_response_code(404);
+            http_response_code(200);
             echo json_encode(
                 array("message" => "Pas d'intervention.")
             );
