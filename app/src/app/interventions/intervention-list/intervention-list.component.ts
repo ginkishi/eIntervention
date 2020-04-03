@@ -44,6 +44,14 @@ export class InterventionListComponent implements OnInit {
         break;
       case "waiting":
         console.log("waiting");
+        this.api
+          .readAllInterventionWaiting()
+          .subscribe((resultat: Intervention[]) => {
+            this.response = JSON.parse(JSON.stringify(resultat));
+            //console.log(this.response);
+            this.intervention = this.response.interventions;
+            //console.log(this.intervention);
+          });
         break;
       case "novalid":
         console.log("novalid");

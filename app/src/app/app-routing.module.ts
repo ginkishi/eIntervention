@@ -50,13 +50,13 @@ const routes: Routes = [
     path: "intervention/waiting",
     canActivate: [AuthGuard],
     component: InterventionListComponent,
-    data: { type: "valid" }
+    data: { type: "waiting" }
   },
   {
     path: "intervention/novalid",
     canActivate: [AuthGuard],
     component: InterventionListComponent,
-    data: { type: "valid" }
+    data: { type: "waiting" }
   },
   {
     path: "intervention/add",
