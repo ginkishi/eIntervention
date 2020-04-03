@@ -1,5 +1,5 @@
-import {RoleVhicule} from "./rolevehicule";
-export class Listroles{
- 
-    liste:RoleVhicule[];
+import { RoleVhicule } from './rolevehicule';
+export class Listroles {
+
+  liste: RoleVhicule[];
 }

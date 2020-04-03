@@ -1,15 +1,14 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { BrigadeApiService } from "../services/brigade-api.service";
-import { Vehicule } from "../models/vehicule";
-import { Pompier } from "../models/pompier";
-import { Intervention } from "../models/intervention";
-import { RightAccessService } from "../services/right-access.service";
-import { NumberIntervention } from "../models/numberintervention";
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { BrigadeApiService } from '../services/brigade-api.service';
+import { Vehicule } from '../models/vehicule';
+import { Pompier } from '../models/pompier';
+import { Intervention } from '../models/intervention';
+import { NumberIntervention } from '../models/numberintervention';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   response: any;
@@ -18,11 +17,11 @@ export class HomeComponent implements OnInit {
   intervention: Intervention[];
   number: NumberIntervention;
 
-  constructor(private apiService: BrigadeApiService) {}
+  constructor(private apiService: BrigadeApiService) { }
 
   ngOnInit(): void {
     // console.log(localStorage.getItem("setupTime"));
-    this.unPompier = JSON.parse(localStorage.getItem("user"));
+    this.unPompier = JSON.parse(localStorage.getItem('user'));
     this.getInterventions();
     this.getNumberOfIntervention();
   }
@@ -31,9 +30,9 @@ export class HomeComponent implements OnInit {
       .readAllInterventionForUser(this.unPompier.P_ID)
       .subscribe((resultat: Intervention[]) => {
         this.response = JSON.parse(JSON.stringify(resultat));
-        //console.log(this.response);
+        // console.log(this.response);
         this.intervention = this.response.interventions;
-        //console.log(this.intervention);
+        // console.log(this.intervention);
       });
   }
 

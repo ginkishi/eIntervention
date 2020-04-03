@@ -1,4 +1,4 @@
-import { VehiculeIntervention } from "./vehiculeIntervention";
+import { VehiculeIntervention } from './vehiculeIntervention';
 
 export class Intervention {
   constructor(
@@ -16,5 +16,5 @@ export class Intervention {
     public IDStatut: number,
     public Statut: string,
     public Vehicules: VehiculeIntervention[]
-  ) {}
+  ) { }
 }
