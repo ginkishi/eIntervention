@@ -15,7 +15,8 @@
             </a></div>
         <div class="body">
             <div class="title">Non Validé :</div>
-            <div class="number">0 </div>
+            <div class="number" *ngIf="!number">0</div>
+            <div class="number" *ngIf="number">{{number.NoValid}}</div>
         </div>
     </div>
     <div class="cards warn">
@@ -25,7 +26,8 @@
         <div class="body">
             <div class="title">En attente :
             </div>
-            <div class="number">0 </div>
+            <div class="number" *ngIf="!number">0</div>
+            <div class="number" *ngIf="number">{{number.Waiting}}</div>
         </div>
     </div>
     <div class="cards valid">
@@ -34,7 +36,8 @@
             </a></div>
         <div class="body">
             <div class="title">Validé :</div>
-            <div class="number">0 </div>
+            <div class="number" *ngIf="!number">0</div>
+            <div class="number" *ngIf="number">{{number.Valid}}</div>
         </div>
     </div>
 </div>
