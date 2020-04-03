@@ -35,6 +35,13 @@ export class BrigadeApiService {
       `${this.PHP_API_SERVER}/intervention/valid`
     );
   }
+
+  readNumberOfINtervention(): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/intervention/number`
+    );
+  }
+
   readAllInterventionWaiting(): Observable<Intervention[]> {
     return this.httpClient.get<Intervention[]>(
       `${this.PHP_API_SERVER}/intervention/waiting`
