@@ -13,6 +13,7 @@ import { VehiculeUtilise } from "src/app/models/vehiculeutilise";
 import { NotExpr } from '@angular/compiler';
 import { PompierRoles } from 'src/app/models/pompierRoles';
 import { stringify } from 'querystring';
+
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -122,6 +123,7 @@ export class InterventionAddComponent implements OnInit {
     this.createListVehicule();
     this.createListAllPompier();
   }
+  
   buildVehicule(): FormGroup{
     return this.fb.group({
       vehicule: "",

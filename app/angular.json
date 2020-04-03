@@ -90,7 +90,11 @@
             "karmaConfig": "karma.conf.js",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-ui-dist/jquery-ui.js",
+              "node_modules/ng2-completer/bundles/ng2-completer.umd.js"
+            ]
           }
         },
         "lint": {
