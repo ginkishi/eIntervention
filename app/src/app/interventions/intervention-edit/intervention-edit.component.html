@@ -85,8 +85,8 @@
 
                             <div class="champ mycheckbox"><label for="">Ronde</label><input formControlName="ronde"
                                     type="checkbox" name="ronde" id="{{'ronde'+i}}">
-                
-                                </div>
+
+                            </div>
                         </div>
                         <div class="group-champ col4">
                             <div formArrayName="roles">
@@ -95,8 +95,9 @@
                                         <div class="champ">
 
                                             <label for="name">{{Y.value.rolename}}</label>
-                                            <input type="text" formControlName="pompiername" required>
-
+                                            <ng2-completer [datasource]="listePompier" [minSearchLength]="1"
+                                                [inputClass]="'form-control form-control-inline'"
+                                                formControlName="pompiername"></ng2-completer>
                                         </div>
 
                                     </div>
@@ -130,7 +131,8 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button"*ngIf="i!==0" class="btn btn-primary btn-lg" id="deleteVehicule" (click)="deleteVehicule(i)">Supprimer ce
+                    <button type="button" *ngIf="i!==0" class="btn btn-primary btn-lg" id="deleteVehicule"
+                        (click)="deleteVehicule(i)">Supprimer ce
                         v&eacute;hicule</button>
                 </div>
             </div>
@@ -142,15 +144,15 @@
             <h2 class="title">Responsable</h2>
             <div class="body">
 
-                <div class="group-champ col2">
 
-                    <div class="champ">
 
-                        <label for="name">Responsable</label>
-                        <div class="autocomplete">
-                            <input input-autocomplete [items]="listePompier" id="responsable" name="responsable"
-                                formControlName="responsable">
-                        </div>
+                <div class="champ">
+
+                    <label for="name">Responsable</label>
+                    <div class="autocomplete">
+                        <ng2-completer [datasource]="listePompier" [inputClass]="'form-control form-control-inline'"
+                            [minSearchLength]="1" formControlName="responsable"></ng2-completer>
+
                     </div>
 
                 </div>

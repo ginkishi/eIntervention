@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.0.6",
+    "@angular/cdk": "^9.2.0",
     "@angular/common": "~9.0.6",
     "@angular/compiler": "~9.0.6",
     "@angular/core": "~9.0.6",
@@ -29,6 +30,8 @@
     "angular7-csv": "^0.2.12",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
+    "jquery-ui-dist": "^1.12.1",
+    "ng2-completer": "^3.0.3",
     "ng2-input-autocomplete": "^1.1.2",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",

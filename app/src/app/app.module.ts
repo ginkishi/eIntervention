@@ -15,6 +15,7 @@ import {
   FontAwesomeModule,
   FaIconLibrary
 } from "@fortawesome/angular-fontawesome";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { NoPageFoundComponent } from "./no-page-found/no-page-found.component";
@@ -39,6 +40,7 @@ import { WritingAccessGuard } from "./guards/writing-access.guard";
 import { EditingAccessGuard } from "./guards/editing-access.guard";
 import { ExportService } from "./services/export.service";
 
+import { Ng2CompleterModule } from "ng2-completer";
 registerLocaleData(localeFr, "fr-FR", localeFrExtra);
 @NgModule({
   declarations: [
@@ -65,9 +67,11 @@ registerLocaleData(localeFr, "fr-FR", localeFrExtra);
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatAutocompleteModule,
+    Ng2CompleterModule,
     AutocompleteModule.forRoot()
   ],
-
+  exports: [MatAutocompleteModule],
   providers: [
     BrigadeApiService,
     AuthentificationService,

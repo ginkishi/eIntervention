@@ -256,6 +256,7 @@ input[type=text] {
   background-color: #f1f1f1;
   width: 100%;
 }
+
 input[type=submit] {
   background-color: DodgerBlue;
   color: #fff;
@@ -286,3 +287,29 @@ input[type=submit] {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
+.completer-dropdown {
+  border-color: #ececec;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  width: 100%;
+ 
+  cursor: pointer;
+  z-index: 9999;
+  position: absolute;
+  margin-top: -6px;
+  background-color: #ffffff;
+}
+.completer-description {
+  font-size: 14px;
+  width: 100%;
+}
+.completer-row {
+  padding: 5px;
+  color: #000000;
+  margin-bottom: 4px;
+  clear: both;
+  display: inline-block;
+  width: 100%;
+}
+
