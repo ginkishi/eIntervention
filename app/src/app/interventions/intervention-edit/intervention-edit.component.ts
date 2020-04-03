@@ -146,12 +146,8 @@ export class InterventionEditComponent implements OnInit {
               vehiculesintervention: this.fb.array([]),
               responsable: this.responsable.P_PRENOM + " " + this.responsable.P_NOM,
             });
-            console.log("***********");
+            
             this.populatevehicules(this.intervention.Vehicules);
-           // this.populatevehicule(this.intervention.Vehicules[0].Personnels,0);
-            console.log(this.AddInterventionForm.value);
-            console.log("***********");
-            console.log(this.intervention);
           }
           );
       });
@@ -210,9 +206,10 @@ export class InterventionEditComponent implements OnInit {
     //console.log(value);
     for (let i of liste) {
 
-      console.log(i);
+      
       const control = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(index).get('roles') as FormArray;
-      control.push(this.buildedRoles(i.Role, i.IDrole, i.Personne));
+      console.log("--------------------------211",i);
+      control.push(this.buildedRoles(i));
 
 
 
@@ -259,14 +256,14 @@ export class InterventionEditComponent implements OnInit {
 
   }
 
-  buildedRoles(role, idrole, personne): FormGroup {
+  buildedRoles(p:PersonnelIntervention): FormGroup {
 
-
+  console.log("---------260--",p);
     return this.fb.group(
       {
-        roleid: idrole,
-        rolename: role,
-        pompiername: personne,
+        roleid: p.IDrole,
+        rolename: p.Role,
+        pompiername:p.Personne,
       }
     );
 
@@ -279,7 +276,7 @@ export class InterventionEditComponent implements OnInit {
 
     return this.fb.group({
       roleid: id,
-      rolename: name,
+      rolename:name,
       pompiername: '',
     });
 
@@ -361,9 +358,18 @@ export class InterventionEditComponent implements OnInit {
 
     this.vehiculesintervention.push(this.buildVehicule());
   }
+  deleteVehicule(i:number){
+    const control=this.vehiculesintervention as FormArray;
+    control.removeAt(i);
+
+  }
   onSubmit() {
+ // suppression
+    this.dataService.DeleteInterventionID(this.idIntervention).subscribe(
 
+      result => {
 
+        ///ajout
     // console.log(this.AddInterventionForm.value);
     // console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
     console.log("-----------numerointer ", this.AddInterventionForm.value.numeroIntervention);
@@ -392,10 +398,7 @@ export class InterventionEditComponent implements OnInit {
     this.dataService.postInterventionForm(this.interventionForm).subscribe(
       result => {
         console.log("success hallelujah", result);
-      }
-
-    );
-    var c: VehiculeUtilise;
+        var c: VehiculeUtilise;
     for (let vi of this.AddInterventionForm.value.vehiculesintervention) {
       c = {
         IdVehicule: vi.vehicule,
@@ -414,13 +417,11 @@ export class InterventionEditComponent implements OnInit {
       this.dataService.postVehiculeUsedForm(c).subscribe(
         result => {
           console.log("success", JSON.parse(JSON.stringify(result)));
-        },
-        error => console.log("erreur", error)
-      );
-
+          
       for (let pom of vi.roles) {
+        console.log(pom);
         if (pom.roleid !== '0' || pom.pompiername != "") {
-          console.log(c.IdVehicule, this.interventionID, pom.roleid, pom.pompiername);
+          console.log(pom.roleid);
           this.dataService.postMembertoInntervention(c.IdVehicule, this.interventionID, pom.roleid, pom.pompiername).subscribe(
             result => {
               console.log("success", JSON.parse(JSON.stringify(result)));
@@ -429,11 +430,25 @@ export class InterventionEditComponent implements OnInit {
           );
         }
       }
+        },
+        error => console.log("erreur", error)
+      );
+
 
 
 
 
     }
+      }
+
+    );
+    
+
+      }
+    );
+
+
+ 
 
   }
 
