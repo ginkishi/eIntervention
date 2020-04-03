@@ -87,15 +87,16 @@
                                     type="checkbox" name="ronde" id="{{'ronde'+i}}">
                             </div>
                         </div>
-                        <div class="group-champ col4">
+                        <div class="group-champ col2">
                             <div formArrayName="roles">
                                 <div *ngFor="let Y of v['controls'].roles['controls']; let iy=index">
                                     <div formGroupName="{{iy}}" class="roles">
                                         <div class="champ">
 
                                             <label for="name">{{Y.value.rolename}}</label>
-                                            <input  type="text"
-                                                formControlName="pompiername" required >
+                                            <ng2-completer [datasource]="listePompier" [minSearchLength]="1" 
+                                            [inputClass]="'form-control form-control-inline'"  formControlName="pompiername"></ng2-completer>
+                                          
 
                                         </div>
 
@@ -143,19 +144,18 @@
             <h2 class="title">Responsable</h2>
             <div class="body">
 
-                <div class="group-champ col2">
-
-                    <div class="champ">
-
+                <div class="champ">
                         <label for="name">Responsable</label>
-                        <div class="autocomplete">
-                        <input input-autocomplete [items]="listePompier" id="responsable" name="responsable"
-                            formControlName="responsable">
-                        </div>
-                    </div>
-
+                        <ng2-completer [datasource]="listePompier" [inputClass]="'form-control form-control-inline'" [minSearchLength]="1"  formControlName="responsable"></ng2-completer>
+                       <!--       <mat-form-field>
+                            <input type="text"  formControlName="responsable">
+                              <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of listePompier" [value]="option">{{option}}</mat-option>
+                          </mat-autocomplete>
+                        </mat-form-field>
+                    --> 
+                  
                 </div>
-
             </div>
         </div>
         <div class="group-champ col2">
