@@ -73,7 +73,7 @@ export class InterventionListComponent implements OnInit {
   exportToCSV() {
     const csvOptions = {
       fieldSeparator: ',',
-      quoteStrings: "'",
+      quoteStrings: '\'',
       decimalseparator: '.',
       showLabels: true,
       showTitle: true,
