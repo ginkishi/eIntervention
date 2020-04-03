@@ -33,4 +33,15 @@ export class HomeComponent implements OnInit {
         //console.log(this.intervention);
       });
   }
+
+  getNumberOfIntervention() {
+    this.apiService
+      .readNumberOfINtervention()
+      .subscribe((resultat: Intervention[]) => {
+        this.response = JSON.parse(JSON.stringify(resultat));
+        //console.log(this.response);
+        this.intervention = this.response.interventions;
+        //console.log(this.intervention);
+      });
+  }
 }
