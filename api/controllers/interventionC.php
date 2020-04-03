@@ -82,9 +82,30 @@ class InterventionController
     public function numberOfIntervention()
     {
         $model = new Intervention();
-        $farr["interventions"] = array();
+        $farr = array("Intervention" => array("All" => "0", "Valid" => "0", "Waiting" => "0", "NoValid" => "0"));
         $stmt = $model->getNumberOfIntervention();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        extract($row);
+        $farr["Intervention"]["All"] = $Numbers;
+
+        $stmt = $model->getNumberOfValid();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        extract($row);
+        $farr["Intervention"]["Valid"] = $Numbers;
+
+        $stmt = $model->getNumberOfWaiting();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        extract($row);
+        $farr["Intervention"]["Waiting"] = $Numbers;
+
+        $stmt = $model->getNumberOfNoValid();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        extract($row);
+        $farr["Intervention"]["NoValid"] = $Numbers;
+
+        header('Content-Type: application/json');
+        http_response_code(200);
+        echo json_encode($farr);
     }
 
     public function interventionsValid()
