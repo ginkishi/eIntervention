@@ -56,7 +56,7 @@ const routes: Routes = [
     path: "intervention/novalid",
     canActivate: [AuthGuard],
     component: InterventionListComponent,
-    data: { type: "waiting" }
+    data: { type: "novalid" }
   },
   {
     path: "intervention/add",
