@@ -9,6 +9,7 @@ import { User } from "../models/user";
 
 import { TypeIntervention } from "../models/typeIntervention";
 import { Intervention } from "../models/intervention";
+import { NumberIntervention } from "../models/numberintervention";
 
 @Injectable({
   providedIn: "root"
@@ -30,6 +31,29 @@ export class BrigadeApiService {
       `${this.PHP_API_SERVER}/intervention`
     );
   }
+  readAllInterventionValid(): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/intervention/valid`
+    );
+  }
+
+  readNumberOfINtervention(): Observable<NumberIntervention> {
+    return this.httpClient.get<NumberIntervention>(
+      `${this.PHP_API_SERVER}/intervention/number`
+    );
+  }
+
+  readAllInterventionWaiting(): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/intervention/waiting`
+    );
+  }
+  readAllInterventionNoValid(): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/intervention/novalid`
+    );
+  }
+
   readOneIntervention(id): Observable<Intervention> {
     return this.httpClient.get<Intervention>(
       `${this.PHP_API_SERVER}/intervention/` + id

@@ -30,7 +30,7 @@
                 <div class="immatriculation"><span class="label">Immatriculation : </span>{{v.V_IMMATRICULATION}}</div>
                 <div class="comp"><span class="label">Composition : </span></div>
                 <div class="poste" *ngFor="let p of v.Personnels"><span class="label">{{p.Role}} : </span><a href="#" routerLinkActive="active"
-                        routerLink='/pompier/{{p.IDPersonne}}'>{{p.Pompier}}</a></div>
+                        routerLink='/pompier/{{p.IDPersonne}}'>{{p.Personne}}</a></div>
             </div>
         </div>
     </div>
