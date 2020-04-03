@@ -112,21 +112,21 @@ $router->get('/intervention', function () {
 $router->get('/intervention/valid', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
-    $s->interventions();
+    $s->interventionsValid();
 });
 
 // Get list of all waiting intervention
 $router->get('/intervention/waiting', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
-    $s->interventions();
+    $s->interventionsWaiting();
 });
 
 // Get list of all waiting intervention
 $router->get('/intervention/novalid', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
-    $s->interventions();
+    $s->interventionsNoValid();
 });
 
 $router->get('/vehicule', function () {
