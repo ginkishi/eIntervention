@@ -41,7 +41,10 @@ import { EditingAccessGuard } from './guards/editing-access.guard';
 import { ExportService } from './services/export.service';
 
 import { Ng2CompleterModule } from 'ng2-completer';
-registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
+
+import { InterventionSearchComponent } from './interventions/intervention-search/intervention-search.component';
+registerLocaleData(localeFr, "fr-FR", localeFrExtra);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +61,8 @@ registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
     InterventionViewComponent,
     VehiculeListComponent,
     VehiculeViewComponent,
-    ForbiddenPageComponent
+    ForbiddenPageComponent,
+    InterventionSearchComponent
   ],
   imports: [
     BrowserModule,
