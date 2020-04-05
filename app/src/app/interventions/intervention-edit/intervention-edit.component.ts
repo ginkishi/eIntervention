@@ -445,6 +445,19 @@ export class InterventionEditComponent implements OnInit {
                         error => console.log("erreur", error)
                       );
                     }
+                    else
+                     if(pom.roleid=='0' && pom.pompiername!="")
+                      {
+                        console.log(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername);
+                      this.dataService.postMembertoInntervention(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername).subscribe(
+                        result => 
+                        {
+                          console.log("success", JSON.parse(JSON.stringify(result)));
+                        },
+                        error => console.log("erreur", error)
+                      );
+                      }
+                  
                   }
                 },
                 error => console.log("erreur", error)
