@@ -1,4 +1,4 @@
-import { Droit } from "./droit";
+import { Droit } from './droit';
 
 export class Pompier {
   constructor(
@@ -15,5 +15,5 @@ export class Pompier {
     public ROLE2: Droit[],
     public G_DESCRIPTION: string,
     public P_EMAIL: string
-  ) {}
+  ) { }
 }

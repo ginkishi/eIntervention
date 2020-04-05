@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { BrigadeApiService } from "src/app/services/brigade-api.service";
-import { Vehicule } from "src/app/models/vehicule";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BrigadeApiService } from 'src/app/services/brigade-api.service';
+import { Vehicule } from 'src/app/models/vehicule';
 
 @Component({
-  selector: "app-vehicule-view",
-  templateUrl: "./vehicule-view.component.html",
-  styleUrls: ["./vehicule-view.component.scss"]
+  selector: 'app-vehicule-view',
+  templateUrl: './vehicule-view.component.html',
+  styleUrls: ['./vehicule-view.component.scss']
 })
 export class VehiculeViewComponent implements OnInit {
   id: number;
@@ -16,7 +16,7 @@ export class VehiculeViewComponent implements OnInit {
   constructor(
     private api: BrigadeApiService,
     private routeActive: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getID();
@@ -28,10 +28,10 @@ export class VehiculeViewComponent implements OnInit {
   getInformation() {
     this.api.readOneVehicule(this.id).subscribe((resultat: Vehicule) => {
       this.response = JSON.parse(JSON.stringify(resultat));
-      //console.log(this.response);
+      // console.log(this.response);
       this.vehicule = this.response.vehicule[0];
       this.ProfileLoaded = Promise.resolve(true);
-      //console.log(this.vehicule);
+      // console.log(this.vehicule);
     });
   }
 }
