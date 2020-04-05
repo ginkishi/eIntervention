@@ -198,23 +198,37 @@ export class InterventionEditComponent implements OnInit {
   }
   populatevehicule(liste: PersonnelIntervention[], index: number) {
 
-
+    let val:number =0;
 
     this.usedVehicule = [];
     let c = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(index).get('roles') as FormArray;
     c.clear();
+    let apprenti:PersonnelIntervention;
+    const control = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(index).get('roles') as FormArray;
     //console.log(value);
     for (let i of liste) {
 
 
-      const control = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(index).get('roles') as FormArray;
+     
       console.log("--------------------------211", i);
-      control.push(this.buildedRoles(i));
-
-
-
+      if(i.IDrole!=0)
+      control.push(this.buildedRoles(i.IDrole,i.Role,i.Personne));
+      else
+      {    val++;
+         apprenti=i;
+      }
+   
+    }
+    if(val!=0)
+    {  
+      control.push(this.buildedRoles(0,"apprenti(Optionnel)",apprenti.Personne));
+    }
+    else
+    {
+      control.push(this.buildedRoles(0,"apprenti(Optionnel)"," "));
 
     }
+    
 
   }
   buildVehicule(): FormGroup {
@@ -255,15 +269,15 @@ export class InterventionEditComponent implements OnInit {
     });
 
   }
+           
+  buildedRoles(IDrole:number,Role:string,Personne:string): FormGroup {
 
-  buildedRoles(p: PersonnelIntervention): FormGroup {
 
-    console.log("---------260--", p);
     return this.fb.group(
       {
-        roleid: p.IDrole,
-        rolename: p.Role,
-        pompiername: p.Personne,
+        roleid: IDrole,
+        rolename: Role,
+        pompiername: Personne,
       }
     );
 
@@ -431,6 +445,19 @@ export class InterventionEditComponent implements OnInit {
                         error => console.log("erreur", error)
                       );
                     }
+                    else
+                     if(pom.roleid=='0' && pom.pompiername!="")
+                      {
+                        console.log(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername);
+                      this.dataService.postMembertoInntervention(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername).subscribe(
+                        result => 
+                        {
+                          console.log("success", JSON.parse(JSON.stringify(result)));
+                        },
+                        error => console.log("erreur", error)
+                      );
+                      }
+                  
                   }
                 },
                 error => console.log("erreur", error)

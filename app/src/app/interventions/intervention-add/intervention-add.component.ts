@@ -49,7 +49,7 @@ export class InterventionAddComponent implements OnInit {
     HeureRetour: null,
     Ronde: null
   };
-  
+   nbvehicule:Number=0;
   listePompier: string[] = [];
   response: any;
   typesIntervention: TypeIntervention[];
@@ -163,12 +163,25 @@ export class InterventionAddComponent implements OnInit {
     
   }
   buildRoles(name,id):FormGroup{
-
+   if(this.nbvehicule==0)
+   {  this.nbvehicule=1;
+    return this.fb.group({
+      roleid:id,
+      rolename:name,
+      pompiername:JSON.parse(localStorage.getItem("user")).P_PRENOM +
+      " " +
+      JSON.parse(localStorage.getItem("user")).P_NOM,
+    });
+   }
+   else
+   {
     return this.fb.group({
       roleid:id,
       rolename:name,
       pompiername:'',
     });
+   }
+  
 
   }
   addTeam(index:number,value: string) {
@@ -315,6 +328,17 @@ export class InterventionAddComponent implements OnInit {
             if(pom.roleid!=='0' || pom.pompiername!="")
           {
           console.log(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername);
+            this.dataService.postMembertoInntervention(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername).subscribe(
+              result => 
+              {
+                console.log("success", JSON.parse(JSON.stringify(result)));
+              },
+              error => console.log("erreur", error)
+            );
+            }
+            else if(pom.roleid=='0' && pom.pompiername!="")
+            {
+              console.log(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername);
             this.dataService.postMembertoInntervention(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername).subscribe(
               result => 
               {
