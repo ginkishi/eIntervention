@@ -16,6 +16,7 @@ import { ExportAccessGuard } from "./guards/export-access.guard";
 import { ForbiddenPageComponent } from "./forbidden-page/forbidden-page.component";
 import { WritingAccessGuard } from "./guards/writing-access.guard";
 import { EditingAccessGuard } from "./guards/editing-access.guard";
+import { InterventionSearchComponent } from './interventions/intervention-search/intervention-search.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,11 @@ const routes: Routes = [
     path: "intervention/:id",
     canActivate: [AuthGuard],
     component: InterventionViewComponent
+  },
+  {
+    path: "intervention/search",
+    canActivate: [AuthGuard],
+    component:  InterventionSearchComponent
   },
   {
     path: "vehicule",
