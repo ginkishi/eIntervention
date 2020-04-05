@@ -39,6 +39,7 @@ import { ForbiddenPageComponent } from "./forbidden-page/forbidden-page.componen
 import { WritingAccessGuard } from "./guards/writing-access.guard";
 import { EditingAccessGuard } from "./guards/editing-access.guard";
 import { Ng2CompleterModule } from 'ng2-completer';
+import { InterventionSearchComponent } from './interventions/intervention-search/intervention-search.component';
 registerLocaleData(localeFr, "fr-FR", localeFrExtra);
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ registerLocaleData(localeFr, "fr-FR", localeFrExtra);
     InterventionViewComponent,
     VehiculeListComponent,
     VehiculeViewComponent,
-    ForbiddenPageComponent
+    ForbiddenPageComponent,
+    InterventionSearchComponent
   ],
   imports: [
     BrowserModule,
