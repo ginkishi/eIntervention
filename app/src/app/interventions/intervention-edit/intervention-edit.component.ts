@@ -27,9 +27,12 @@ export class InterventionEditComponent implements OnInit {
   response: any;
   intervention: Intervention;
   responsable: Pompier;
-
+  status:number;
+  button1:string;
+  button2:string;
+  createur:boolean;
   AddInterventionForm: FormGroup = new FormGroup({
-
+ 
   });
   interventionForm: FormIntervention = {
     numeroIntervention: 2515, //temporaire
@@ -115,7 +118,9 @@ export class InterventionEditComponent implements OnInit {
       ),
 
       vehiculesintervention: this.fb.array([this.buildVehicule()]),
-      responsable: 'admin admin'
+      responsable: 'admin admin',
+      button1:"Sauvegarder",
+      button2:"Valider",
     });
     this.getID();
     // this.getInformation();
@@ -147,6 +152,11 @@ export class InterventionEditComponent implements OnInit {
               vehiculesintervention: this.fb.array([]),
               responsable: this.responsable.P_PRENOM + " " + this.responsable.P_NOM,
             });
+            this.interventionForm.idcreateur = ""+this.responsable.P_ID;
+               if(this.responsable.P_ID=== JSON.parse(localStorage.getItem("user")).P_ID)
+               this.createur=true;
+               else
+               this.createur=false;
 
             this.populatevehicules(this.intervention.Vehicules);
           }
@@ -154,10 +164,18 @@ export class InterventionEditComponent implements OnInit {
       });
 
 
-    this.interventionForm.idcreateur = JSON.parse(
-      localStorage.getItem("user")
-    ).P_ID;
+ 
+    if(this.createur)
+    {
+       this.button1="Sauvegarder";
+       this.button2="Valider"
+    }
+    else
+    {
+      this.button1="Demander modification";
+      this.button2="Valider"
 
+    }
     // this.datepipe.transform(this.interventionForm.dateDeclenchement,'dd/MM/yyyy');
 
     this.createListTypeIntervention();
@@ -319,7 +337,17 @@ export class InterventionEditComponent implements OnInit {
     const control = (<FormArray>this.AddInterventionForm.controls['vehiculesintervention']).at(index).get('roles') as FormArray;
     control.push(this.buildRoles("apprenti(Optionel)", "0"));
   }
-
+  getvalue(value: string){
+    if(value=="sauvegarder")
+    {
+        this.status=0;
+    }
+    else
+    {
+     this.status=1;
+    }
+   
+  }
   setIDintervention(): void {
 
     // recuperer l'id d'une intervention 
