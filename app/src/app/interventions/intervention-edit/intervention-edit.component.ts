@@ -176,6 +176,17 @@ export class InterventionEditComponent implements OnInit {
                   error => console.log("erreur", error)
                 );
                 }
+                if(this.createur==true)
+                {
+                  this.button1="Sauvegarder";
+                  this.button2="Valider"
+                }
+                else
+                {
+                  this.button1="Demander modification";
+                  this.button2="Valider"
+
+                }
             this.populatevehicules(this.intervention.Vehicules);
           }
           );
@@ -183,17 +194,7 @@ export class InterventionEditComponent implements OnInit {
 
 
  
-  if(this.createur)
-    {
-       this.button1="Sauvegarder";
-       this.button2="Valider"
-    }
-    else
-    {
-      this.button1="Demander modification";
-      this.button2="Valider"
-
-    }
+  
     // this.datepipe.transform(this.interventionForm.dateDeclenchement,'dd/MM/yyyy');
 
     this.createListTypeIntervention();
