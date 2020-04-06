@@ -1,21 +1,22 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Vehicule } from "../models/vehicule";
-import { Observable } from "rxjs";
-import { Pompier } from "../models/pompier";
-import { Droit } from "../models/droit";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Vehicule } from '../models/vehicule';
+import { Observable } from 'rxjs';
+import { Pompier } from '../models/pompier';
+import { Droit } from '../models/droit';
 
-import { User } from "../models/user";
+import { User } from '../models/user';
 
-import { TypeIntervention } from "../models/typeIntervention";
-import { Intervention } from "../models/intervention";
+import { TypeIntervention } from '../models/typeIntervention';
+import { Intervention } from '../models/intervention';
+import { NumberIntervention } from '../models/numberintervention';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class BrigadeApiService {
-  PHP_API_SERVER = "http://localhost/eIntervention/api";
-  constructor(private httpClient: HttpClient) {}
+  PHP_API_SERVER = 'http://localhost/eIntervention/api';
+  constructor(private httpClient: HttpClient) { }
 
   readAllVehicule(): Observable<Vehicule[]> {
     return this.httpClient.get<Vehicule[]>(`${this.PHP_API_SERVER}/vehicule`);
@@ -30,6 +31,29 @@ export class BrigadeApiService {
       `${this.PHP_API_SERVER}/intervention`
     );
   }
+  readAllInterventionValid(): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/intervention/valid`
+    );
+  }
+
+  readNumberOfINtervention(): Observable<NumberIntervention> {
+    return this.httpClient.get<NumberIntervention>(
+      `${this.PHP_API_SERVER}/intervention/number`
+    );
+  }
+
+  readAllInterventionWaiting(): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/intervention/waiting`
+    );
+  }
+  readAllInterventionNoValid(): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/intervention/novalid`
+    );
+  }
+
   readOneIntervention(id): Observable<Intervention> {
     return this.httpClient.get<Intervention>(
       `${this.PHP_API_SERVER}/intervention/` + id
