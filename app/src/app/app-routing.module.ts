@@ -64,7 +64,6 @@ const routes: Routes = [
   },
   {
     path: "intervention/search",
-    canActivate: [AuthGuard],
     component:  InterventionSearchComponent
   },
   {
