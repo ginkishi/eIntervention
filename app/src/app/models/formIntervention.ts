@@ -13,6 +13,7 @@ export interface FormIntervention
     heureFin:string;
     responsable: string;
     idcreateur: string;
+    statut:number;
 
 
 
