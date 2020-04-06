@@ -106,7 +106,9 @@ export class InterventionAddComponent implements OnInit {
       ),
      
       vehiculesintervention:this.fb.array([this.buildVehicule()]),
-      responsable:'admin admin'
+      responsable:JSON.parse(localStorage.getItem("user")).P_PRENOM +
+      " " +
+      JSON.parse(localStorage.getItem("user")).P_NOM
     });
   /*his.usedVehicule.push(new RoleVhicule('0','Apprenti(Optionel)',''));
         this.usedVehicule[0].POMPIER_NAME=
