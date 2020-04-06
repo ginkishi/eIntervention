@@ -10,7 +10,9 @@ import { RightAccessService } from "../services/right-access.service";
 })
 export class MenuComponent implements OnInit, OnDestroy {
   constructor(public auth: AuthentificationService) {
+
     if (!auth.rights.haveReadingAccess()) auth.rights.checkRight();
+
   }
 
   ngOnInit(): void {}
