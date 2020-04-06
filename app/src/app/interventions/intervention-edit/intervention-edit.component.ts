@@ -28,8 +28,8 @@ export class InterventionEditComponent implements OnInit {
   intervention: Intervention;
   responsable: Pompier;
   status:number;
-  button1:string;
-  button2:string;
+  button1:string="Sauvegarder";
+  button2:string="Valider";
   createur:boolean;
   AddInterventionForm: FormGroup = new FormGroup({
  
@@ -119,8 +119,8 @@ export class InterventionEditComponent implements OnInit {
 
       vehiculesintervention: this.fb.array([this.buildVehicule()]),
       responsable: 'admin admin',
-      button1:"Sauvegarder",
-      button2:"Valider",
+      modification:"",
+      remarque:""
     });
     this.getID();
     // this.getInformation();
@@ -151,6 +151,8 @@ export class InterventionEditComponent implements OnInit {
               heureFin: splitteddatedefin[1],
               vehiculesintervention: this.fb.array([]),
               responsable: this.responsable.P_PRENOM + " " + this.responsable.P_NOM,
+              modification:"string",
+              remarque:"lolo"
             });
             this.interventionForm.idcreateur = ""+this.responsable.P_ID;
                if(this.responsable.P_ID=== JSON.parse(localStorage.getItem("user")).P_ID)
@@ -165,7 +167,7 @@ export class InterventionEditComponent implements OnInit {
 
 
  
-    if(this.createur)
+  if(this.createur)
     {
        this.button1="Sauvegarder";
        this.button2="Valider"
@@ -342,11 +344,19 @@ export class InterventionEditComponent implements OnInit {
     {
         this.status=0;
     }
-    else
-    {
+    else if(value=="Valider" )
+    { 
+      if(this.createur)
      this.status=1;
+     else{
+      this.status=3;
+     }
     }
-   
+    else if(value=="Demander modification")
+    {
+      this.status=2;
+    }
+    console.log("348");
   }
   setIDintervention(): void {
 
@@ -407,6 +417,8 @@ export class InterventionEditComponent implements OnInit {
 
   }
   onSubmit() {
+    console.log("coucou");
+
     // suppression
     this.dataService.DeleteInterventionID(this.idIntervention).subscribe(
 
