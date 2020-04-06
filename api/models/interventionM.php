@@ -90,6 +90,26 @@ class Intervention
         $stmt->execute();
         
     }
+    public function getModification($id)
+    {
+        $dbh = BDD::getInstanceOfEIntervention();
+        $sql="SELECT Remarques FROM  remarquemodification where IDIntervention=$id";
+       // echo $sql. "<br>";
+        $query = $dbh->prepare($sql);
+        $query->execute();
+        $rmk = $query->fetch();
+        return $rmk['Remarques'];
+    }
+    public function setModification($id,$remarques)
+    {
+        $dbh = BDD::getInstanceOfEIntervention();
+        $sql="INSERT INTO  `remarquemodification` ( IDIntervention, Remarques) VALUES($id,'$remarques');";
+          echo $sql. "<br>";
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+        
+    }
 
     public function getThisInterventionId($numIntervention,$datedec,$heuredec)
     {   
