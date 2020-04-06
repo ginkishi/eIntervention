@@ -98,11 +98,11 @@ CREATE TABLE IF NOT EXISTS `vehiculeutilise` (
 
 
 INSERT INTO `status` (`IDstatus`, `label`) VALUES 
-    ('0', 'En cours de validation du responsable'),
-    ('1', 'Validé par le responsable'), 
-    ('2', 'En cours de validation du chef'),
-    ('3', 'Chef demande modification '),
-    ('4', 'Validé par le chef');
+    ('0', 'Sauvegardé'),
+    ('1', 'Validé par responsable'), 
+    ('2', 'Chef de corps demande une modification'),
+    ('3', 'Validé par le chef de corps');
+
 
 ALTER TABLE `vehiculeutilise` 
 ADD FOREIGN KEY (IDIntervention) REFERENCES interventions(IDIntervention);
