@@ -17,6 +17,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Intervention } from 'src/app/models/intervention';
 import { PersonnelIntervention } from 'src/app/models/personnelIntervention';
 import { VehiculeIntervention } from 'src/app/models/vehiculeIntervention';
+import { Modification } from 'src/app/models/modification';
 @Component({
   selector: "app-intervention-edit",
   templateUrl: "./intervention-edit.component.html",
@@ -151,15 +152,30 @@ export class InterventionEditComponent implements OnInit {
               heureFin: splitteddatedefin[1],
               vehiculesintervention: this.fb.array([]),
               responsable: this.responsable.P_PRENOM + " " + this.responsable.P_NOM,
-              modification:"string",
-              remarque:"lolo"
+              modification:null,
+              remarque:null
             });
             this.interventionForm.idcreateur = ""+this.responsable.P_ID;
                if(this.responsable.P_ID=== JSON.parse(localStorage.getItem("user")).P_ID)
                this.createur=true;
                else
                this.createur=false;
+            
+                if(this.createur==true){
+                  // afficher les remarque
 
+                  let modif:Modification= new Modification();
+                this.dataService.getRemarques(this.idIntervention).subscribe(
+                  result => 
+                  { console.log("--------------resutl171",result);
+                       this.AddInterventionForm.patchValue({
+                     remarque:  JSON.parse(JSON.stringify(result)).modification
+                  });
+                    console.log("success", JSON.parse(JSON.stringify(result)));
+                  },
+                  error => console.log("erreur", error)
+                );
+                }
             this.populatevehicules(this.intervention.Vehicules);
           }
           );
@@ -331,8 +347,6 @@ export class InterventionEditComponent implements OnInit {
           control.push(this.buildRoles(c.ROLE_NAME, c.ROLE_ID));
         }
 
-
-
       }
     }
     this.usedVehicule.push(new RoleVhicule('0', 'apprenti(Optionel)', ''));
@@ -356,7 +370,7 @@ export class InterventionEditComponent implements OnInit {
     {
       this.status=2;
     }
-    console.log("348");
+    console.log("----------375----------",this.status);
   }
   setIDintervention(): void {
 
@@ -468,7 +482,34 @@ export class InterventionEditComponent implements OnInit {
                 Ronde: vi.ronde
               };
           
-          
+              if(this.status==2) // chef de corps demande modif
+              { console.log("---------526--------");
+                let modif:Modification= new Modification();
+                modif.Id=this.interventionID;
+                modif.modif=this.AddInterventionForm.value.modification;
+                console.log("--------530----------",modif);
+                this.dataService.setRemarques(modif).subscribe(
+                  result => 
+                  {
+                    console.log("success", JSON.parse(JSON.stringify(result)));
+                  },
+                  error => console.log("erreur", error)
+                );
+             }
+             if(this.status==3) // chef de corps valide 
+             {
+              let modif:Modification= new Modification();
+              modif.Id=this.interventionID;
+              modif.modif="Intervention peut-etre validée";
+              this.dataService.setRemarques(modif).subscribe(
+                result => 
+                {
+                  console.log("successremarque", JSON.parse(JSON.stringify(result)));
+                },
+                error => console.log("erreur", error)
+              );
+             }
+
            
               this.dataService.postVehiculeUsedForm(c).subscribe(
                 result => {
@@ -504,8 +545,9 @@ export class InterventionEditComponent implements OnInit {
                 error => console.log("erreur", error)
               );
 
-
-
+             /////////
+             
+         
 
 
             }
