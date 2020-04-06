@@ -22,7 +22,7 @@ import { stringify } from 'querystring';
 export class InterventionAddComponent implements OnInit {
   AddInterventionForm: FormGroup;
   interventionForm: FormIntervention = {
-    numeroIntervention: 2515, //temporaire
+    numeroIntervention: null, //temporaire
     commune: "boumerdes",
     adresse: null,
     typeIntervention: null,
@@ -34,10 +34,14 @@ export class InterventionAddComponent implements OnInit {
     dateFin: "2020-03-31",
     heureFin:"16:52",
     // ici faudra recuper l'id de la session
-    responsable: "admin admin",
-    idcreateur: "1"
-  };
+    responsable:JSON.parse(localStorage.getItem("user")).P_PRENOM +
+    " " +
+    JSON.parse(localStorage.getItem("user")).P_NOM,
 
+    idcreateur:JSON.parse(localStorage.getItem("user")).P_ID,
+    statut:0
+  };
+ 
   VehiculeUtilise: VehiculeUtilise = {
     IdVehicule: null,
     IDIntervention:null,
@@ -57,6 +61,9 @@ export class InterventionAddComponent implements OnInit {
   selectedvehicule: string = "";
   usedVehicule: RoleVhicule[];
   interventionID:string;
+  status:number;
+  sauvegarder:string="sauvegarder";
+  valider:string="valider";
   get vehiculesintervention():FormArray{
 
     return <FormArray>this.AddInterventionForm.get('vehiculesintervention');
@@ -68,7 +75,7 @@ export class InterventionAddComponent implements OnInit {
   constructor(
     private apiService: BrigadeApiService,
     private dataService: DataService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -102,7 +109,13 @@ export class InterventionAddComponent implements OnInit {
       ),
      
       vehiculesintervention:this.fb.array([this.buildVehicule()]),
-      responsable:'admin admin'
+      responsable:JSON.parse(localStorage.getItem("user")).P_PRENOM +
+      " " +
+      JSON.parse(localStorage.getItem("user")).P_NOM,
+      sauvegarder:"Sauvegarder",
+      valider:"Valider",
+
+
     });
   /*his.usedVehicule.push(new RoleVhicule('0','Apprenti(Optionel)',''));
         this.usedVehicule[0].POMPIER_NAME=
@@ -161,6 +174,17 @@ export class InterventionAddComponent implements OnInit {
      roles:this.fb.array([]),
     });
     
+  }
+  getvalue(value: string){
+    if(value=="sauvegarder")
+    {
+        this.status=0;
+    }
+    else
+    {
+     this.status=1;
+    }
+   
   }
   buildRoles(name,id):FormGroup{
    if(this.nbvehicule==0)
@@ -290,7 +314,7 @@ export class InterventionAddComponent implements OnInit {
    this.interventionForm.heureFin=this.AddInterventionForm.value.heureFin;
    this.interventionForm.responsable=this.AddInterventionForm.value.responsable;
    this.interventionForm.idcreateur=JSON.parse(localStorage.getItem("user")).P_ID;
-  
+   this.interventionForm.statut=this.status;
    console.log(this.interventionForm);
   console.log("in onSubmit:");
 

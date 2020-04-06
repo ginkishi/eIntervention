@@ -45,7 +45,8 @@ export class InterventionEditComponent implements OnInit {
     heureFin: "16:52",
     // ici faudra recuper l'id de la session
     responsable: "admin admin",
-    idcreateur: "1"
+    idcreateur: "1",
+    statut:0
   };
 
   VehiculeUtilise: VehiculeUtilise = {
