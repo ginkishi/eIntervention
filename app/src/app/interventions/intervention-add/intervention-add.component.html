@@ -159,8 +159,8 @@
             </div>
         </div>
         <div class="group-champ col2">
-            <div class="champ"><input type="submit" value="Sauvegarder" class="btn btn-primary btn-lg"></div>
-            <div class="champ"><input type="submit" value="Valider" class="btn btn-success btn-lg"></div>
+            <div class="champ"><input type="submit"(click)="getvalue(sauvegarder)"  formControlName="sauvegarder" class="btn btn-primary btn-lg"></div>
+            <div class="champ"><input type="submit" value="valider" (click)="getvalue(valider)" formControlName="valider" class="btn btn-success btn-lg"></div>
         </div>
     </form>
 </div>
