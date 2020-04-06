@@ -9,35 +9,32 @@
     <app-clock></app-clock>
 </div>
 <div class="cards-container">
-    <div class="cards danger">
-        <div class="logo"><a routerLinkActive="active" routerLink='/intervention/novalid' href="#">
-                <fa-icon [icon]="['fas', 'times-circle']"></fa-icon>
-            </a></div>
-        <div class="body">
-            <div class="title">Non Validé :</div>
-            <div class="number" *ngIf="!number">0</div>
-            <div class="number" *ngIf="number">{{number.NoValid}}</div>
-        </div>
-    </div>
     <div class="cards warn">
-        <div class="logo"><a routerLinkActive="active" routerLink='/intervention/waiting' href="#">
+        <div class="logo"><a routerLinkActive="active" routerLink='/home' href="#">
                 <fa-icon [icon]="['fas', 'pause-circle']"></fa-icon>
             </a></div>
         <div class="body">
             <div class="title">En attente :
             </div>
-            <div class="number" *ngIf="!number">0</div>
-            <div class="number" *ngIf="number">{{number.Waiting}}</div>
+            <div class="number">0 </div>
+        </div>
+    </div>
+    <div class="cards danger">
+        <div class="logo"><a routerLinkActive="active" routerLink='/home' href="#">
+                <fa-icon [icon]="['fas', 'times-circle']"></fa-icon>
+            </a></div>
+        <div class="body">
+            <div class="title">Non Validé :</div>
+            <div class="number">0 </div>
         </div>
     </div>
     <div class="cards valid">
-        <div class="logo"><a routerLinkActive="active" routerLink='/intervention/valid' href="#">
+        <div class="logo"><a routerLinkActive="active" routerLink='/home' href="#">
                 <fa-icon [icon]="['fas', 'check-circle']"></fa-icon>
             </a></div>
         <div class="body">
             <div class="title">Validé :</div>
-            <div class="number" *ngIf="!number">0</div>
-            <div class="number" *ngIf="number">{{number.Valid}}</div>
+            <div class="number">0 </div>
         </div>
     </div>
 </div>

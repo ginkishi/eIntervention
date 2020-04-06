@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
   CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
   Router
-} from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthentificationService } from '../services/authentification.service';
+} from "@angular/router";
+import { Observable } from "rxjs";
+import { AuthentificationService } from "../services/authentification.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class WritingAccessGuard implements CanActivate {
   canActivate(
@@ -24,8 +24,8 @@ export class WritingAccessGuard implements CanActivate {
     if (this.auth.rights.haveWritingAccess()) {
       return true;
     } else {
-      this.router.navigate(['forbidden']);
+      this.router.navigate(["forbidden"]);
     }
   }
-  constructor(private auth: AuthentificationService, private router: Router) { }
+  constructor(private auth: AuthentificationService, private router: Router) {}
 }
