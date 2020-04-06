@@ -160,8 +160,8 @@
             </div>
         </div>
         <div class="group-champ col2">
-            <div class="champ"><input type="submit" value="Sauvegarder" class="btn btn-primary btn-lg"></div>
-            <div class="champ"><input type="submit" value="Valider" class="btn btn-success btn-lg"></div>
+            <div class="champ"><input type="submit"  (click)="getvalue(button1)"  formControlName="button1" value='{{button1}}' class="btn btn-primary btn-lg"></div>
+            <div class="champ"><input type="submit"(click)="getvalue(button2)"    formControlName="button2" value='{{button2}}' class="btn btn-success btn-lg"></div>
         </div>
     </form>
 </div>
