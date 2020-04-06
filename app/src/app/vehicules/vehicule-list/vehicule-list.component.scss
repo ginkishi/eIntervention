@@ -1,29 +1,40 @@
 .vehicule-container {
   font-family: "Montserrat", sans-serif;
-}
-.vehicule-container .body {
-  display: flex;
-  justify-content: center;
+  .body {
+    display: flex;
+    justify-content: center;
+  }
+  .vehicule-card {
+    .model {
+      margin-bottom: 15px;
+    }
+    .imma {
+      margin-bottom: 15px;
+    }
+    .km {
+      margin-bottom: 15px;
+    }
+    .annee {
+      margin-bottom: 15px;
+    }
+    .statut {
+      margin-bottom: 15px;
+    }
+    .type {
+      margin-bottom: 15px;
+    }
+  }
 }
 .bandeau-title {
   min-height: 75px;
   max-height: 75px;
-  background: #6a3093; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #a044ff,
-    #6a3093
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #a044ff,
-    #6a3093
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #6a3093;
+  background: -webkit-linear-gradient(to right, #a044ff, #6a3093);
+  background: linear-gradient(to right, #a044ff, #6a3093);
   box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
   min-width: 80%;
   margin: 10px;
   border-radius: 8px;
-
   text-align: center;
   display: flex;
   align-items: center;
@@ -31,76 +42,64 @@
   font-family: "Montserrat", sans-serif;
   color: white;
   font-weight: bold;
-}
-.bandeau-title .title {
-  font-size: 2em;
-  margin-left: 20px;
-}
-.bandeau-title .logo {
-  font-size: 52px;
+  .title {
+    font-size: 2em;
+    margin-left: 20px;
+  }
+  .logo {
+    font-size: 52px;
+  }
 }
 .vehicule-card {
   background-color: #1e3c72;
   border-radius: 10px;
   max-width: 400px;
   padding: 10px;
-
   box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
   margin: 15px;
-
   color: white;
   transition: 0.25s linear;
-}
-.vehicule-card .logo {
-  border-radius: 50%;
-  width: 75px;
-  height: 75px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  margin: auto;
-  margin-bottom: 10px;
-}
-.vehicule-card .logo fa-icon {
-  font-size: 3em;
-  color: #1e3c72;
-}
-.vehicule-card .title {
-  color: white;
-  text-align: center;
-  min-width: 380px;
-  min-height: 25px;
-  /* background: red; */
-  font-size: 1.5em;
-  border-radius: 21px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  .logo {
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin: auto;
+    margin-bottom: 10px;
+    fa-icon {
+      font-size: 3em;
+      color: #1e3c72;
+    }
+  }
+  .title {
+    color: white;
+    text-align: center;
+    min-width: 380px;
+    min-height: 25px;
+    font-size: 1.5em;
+    border-radius: 21px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 a {
   color: white;
-}
-a:hover {
-  text-decoration: none;
-}
-
-.vehicule-container .vehicule-card .model,
-.vehicule-container .vehicule-card .imma,
-.vehicule-container .vehicule-card .km,
-.vehicule-container .vehicule-card .annee,
-.vehicule-container .vehicule-card .statut,
-.vehicule-container .vehicule-card .type {
-  margin-bottom: 15px;
+  &:hover {
+    text-decoration: none;
+  }
 }
 span.label {
   font-weight: bold;
   font-size: 1.1em;
-}
-.vehicule-card .body {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 .goto {
   text-align: center;
@@ -109,18 +108,9 @@ span.label {
   margin-bottom: 10px;
 }
 a.see-more {
-  background: #000000; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: #000000;
+  background: -webkit-linear-gradient(to right, #434343, #000000);
+  background: linear-gradient(to right, #434343, #000000);
   padding: 10px 30px;
   border-radius: 10px;
   font-size: 24px;

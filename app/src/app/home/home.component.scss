@@ -5,32 +5,32 @@
   align-items: center;
   flex-wrap: wrap;
   padding: 10px;
-}
-.bandeau .bandeau-title {
-  min-height: 135px;
-  max-height: 135px;
-  background-color: rgb(31, 82, 150);
-
-  min-width: 80%;
-  margin: 10px;
-  border-radius: 8px;
-  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
-
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Montserrat", sans-serif;
-  color: white;
-  font-weight: bold;
-}
-.bandeau .bandeau-title .title {
-  font-size: 3.8em;
-  margin-left: 20px;
-}
-.bandeau .bandeau-title .logo fa-icon {
-  font-size: 81px;
-  color: white;
+  .bandeau-title {
+    min-height: 135px;
+    max-height: 135px;
+    background-color: rgb(31, 82, 150);
+    min-width: 80%;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    font-weight: bold;
+    .title {
+      font-size: 3.8em;
+      margin-left: 20px;
+    }
+    .logo {
+      fa-icon {
+        font-size: 81px;
+        color: white;
+      }
+    }
+  }
 }
 .last-intervention {
   color: white;
@@ -39,19 +39,18 @@
   margin: 20px;
   margin-top: 10px;
   border-radius: 5px;
-}
-.last-intervention > .title {
-  text-align: center;
-  min-width: 100%;
-  font-size: 36px;
-  font-family: "Montserrat", sans-serif;
-  padding: 10px;
-  color: white;
-  background: orangered;
-  transition: 0.25 linear;
-  border-radius: 5px;
-  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
-  transition: 0.25s linear;
+  > .title {
+    text-align: center;
+    min-width: 100%;
+    font-size: 36px;
+    font-family: "Montserrat", sans-serif;
+    padding: 10px;
+    color: white;
+    background: orangered;
+    transition: 0.25 linear;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+  }
 }
 .cards-container {
   max-width: 100%;
@@ -62,189 +61,184 @@
   justify-content: space-around;
   padding: 5px;
   flex-wrap: wrap;
-}
-.cards-container .cards {
-  background: #212121;
-  min-width: 390px;
-  max-width: 390px;
-  min-height: 230px;
-  max-height: 230px;
-  margin: 10px;
-  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
-
-  border-radius: 8px;
-}
-.cards-container .cards > .logo {
-  text-align: center;
-  min-width: 100%;
-  font-size: 102px;
-}
-.cards-container .cards > .logo fa-icon {
-  color: white;
-}
-.cards-container .cards > .body {
-  display: flex;
-  padding: 0 10px;
-}
-.cards-container .cards > .body .number {
-  text-align: center;
-  min-width: 25%;
-  max-width: 25%;
-  font-size: 52px;
-  color: white;
-}
-.cards-container .cards > .body .title {
-  text-align: center;
-  min-width: 75%;
-  max-width: 75%;
-  font-size: 36px;
-  font-family: "Montserrat", sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-.cards-container .cards.warn {
-  background: #f7971e; /* fallback for old browsers */
-}
-.cards-container .cards.danger {
-  background: #ed213a; /* fallback for old browsers */
-}
-.cards-container .cards.valid {
-  background: #56ab2f; /* fallback for old browsers */
-}
-.grille .cards {
-  position: relative;
-  min-height: 340px;
-  min-width: 250px;
-  max-height: 350px;
-  max-width: 250px;
-  background-color: rgb(31, 82, 150);
-  margin: 10px;
-  border-radius: 8px;
-  box-shadow: 5px 5px 3px rgb(185, 180, 180), -5px -5px 3px #ffffff;
-}
-.grille .cards .info {
-  position: relative;
-  display: flex;
-  min-height: 340px;
-  min-width: 250px;
-  max-height: 350px;
-  max-width: 250px;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  background: transparent;
-  border-radius: 8px;
-  font-weight: bold;
-  color: white;
-  border: 2px solid rgb(31, 82, 150);
-  font-family: "Ubuntu", sans-serif;
-  padding: 10px 10px;
-  transition: 0.25s linear;
-}
-.grille .cards .info .number {
-  border: 2px solid white;
-  min-width: 100%;
-  text-align: center;
-  padding: 5px;
-  border-radius: 8px;
-  background: rgb(6, 72, 102);
-  border: 2px solid rgb(31, 82, 150);
-  box-shadow: 1px 1px 3px rgb(185, 180, 180), -1px -1px 3px #ffffff;
-  font-size: 22px;
-  color: white;
-  transition: 0.25s linear;
-}
-.grille .cards .info .statut {
-  font-size: 22px;
-  text-align: center;
-
-  /* border: 2px solid white; */
-}
-.grille .cards .info .dateIntervention {
-  text-align: center;
-  padding: 5px;
-
-  /* border: 2px solid white; */
-  min-width: 100%;
-  margin: 5px 0px;
-  transition: 0.25s linear;
-}
-.grille .cards .info .location {
-  /* border: 2px solid white; */
-  min-width: 100%;
-
-  text-align: center;
-  padding: 5px;
-  transition: 0.25s linear;
-}
-.grille .cards .info .type {
-  margin: 5px 0px;
-  /* border: 2px solid white; */
-  min-width: 100%;
-
-  text-align: center;
-  padding: 5px;
-  margin-bottom: 25px;
-  transition: 0.25s linear;
-}
-.grille .cards .info .see-more {
-  text-decoration: none !important;
-  color: white !important;
-  border: 2px solid white;
-  box-shadow: 1px 1px 3px rgb(185, 180, 180), -1px -1px 3px #ffffff;
-  min-width: 50%;
-  text-align: center;
-  padding: 5px;
-  border-radius: 21px;
-  transition: 0.25s linear;
+  .cards {
+    background: #212121;
+    min-width: 390px;
+    max-width: 390px;
+    min-height: 230px;
+    max-height: 230px;
+    margin: 10px;
+    box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+    border-radius: 8px;
+    > .logo {
+      text-align: center;
+      min-width: 100%;
+      font-size: 102px;
+      fa-icon {
+        color: white;
+      }
+    }
+    > .body {
+      display: flex;
+      padding: 0 10px;
+      .number {
+        text-align: center;
+        min-width: 25%;
+        max-width: 25%;
+        font-size: 52px;
+        color: white;
+      }
+      .title {
+        text-align: center;
+        min-width: 75%;
+        max-width: 75%;
+        font-size: 36px;
+        font-family: "Montserrat", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+    }
+  }
+  .cards.warn {
+    background: #f7971e;
+  }
+  .cards.danger {
+    background: #ed213a;
+  }
+  .cards.valid {
+    background: #56ab2f;
+  }
 }
 .grille {
+  .cards {
+    position: relative;
+    min-height: 340px;
+    min-width: 250px;
+    max-height: 350px;
+    max-width: 250px;
+    background-color: rgb(31, 82, 150);
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 3px rgb(185, 180, 180), -5px -5px 3px #ffffff;
+    .info {
+      position: relative;
+      display: flex;
+      min-height: 340px;
+      min-width: 250px;
+      max-height: 350px;
+      max-width: 250px;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      background: transparent;
+      border-radius: 8px;
+      font-weight: bold;
+      color: white;
+      border: 2px solid rgb(31, 82, 150);
+      font-family: "Ubuntu", sans-serif;
+      padding: 10px 10px;
+      transition: 0.25s linear;
+      .number {
+        min-width: 100%;
+        text-align: center;
+        padding: 5px;
+        border-radius: 8px;
+        background: rgb(6, 72, 102);
+        border: 2px solid rgb(31, 82, 150);
+        box-shadow: 1px 1px 3px rgb(185, 180, 180), -1px -1px 3px #ffffff;
+        font-size: 22px;
+        color: white;
+        transition: 0.25s linear;
+      }
+      .statut {
+        font-size: 22px;
+        text-align: center;
+      }
+      .dateIntervention {
+        text-align: center;
+        padding: 5px;
+        min-width: 100%;
+        margin: 5px 0px;
+        transition: 0.25s linear;
+      }
+      .location {
+        min-width: 100%;
+        text-align: center;
+        padding: 5px;
+        transition: 0.25s linear;
+      }
+      .type {
+        margin: 5px 0px;
+        min-width: 100%;
+        text-align: center;
+        padding: 5px;
+        margin-bottom: 25px;
+        transition: 0.25s linear;
+      }
+      .see-more {
+        text-decoration: none !important;
+        color: white !important;
+        border: 2px solid white;
+        box-shadow: 1px 1px 3px rgb(185, 180, 180), -1px -1px 3px #ffffff;
+        min-width: 50%;
+        text-align: center;
+        padding: 5px;
+        border-radius: 21px;
+        transition: 0.25s linear;
+      }
+    }
+  }
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   transition: 0.25s linear;
   padding: 20px;
 }
-.see-more:hover {
-  background: rgb(8, 37, 51);
-  transition: 0.25s linear;
+.see-more {
+  &:hover {
+    background: rgb(8, 37, 51);
+    transition: 0.25s linear;
+  }
 }
-
 @media screen and (max-width: 768px) {
   .bandeau {
     grid-template-columns: 1fr;
     transition: 0.25s linear;
-  }
-  .bandeau .bandeau-title {
-    margin: 0;
-    flex-direction: column;
-  }
-  .bandeau .bandeau-title .title {
-    font-size: 2em;
-  }
-  .bandeau .bandeau-title .logo fa-icon {
-    font-size: 3.2em;
-    transition: 0.25s linear;
+    .bandeau-title {
+      margin: 0;
+      flex-direction: column;
+      .title {
+        font-size: 2em;
+      }
+      .logo {
+        fa-icon {
+          font-size: 3.2em;
+          transition: 0.25s linear;
+        }
+      }
+    }
   }
 }
 @media screen and (max-width: 576px) {
   .bandeau {
     grid-template-columns: 1fr;
     transition: 0.25s linear;
-  }
-  .bandeau .bandeau-title {
-    margin: 0;
-    flex-direction: column;
-    min-height: 150px;
-  }
-  .bandeau .bandeau-title .title {
-    font-size: 2em;
-    transition: 0.25s linear;
-  }
-  .bandeau .bandeau-title .logo fa-icon {
-    font-size: 3em;
-    transition: 0.25s linear;
+    .bandeau-title {
+      margin: 0;
+      flex-direction: column;
+      min-height: 150px;
+      .title {
+        font-size: 2em;
+        transition: 0.25s linear;
+      }
+      .logo {
+        fa-icon {
+          font-size: 3em;
+          transition: 0.25s linear;
+        }
+      }
+    }
   }
 }
