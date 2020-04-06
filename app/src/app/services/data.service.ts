@@ -5,6 +5,7 @@ import { Formatmember} from '../models/formatmembre';
 import { Observable,of } from 'rxjs';
 import { HttpClient,HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { CATCH_ERROR_VAR } from '@angular/compiler/src/output/output_ast';
+import { Modification } from '../models/modification';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,19 @@ postInterventionForm( formIntervention: FormIntervention){
 // return of(formIntervention);
 
 } 
-
+setRemarques(m:Modification):Observable<any>{
+  console.log("do remark");
+  const result= this.http.post(`${this.PHP_API_SERVER}/modification`,m);
+  console.log('do remak 1');
+  return result;
+}
+getRemarques(id:number ):Observable<any>{
+  console.log("recuperer remak1");
+  const result= this.http.get(`${this.PHP_API_SERVER}/modification/`+id);
+  console.log('recuperer remark1',result);
+  return result;
+// return of(formIntervention);
+}
 getInterventionID( ):Observable<any>{
   console.log("recuperer id de l'intervention");
   const result= this.http.get(`${this.PHP_API_SERVER}/lastintervention`);

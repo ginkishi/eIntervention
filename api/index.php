@@ -168,7 +168,20 @@ $router->get('/intervention/:id', function ($id) {
     $s = new InterventionController();
     $s->UneIntervention($id);
 });
+$router->get('/modification/:id', function ($id) {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->getModification($id);
+});
 
+$router->post('/modification', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $data = json_decode(file_get_contents('php://input'), true);
+    $s->setModification($data["Id"], $data["modif"]);
+
+   
+});
 // Delete one intervention by id
 $router->delete('/deleteintervention/:id', function ($id) {
     require_once CONTROLLERS . DS . 'interventionC.php';

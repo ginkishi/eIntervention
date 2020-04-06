@@ -96,7 +96,11 @@ CREATE TABLE IF NOT EXISTS `vehiculeutilise` (
   PRIMARY KEY (`IDVehicule`, `IDIntervention`, `DateDepart`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-
+------------------------------------------
+-- structure de la table des modification demandé 
+----------------------------------------------------
+CREATE TABLE `eintervention`.`remarqueModification` ( `IDIntervention` INT NOT NULL , `Remarques` TEXT NOT NULL ) ENGINE = MyISAM;
+-----------------------------------------------------
 INSERT INTO `status` (`IDstatus`, `label`) VALUES 
     ('0', 'Sauvegardé'),
     ('1', 'Validé par responsable'), 

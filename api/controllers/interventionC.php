@@ -117,6 +117,25 @@ class InterventionController
             );
         }
     }
+    public function setModification($id,$remarques){
+        $model = new Intervention();
+    
+        $stmt = $model->setModification($id,$remarques);
+
+    }
+    public function getModification($id)
+    {
+        $model = new Intervention();
+    
+        $stmt = $model->getModification($id);
+        $farr = array();
+        $farr["modification"] = $stmt;
+      
+    
+    header('Content-Type: application/json');
+    http_response_code(200);
+    echo json_encode($farr);
+    }
     public function getInterventionID($numIntervention,$datedec,$heuredec){
         $model = new Intervention();
        // echo $numIntervention;
