@@ -39,10 +39,15 @@ export class RightAccessService {
     return this.requestEditingAccess;
   }
 
-  searchRight(id) {
+  searchRight(id: number) {
     let check = false;
     this.getRight().some(element => {
-      if (element.F_ID === id) {
+
+
+      if (Number(element.F_ID) === id) {
+
+        // console.log(element.F_ID + ' ' + id);
+
         check = true;
         return true;
       }
@@ -63,7 +68,7 @@ export class RightAccessService {
   }
   checkRight() {
     console.log('Checking Access !!');
-
+    RightAccessService.right = null;
     this.writingAccess = this.searchRight(78);
     this.editingAccess = this.searchRight(79);
     this.validatingAccess = this.searchRight(80);

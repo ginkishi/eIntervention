@@ -1,17 +1,86 @@
 .intervention-container {
   font-family: "Montserrat", sans-serif;
+  .body {
+    .info {
+      color: black;
+      font-size: 20px;
+      font-family: "Montserrat", sans-serif;
+      display: grid;
+      text-align: left;
+      row-gap: 10px;
+      padding: 10px 50px;
+      .title {
+        color: white;
+        background: #ff512f;
+        background: -webkit-linear-gradient(to right, #f09819, #ff512f);
+        background: linear-gradient(to right, #f09819, #ff512f);
+        box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+        font-size: 1.5em;
+        text-align: center;
+        border-radius: 8px;
+        margin: 10px 0px;
+        font-weight: bold;
+        padding: 5px 0px;
+      }
+      .label {
+        font-weight: bold;
+        color: rgb(38, 105, 192);
+        font-size: 24px;
+      }
+      #responsable {
+        text-transform: capitalize;
+      }
+    }
+    .vehicule-container {
+      padding: 10px 50px;
+      color: white;
+      .vehicule {
+        color: black;
+        text-transform: capitalize;
+        font-family: "Montserrat", sans-serif;
+        border: 2px solid orange;
+        padding: 10px;
+        margin: 5px 10px;
+        border-radius: 8px;
+        font-size: 20px;
+        .poste {
+          margin: 5px 20px;
+        }
+        .nom {
+          font-weight: normal;
+        }
+        .label {
+          font-weight: bold;
+          color: rgb(38, 105, 192);
+          font-size: 20px;
+        }
+        a {
+          color: green;
+        }
+      }
+      .title {
+        font-size: 1.5em;
+        text-align: center;
+        border-radius: 8px;
+        margin: 10px 0px;
+        font-weight: bold;
+        padding: 5px 0px;
+        background: #6a3093;
+        background: -webkit-linear-gradient(to right, #a044ff, #6a3093);
+        background: linear-gradient(to right, #a044ff, #6a3093);
+        box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+      }
+    }
+  }
 }
-
 .bandeau-title {
   min-height: 75px;
   max-height: 75px;
   background-color: rgb(31, 82, 150);
-
   min-width: 80%;
   margin: 10px;
   border-radius: 8px;
   box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
-
   text-align: center;
   display: flex;
   align-items: center;
@@ -19,101 +88,16 @@
   font-family: "Montserrat", sans-serif;
   color: white;
   font-weight: bold;
+  .title {
+    font-size: 2em;
+    margin-left: 20px;
+  }
+  .logo {
+    font-size: 52px;
+  }
 }
-.bandeau-title .title {
-  font-size: 2em;
-  margin-left: 20px;
-}
-.bandeau-title .logo {
-  font-size: 52px;
-}
-.intervention-container .body .info {
-  color: black;
-  font-size: 20px;
-  font-family: "Montserrat", sans-serif;
-  display: grid;
-  text-align: left;
-  row-gap: 10px;
-  padding: 10px 50px;
-}
-.intervention-container .body .info .title {
-  color: white;
-  background: #ff512f; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #f09819,
-    #ff512f
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #f09819,
-    #ff512f
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
-}
-.intervention-container .body .vehicule-container {
-  padding: 10px 50px;
-  color: white;
-}
-
-.intervention-container .body .vehicule-container .vehicule {
-  color: black;
-  text-transform: capitalize;
-  font-family: "Montserrat", sans-serif;
-  border: 2px solid orange;
-  padding: 10px;
-  margin: 5px 10px;
-  border-radius: 8px;
-  font-size: 20px;
-}
-.intervention-container .body .vehicule-container .vehicule .poste {
-  margin: 5px 20px;
-}
-.intervention-container .body .vehicule-container .vehicule .nom {
-  font-weight: normal;
-}
-.intervention-container .body .info .label {
-  font-weight: bold;
-  color: rgb(38, 105, 192);
-  font-size: 24px;
-}
-.intervention-container .body .vehicule-container .vehicule .label {
-  font-weight: bold;
-  color: rgb(38, 105, 192);
-  font-size: 20px;
-}
-.intervention-container .body .info .title {
-  font-size: 1.5em;
-  text-align: center;
-  border-radius: 8px;
-  margin: 10px 0px;
-  font-weight: bold;
-  padding: 5px 0px;
-}
-.intervention-container .body .vehicule-container .title {
-  font-size: 1.5em;
-  text-align: center;
-  border-radius: 8px;
-  margin: 10px 0px;
-  font-weight: bold;
-  padding: 5px 0px;
-  background: #6a3093; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #a044ff,
-    #6a3093
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #a044ff,
-    #6a3093
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
-}
-.intervention-container .body .vehicule-container .vehicule a,
-#responsable a {
-  color: green;
-}
-.intervention-container .body .info #responsable {
-  text-transform: capitalize;
+#responsable {
+  a {
+    color: green;
+  }
 }
