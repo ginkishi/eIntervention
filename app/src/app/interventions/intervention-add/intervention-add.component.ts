@@ -22,7 +22,7 @@ import { stringify } from 'querystring';
 export class InterventionAddComponent implements OnInit {
   AddInterventionForm: FormGroup;
   interventionForm: FormIntervention = {
-    numeroIntervention: 2515, //temporaire
+    numeroIntervention: null, //temporaire
     commune: "boumerdes",
     adresse: null,
     typeIntervention: null,
@@ -34,8 +34,12 @@ export class InterventionAddComponent implements OnInit {
     dateFin: "2020-03-31",
     heureFin:"16:52",
     // ici faudra recuper l'id de la session
-    responsable: "admin admin",
-    idcreateur: "1"
+    responsable:JSON.parse(localStorage.getItem("user")).P_PRENOM +
+    " " +
+    JSON.parse(localStorage.getItem("user")).P_NOM,
+
+    idcreateur:JSON.parse(localStorage.getItem("user")).P_ID
+
   };
 
   VehiculeUtilise: VehiculeUtilise = {
