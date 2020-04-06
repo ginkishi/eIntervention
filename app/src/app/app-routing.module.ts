@@ -18,51 +18,70 @@ import { WritingAccessGuard } from "./guards/writing-access.guard";
 import { EditingAccessGuard } from "./guards/editing-access.guard";
 import { InterventionSearchComponent } from './interventions/intervention-search/intervention-search.component';
 
+
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     canActivate: [AuthGuard],
-    redirectTo: "/home",
-    pathMatch: "full"
+    redirectTo: '/home',
+    pathMatch: 'full'
   },
-  { path: "forbidden", component: ForbiddenPageComponent },
-  { path: "profil", canActivate: [AuthGuard], component: ProfilComponent },
-  { path: "home", canActivate: [AuthGuard], component: HomeComponent },
-  { path: "login", component: LoginComponent },
-  { path: "pompier/:id", canActivate: [AuthGuard], component: ProfilComponent },
+  { path: 'forbidden', component: ForbiddenPageComponent },
+  { path: 'profil', canActivate: [AuthGuard], component: ProfilComponent },
+  { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'pompier/:id', canActivate: [AuthGuard], component: ProfilComponent },
 
   {
-    path: "intervention/edit/:id",
+    path: 'intervention/edit/:id',
     canActivate: [AuthGuard],
     component: InterventionEditComponent
   },
   {
-    path: "intervention",
+    path: 'intervention',
     canActivate: [AuthGuard],
     component: InterventionListComponent
   },
   {
-    path: "intervention/add",
+    path: 'intervention/valid',
+    canActivate: [AuthGuard],
+    component: InterventionListComponent,
+    data: { type: 'valid' }
+  },
+  {
+    path: 'intervention/waiting',
+    canActivate: [AuthGuard],
+    component: InterventionListComponent,
+    data: { type: 'waiting' }
+  },
+  {
+    path: 'intervention/novalid',
+    canActivate: [AuthGuard],
+    component: InterventionListComponent,
+    data: { type: 'novalid' }
+  },
+  {
+    path: 'intervention/add',
     canActivate: [AuthGuard, WritingAccessGuard],
     component: InterventionAddComponent
   },
   {
-    path: "intervention/export",
+    path: 'intervention/export',
     canActivate: [AuthGuard, ExportAccessGuard],
     component: InterventionExportComponent
   },
   {
-    path: "intervention/edit/:id",
+    path: 'intervention/edit/:id',
     canActivate: [AuthGuard, EditingAccessGuard],
     component: InterventionEditComponent
   },
   {
-
-    path: "intervention/:id",
+    path: 'intervention/:id',
     canActivate: [AuthGuard],
     component: InterventionViewComponent
   },
   {
+
     path: "intervention/search",
     component:  InterventionSearchComponent
   },
@@ -72,16 +91,16 @@ const routes: Routes = [
     component: VehiculeListComponent
   },
   {
-    path: "vehicule/:id",
+    path: 'vehicule/:id',
     canActivate: [AuthGuard],
     component: VehiculeViewComponent
   },
-  { path: "logout", component: LoginComponent },
-  { path: "**", component: NoPageFoundComponent }
+  { path: 'logout', component: LoginComponent },
+  { path: '**', component: NoPageFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: "reload" })],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
