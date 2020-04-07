@@ -38,6 +38,12 @@ export class BrigadeApiService {
     );
   }
 
+  readAllInterventionWaiting(): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/intervention/waiting`
+    );
+  }
+
   readNumberOfINtervention(): Observable<NumberIntervention> {
     return this.httpClient.get<NumberIntervention>(
       `${this.PHP_API_SERVER}/intervention/number`
