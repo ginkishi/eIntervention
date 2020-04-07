@@ -16,22 +16,25 @@
   justify-content: center;
   flex-direction: column;
   border-radius: 8px;
-  box-shadow: -6px 6px 12px #383838, 6px -6px 12px #ffffff;
+  box-shadow: -6px 6px 12px #383838, 6px -6px 12px #fff;
   padding: 5px;
+
   .time {
     font-size: 41px;
     font-weight: bold;
     font-family: "Montserrat", sans-serif;
-    color: rgb(49, 49, 49);
+    color: #313131;
   }
+
   .date {
     margin-top: 10px;
     font-size: 20px;
     font-weight: bold;
     font-family: "Ubuntu", sans-serif;
-    color: rgb(31, 82, 150);
+    color: #1f5296;
   }
 }
+
 @media screen and (max-width: 768px) {
   .clocks {
     min-width: 100%;
@@ -41,9 +44,11 @@
     margin: 0;
     margin-top: 10px;
     border: 1px solid black;
+
     .time {
       font-size: 32px;
     }
+
     .date {
       margin: 0;
       margin-left: 20px;
