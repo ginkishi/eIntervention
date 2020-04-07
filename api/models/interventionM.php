@@ -32,6 +32,16 @@ class Intervention
         return $stmt;
     }
 
+    // Récupère le nombre d'intervention validée
+    public function getNumberOfValid()
+    {
+        $sql = 'select "Valid",COUNT(*) Numbers FROM interventions where IDStatus = 1';
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
     public function listAllIntervUser($id)
     {
         $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where IDResponsable = ' . $id . ";";
