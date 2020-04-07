@@ -78,7 +78,36 @@ class InterventionController
             );
         }
     }
-  
+
+    public function numberOfIntervention()
+    {
+        $model = new Intervention();
+        $farr = array("Intervention" => array("All" => "0", "Valid" => "0", "Waiting" => "0", "NoValid" => "0"));
+        $stmt = $model->getNumberOfIntervention();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        extract($row);
+        $farr["Intervention"]["All"] = $Numbers;
+
+        $stmt = $model->getNumberOfValid();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        extract($row);
+        $farr["Intervention"]["Valid"] = $Numbers;
+
+        $stmt = $model->getNumberOfWaiting();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        extract($row);
+        $farr["Intervention"]["Waiting"] = $Numbers;
+
+        $stmt = $model->getNumberOfNoValid();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        extract($row);
+        $farr["Intervention"]["NoValid"] = $Numbers;
+
+        header('Content-Type: application/json');
+        http_response_code(200);
+        echo json_encode($farr);
+    }
+
     public function interventionsForUser($id)
     {
         $model = new Intervention();
@@ -117,42 +146,42 @@ class InterventionController
             );
         }
     }
-    public function setModification($id,$remarques){
+    public function setModification($id, $remarques)
+    {
         $model = new Intervention();
-    
-        $stmt = $model->setModification($id,$remarques);
 
+        $stmt = $model->setModification($id, $remarques);
     }
     public function getModification($id)
     {
         $model = new Intervention();
-    
+
         $stmt = $model->getModification($id);
         $farr = array();
         $farr["modification"] = $stmt;
-      
-    
-    header('Content-Type: application/json');
-    http_response_code(200);
-    echo json_encode($farr);
-    }
-    public function getInterventionID($numIntervention,$datedec,$heuredec){
-        $model = new Intervention();
-       // echo $numIntervention;
-        // echo $datedec."coucou";
-        // echo $heuredec;
-        $stmt = $model-> getThisInterventionId($numIntervention,$datedec,$heuredec);
-       
-       
-            $farr = array();
-            $farr["intervention"] = $stmt;
-          
-        
+
+
         header('Content-Type: application/json');
         http_response_code(200);
         echo json_encode($farr);
-    
-}
+    }
+    public function getInterventionID($numIntervention, $datedec, $heuredec)
+    {
+        $model = new Intervention();
+        // echo $numIntervention;
+        // echo $datedec."coucou";
+        // echo $heuredec;
+        $stmt = $model->getThisInterventionId($numIntervention, $datedec, $heuredec);
+
+
+        $farr = array();
+        $farr["intervention"] = $stmt;
+
+
+        header('Content-Type: application/json');
+        http_response_code(200);
+        echo json_encode($farr);
+    }
     public function UneIntervention($id)
     {
         $model = new Intervention();
@@ -247,31 +276,30 @@ class InterventionController
             );
         }
     }
-    public function getlastInterventionID(){
+    public function getlastInterventionID()
+    {
         $model = new Intervention();
         $stmt = $model->getlastInterventionID();
         $farr = array();
         $farr["ID"] = $stmt;
-      
-    
-    header('Content-Type: application/json');
-    http_response_code(200);
-    echo json_encode($farr);
 
 
+        header('Content-Type: application/json');
+        http_response_code(200);
+        echo json_encode($farr);
     }
-  
-    public function AddMemberToVehicule($IDvehicule, $IDintervention,$IDrole,$nom)
+
+    public function AddMemberToVehicule($IDvehicule, $IDintervention, $IDrole, $nom)
     {
         $model = new Intervention();
         // echo $IDintervention ;
-        $stmt = $model->AddMemberToVehicule($IDvehicule, $IDintervention,$IDrole,$nom);
+        $stmt = $model->AddMemberToVehicule($IDvehicule, $IDintervention, $IDrole, $nom);
     }
 
     public function addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde)
     {
         $model = new Intervention();
-   // echo $IDintervention ;
+        // echo $IDintervention ;
         $stmt = $model->addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde);
     }
     public function addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
@@ -290,7 +318,7 @@ class InterventionController
         $model = new Intervention();
         $stmt = $model->deleteIntervention($id);
     }
-  
+
     public function deleteVehiculeFromIntervention($idIntervention, $idVehicule)
     {
         $model = new Intervention();
