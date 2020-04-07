@@ -12,8 +12,6 @@ _eIntervention est actuellement en développement !_
 
 ## **Description**
 
-<hr/>
-
 **eIntervention** est une application web réalisée en Angular 9.
 
 Cette application est réalisée dans le cadre d'un projet de Master M1 MIAGE (_Master en Méthodes Informatiques Appliquées à la Gestion des Entreprises_).
@@ -21,8 +19,6 @@ Cette application est réalisée dans le cadre d'un projet de Master M1 MIAGE (_
 Cette application à terme permettra à la caserne de pompier de Kembs, voire à d'autre caserne de pouvoir gérer leur intervention
 
 ## **Dependencies**
-
-<hr/>
 
 - **Angular7-csv** => (https://www.code-sample.com/2019/02/angular-7-export-to-csv-pdf-excel.html)
 - **Xlsx** (https://levelup.gitconnected.com/export-data-to-excel-sheet-in-angular-8-7a8e0342643d)
