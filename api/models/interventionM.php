@@ -93,9 +93,11 @@ class Intervention
     // Récupère la liste des interventions pour un utilisateur (intervention personnalisée)
     public function listAllIntervUser($id)
     {
-        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where IDResponsable = ' . $id . ";";
+        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where IDResponsable = ' . $id;
+        $sql2 = ' UNION SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus JOIN personnelduvehicule pv on pv.IDIntervention = i.IDIntervention where pv.IDPersonne = ' . $id . ";";
+        $sql3 = $sql . $sql2;
         $dbh = BDD::getInstanceOfEIntervention();
-        $stmt = $dbh->prepare($sql);
+        $stmt = $dbh->prepare($sql3);
         $stmt->execute();
         return $stmt;
     }
