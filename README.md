@@ -29,14 +29,14 @@ Cette application à terme permettra à la caserne de pompier de Kembs, voire à
 
 ## **Installation**
 
-<hr/>
-
 ### **Installation requirements**
 
 - Angular >= 9
 - Nodejs >= 12.16.1
 - NPM >= 6.14.2
 - GIT
+
+<hr/>
 
 ### **Clone repository**
 
@@ -62,9 +62,9 @@ $ cd app
 npm install or npm i
 ```
 
-## **Getting Started**
-
 <hr/>
+
+## **Getting Started**
 
 - Open a terminal
 - Go to eIntervention folder
