@@ -51,6 +51,16 @@ class Intervention
         return $stmt;
     }
 
+    // Récupère le nombre d'intervention non validé par le responsable ou en attente de modifiaction
+    public function getNumberOfNoValid()
+    {
+        $sql = 'select "NoValid",COUNT(*) Numbers FROM interventions where IDStatus = 2 or IDStatus = 3';
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
     public function listAllIntervUser($id)
     {
         $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where IDResponsable = ' . $id . ";";
