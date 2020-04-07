@@ -42,6 +42,24 @@ const routes: Routes = [
     component: InterventionListComponent
   },
   {
+    path: 'intervention/valid',
+    canActivate: [AuthGuard],
+    component: InterventionListComponent,
+    data: { type: 'valid' }
+  },
+  {
+    path: 'intervention/waiting',
+    canActivate: [AuthGuard],
+    component: InterventionListComponent,
+    data: { type: 'waiting' }
+  },
+  {
+    path: 'intervention/novalid',
+    canActivate: [AuthGuard],
+    component: InterventionListComponent,
+    data: { type: 'novalid' }
+  },
+  {
     path: "intervention/add",
     canActivate: [AuthGuard, WritingAccessGuard],
     component: InterventionAddComponent
@@ -64,7 +82,7 @@ const routes: Routes = [
   },
   {
     path: "intervention/search",
-    component:  InterventionSearchComponent
+    component: InterventionSearchComponent
   },
   {
     path: "vehicule",
@@ -84,4 +102,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: "reload" })],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
