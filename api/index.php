@@ -115,6 +115,14 @@ $router->get('/intervention/number', function () {
     $s->numberOfIntervention();
 });
 
+// Get list of all valid intervention
+$router->get('/intervention/valid', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->interventionsValid();
+});
+
+
 
 $router->get('/vehicule', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
