@@ -44,6 +44,12 @@ export class BrigadeApiService {
     );
   }
 
+  readAllInterventionNoValid(): Observable<Intervention[]> {
+    return this.httpClient.get<Intervention[]>(
+      `${this.PHP_API_SERVER}/intervention/novalid`
+    );
+  }
+
   readNumberOfINtervention(): Observable<NumberIntervention> {
     return this.httpClient.get<NumberIntervention>(
       `${this.PHP_API_SERVER}/intervention/number`
