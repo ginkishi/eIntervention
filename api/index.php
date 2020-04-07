@@ -129,7 +129,12 @@ $router->get('/intervention/waiting', function () {
     $s->interventionsWaiting();
 });
 
-
+// Get list of all novalid intervention
+$router->get('/intervention/novalid', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->interventionsNoValid();
+});
 
 $router->get('/vehicule', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
