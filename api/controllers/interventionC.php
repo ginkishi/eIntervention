@@ -7,6 +7,8 @@ class InterventionController
     public function __construct()
     {
     }
+
+    // Retourne le json avec tout les véhicules utilisées
     public function vehiculeUtilise()
     {
 
@@ -39,7 +41,7 @@ class InterventionController
         }
     }
 
-
+    // Retourne le json avec toute les interventions
     public function interventions()
     {
         $model = new Intervention();
@@ -78,7 +80,7 @@ class InterventionController
             );
         }
     }
-
+    // Retourne le json avec le nombre d'intervention de chaque statut
     public function numberOfIntervention()
     {
         $model = new Intervention();
@@ -107,7 +109,7 @@ class InterventionController
         http_response_code(200);
         echo json_encode($farr);
     }
-
+    // Retourne le json avec toute les interventions validées
     public function interventionsValid()
     {
         $model = new Intervention();
@@ -146,7 +148,7 @@ class InterventionController
             );
         }
     }
-
+    // Retourne le json avec toute les interventions en attentes
     public function interventionsWaiting()
     {
         $model = new Intervention();
@@ -185,7 +187,7 @@ class InterventionController
             );
         }
     }
-
+    // Retourne le json avec toute les interventions non validées par le responsable
     public function interventionsNoValid()
     {
         $model = new Intervention();
@@ -224,7 +226,7 @@ class InterventionController
             );
         }
     }
-
+    // Retourne le json avec toute les interventions en lien avec l'id mis en paramètre
     public function interventionsForUser($id)
     {
         $model = new Intervention();
@@ -263,12 +265,15 @@ class InterventionController
             );
         }
     }
+    // Rajoute les remarques à l'intervention
     public function setModification($id, $remarques)
     {
         $model = new Intervention();
 
         $stmt = $model->setModification($id, $remarques);
     }
+
+    // Récupère les remarques sur l'intervention
     public function getModification($id)
     {
         $model = new Intervention();
@@ -282,12 +287,11 @@ class InterventionController
         http_response_code(200);
         echo json_encode($farr);
     }
+
+    // Retourne le json avec l'id de l'intervention
     public function getInterventionID($numIntervention, $datedec, $heuredec)
     {
         $model = new Intervention();
-        // echo $numIntervention;
-        // echo $datedec."coucou";
-        // echo $heuredec;
         $stmt = $model->getThisInterventionId($numIntervention, $datedec, $heuredec);
 
 
@@ -299,6 +303,8 @@ class InterventionController
         http_response_code(200);
         echo json_encode($farr);
     }
+
+    // Retourne le json avec l'intervention avec l'id en paramètre
     public function UneIntervention($id)
     {
         $model = new Intervention();
@@ -364,9 +370,6 @@ class InterventionController
                             $idr = "apprenti";
                         }
 
-
-                        //echo $ROLE_NAME . "\n";
-
                         $pompier = $stmt4->fetch(PDO::FETCH_ASSOC);
 
                         extract($pompier);
@@ -393,6 +396,8 @@ class InterventionController
             );
         }
     }
+
+    // Retourne le json avec le dernier identifiant d'intervention 
     public function getlastInterventionID()
     {
         $model = new Intervention();
@@ -405,37 +410,38 @@ class InterventionController
         http_response_code(200);
         echo json_encode($farr);
     }
-
+    // Rajoute les membres du personnel dans le véhicules en paramètre sur l'intervention 
     public function AddMemberToVehicule($IDvehicule, $IDintervention, $IDrole, $nom)
     {
         $model = new Intervention();
-        // echo $IDintervention ;
         $stmt = $model->AddMemberToVehicule($IDvehicule, $IDintervention, $IDrole, $nom);
     }
-
+    // Rajoute le véhicule à l'intervention mis en paramètre
     public function addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde)
     {
         $model = new Intervention();
-        // echo $IDintervention ;
         $stmt = $model->addVehiculeToIntervention($IdVehicule, $IDintervention, $DateDepart, $HeureDepart, $DateArrive, $HeureArrive, $DateRetour, $HeureRetour, $Ronde);
     }
+
+    // Rajoute l'intervention
     public function addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
     {
         $model = new Intervention();
         $stmt = $model->addIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status);
     }
+    // Edite l'intervention avec l'id en paramètre
     public function editIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
     {
         $model = new Intervention();
         $stmt = $model->editIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status);
     }
-
+    // Supprime l'intervention avec l'id mis en paramètre
     public function deleteIntervention($id)
     {
         $model = new Intervention();
         $stmt = $model->deleteIntervention($id);
     }
-
+    // Supprime le véhicule de l'intervention mis en paramètre
     public function deleteVehiculeFromIntervention($idIntervention, $idVehicule)
     {
         $model = new Intervention();
