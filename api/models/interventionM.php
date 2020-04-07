@@ -41,6 +41,15 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+    // Récupère le nombre d'intervention en attente de validation par le chef
+    public function getNumberOfWaiting()
+    {
+        $sql = 'select "Waiting",COUNT(*) Numbers FROM interventions where IDStatus = 0';
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
 
     public function listAllIntervUser($id)
     {
