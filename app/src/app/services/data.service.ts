@@ -76,4 +76,9 @@ getInterventionsbyNum(id:number ):Observable<Intervention[]>{
   
 // return of(formIntervention);
 }
+getInterventionsbyAdresse(adr:string):Observable<Intervention[]>{
+  return this.http.get<Intervention[]>(
+    `${this.PHP_API_SERVER}/searchByadr/` +adr
+  );
+}
 }
