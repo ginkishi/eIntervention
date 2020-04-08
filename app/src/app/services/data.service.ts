@@ -6,6 +6,7 @@ import { Observable,of } from 'rxjs';
 import { HttpClient,HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { CATCH_ERROR_VAR } from '@angular/compiler/src/output/output_ast';
 import { Modification } from '../models/modification';
+import { Intervention } from '../models/intervention';
 
 @Injectable({
   providedIn: 'root'
@@ -65,5 +66,14 @@ const t=  this.http.post(`${this.PHP_API_SERVER}/addMember`,format);
 
 return t;
 
+}
+
+getInterventionsbyNum(id:number ):Observable<Intervention[]>{
+  return this.http.get<Intervention[]>(
+    `${this.PHP_API_SERVER}/search/` + id
+  );
+  
+  
+// return of(formIntervention);
 }
 }
