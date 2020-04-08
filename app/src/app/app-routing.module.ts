@@ -76,12 +76,16 @@ const routes: Routes = [
     component: InterventionSearchComponent
   },
   {
+    path: "intervention/search",
+    canActivate: [AuthGuard],
+    component:  InterventionSearchComponent
+  },
+  {
 
     path: "intervention/:id",
     canActivate: [AuthGuard],
     component: InterventionViewComponent
   },
-
   {
     path: "vehicule",
     canActivate: [AuthGuard],
