@@ -111,7 +111,43 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+
+    public function getInterventionByNum($id)
+    {
+        $id = self::cleanUserInput($id);
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where NIntervention = " . $id . ";";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+
+    }
+    public function getInterventionByAdr($adr)
+    {
+        $adr = self::cleanUserInput($adr);
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where Adresse = \"" . $adr .  "\";";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+    public function getInterventionByRedac($redac){
+     
+        $res = explode(" ", $redac); // $res[0] = prenom
+        $result = Pompier::getPompierID($res[0], $res[1])->fetch();
+        $idredac = $result[0];
+        echo $idredac;
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where NIntervention = " . $idredac . ";";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+        
+
+    }
+
     // Récupère la liste des véhicules pour l'id d'interventions 
+
     public function listVehiculesForOneIntervention($id)
     {
         $id = self::cleanUserInput($id);
