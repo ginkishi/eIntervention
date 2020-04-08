@@ -39,6 +39,16 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+    public function getInterventionByNum($id)
+    {
+        $id = self::cleanUserInput($id);
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where NIntervention = " . $id . ";";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+
+    }
     public function listVehiculesForOneIntervention($id)
     {
         $id = self::cleanUserInput($id);
