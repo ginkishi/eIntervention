@@ -212,5 +212,12 @@ $router->post('/intervention/:id', function ($id) {
     $data = json_decode(file_get_contents('php://input'), true);
     $s->addIntervention($data["Nintervention"], $data["adresse"], $data["commune"], $data["opm"], $data["typeIntervention"], $data["important"], $data["requerant"], $data["datedeclenchement"], $data["heuredeclenchement"], $data["datefin"], $data["heurefin"], $data["responsable"], $data["idcreateur"], $data["idstatus"]);
 });
+// search
+
+$router->get('/search/:id', function ($id) {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->getInterventionByNum($id);
+});
 
 $router->run();
