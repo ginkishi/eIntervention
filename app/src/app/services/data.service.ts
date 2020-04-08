@@ -67,7 +67,12 @@ const t=  this.http.post(`${this.PHP_API_SERVER}/addMember`,format);
 return t;
 
 }
-
+getInterventionsbyRedacteur(redac:string):Observable<Intervention[]>{
+  console.log("coucou 2");
+  return this.http.get<Intervention[]>(
+    `${this.PHP_API_SERVER}/searchByRedac/`+redac
+  );
+}
 getInterventionsbyNum(id:number ):Observable<Intervention[]>{
   return this.http.get<Intervention[]>(
     `${this.PHP_API_SERVER}/search/` + id
@@ -81,4 +86,6 @@ getInterventionsbyAdresse(adr:string):Observable<Intervention[]>{
     `${this.PHP_API_SERVER}/searchByadr/` +adr
   );
 }
+
+
 }
