@@ -49,6 +49,15 @@ class Intervention
         return $stmt;
 
     }
+    public function getInterventionByAdr($adr)
+    {
+        $adr = self::cleanUserInput($adr);
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where Adresse = \"" . $adr .  "\";";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
     public function listVehiculesForOneIntervention($id)
     {
         $id = self::cleanUserInput($id);
