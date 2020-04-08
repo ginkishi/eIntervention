@@ -81,7 +81,7 @@ item:string;
     console.log(f.value.adresse);
     if(f.value.item='adresse')
     {
-      this.dataService.getInterventionsbyAdresse(f.value.adresse).subscribe((resultat: Intervention[]) => {
+         this.dataService.getInterventionsbyAdresse(f.value.adresse).subscribe((resultat: Intervention[]) => {
         this.response = JSON.parse(JSON.stringify(resultat));
         this.intervention = this.response.interventions;
      
@@ -103,11 +103,18 @@ item:string;
       
     }
     if(f.value.item='redacteur')
-    {
+    { console.log(f.value.redacteur);
+      this.dataService.getInterventionsbyRedacteur(f.value.redacteur).subscribe((resultat: Intervention[]) => {
+        console.log("ici777");
+        console.log(resultat);
+    
+        console.log("ici");
       
+    
+  });
+          console.log("ici2");
     }
-   
-   
+  
+  
   }
-
-}
+  }
