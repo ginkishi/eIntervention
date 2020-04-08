@@ -219,5 +219,10 @@ $router->get('/search/:id', function ($id) {
     $s = new InterventionController();
     $s->getInterventionByNum($id);
 });
+$router->get('/searchByadr/:adr', function ($adr) {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->getInterventionByAdr($adr);
+});
 
 $router->run();
