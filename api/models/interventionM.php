@@ -58,6 +58,20 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
+    public function getInterventionByRedac($redac){
+     
+        $res = explode(" ", $redac); // $res[0] = prenom
+        $result = Pompier::getPompierID($res[0], $res[1])->fetch();
+        $idredac = $result[0];
+        echo $idredac;
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where NIntervention = " . $idredac . ";";
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+        
+
+    }
     public function listVehiculesForOneIntervention($id)
     {
         $id = self::cleanUserInput($id);
