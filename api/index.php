@@ -107,6 +107,35 @@ $router->get('/intervention', function () {
     $s = new InterventionController();
     $s->interventions();
 });
+
+// Get number of intervention
+$router->get('/intervention/number', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->numberOfIntervention();
+});
+
+// Get list of all valid intervention
+$router->get('/intervention/valid', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->interventionsValid();
+});
+
+// Get list of all waiting intervention
+$router->get('/intervention/waiting', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->interventionsWaiting();
+});
+
+// Get list of all novalid intervention
+$router->get('/intervention/novalid', function () {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->interventionsNoValid();
+});
+
 $router->get('/vehicule', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
@@ -126,24 +155,21 @@ $router->post('/vehicule', function () {
         $data["Ronde"] = 0;
     }
     $s->addVehiculeToIntervention($data["IdVehicule"], $data["IDIntervention"], $data["DateDepart"], $data["HeureDepart"], $data["DateArrive"], $data["HeureArrive"], $data["DateRetour"], $data["HeureRetour"], $data["Ronde"]);
-
 });
-$router->get('/intervention1/:numeroIntervention/:dateDeclenchement/:heureDeclenchement',function($numeroIntervention,$dateDeclenchement,$heureDeclenchement){
+$router->get('/intervention1/:numeroIntervention/:dateDeclenchement/:heureDeclenchement', function ($numeroIntervention, $dateDeclenchement, $heureDeclenchement) {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
     $data = json_decode(file_get_contents('php://input'), true);
     // echo $numeroIntervention;
-  //   echo $dateDeclenchement;
+    //   echo $dateDeclenchement;
     // echo $heureDeclenchement;
-    $s->getInterventionID($numeroIntervention, $dateDeclenchement,$heureDeclenchement);
-
+    $s->getInterventionID($numeroIntervention, $dateDeclenchement, $heureDeclenchement);
 });
 
-$router->get('/lastintervention',function(){
+$router->get('/lastintervention', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
     $s->getlastInterventionID();
-
 });
 
 
@@ -179,21 +205,18 @@ $router->post('/modification', function () {
     $s = new InterventionController();
     $data = json_decode(file_get_contents('php://input'), true);
     $s->setModification($data["Id"], $data["modif"]);
-
-   
 });
 // Delete one intervention by id
 $router->delete('/deleteintervention/:id', function ($id) {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
     $s->deleteIntervention($id);
-
 });
 $router->post('/addMember', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
     $data = json_decode(file_get_contents('php://input'), true);
-    $s->AddMemberToVehicule($data["IDvehicule"], $data["IDintervention"], $data["IDrole"],$data["nom"] );
+    $s->AddMemberToVehicule($data["IDvehicule"], $data["IDintervention"], $data["IDrole"], $data["nom"]);
 });
 
 
