@@ -19,8 +19,12 @@
                             >
                         </div>
                         <div class="champ"><label for="">Redacteur</label>
-                            <input id="redacteur" name="redacteur" type="text" formControlName="redacteur" autocomplete="off" required
-                            >
+                          
+                                <ng2-completer [datasource]="listePompier" [inputClass]="'form-control form-control-inline'"
+                                    [minSearchLength]="1" formControlName="redacteur"></ng2-completer>
+        
+                           
+                           
                         </div>
                     
                    
@@ -28,9 +32,13 @@
             </div>
         </div>   
                
-       
+        <div class="container">
+            <div class="row">
+              <div class="col text-center">
+                <input type="submit" value="Recherche" class="btn btn-primary btn-lg">
+              </div>
+            </div>
+          </div>
         
-            <div class="champ"><input type="submit"  value="Recherche" class="btn btn-primary btn-lg"></div>
-         
     </form>
 </div>
