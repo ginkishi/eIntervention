@@ -27,8 +27,8 @@ export class InterventionAddComponent implements OnInit {
     adresse: null,
     typeIntervention: null,
     requerant: "Alerte locale",
-    opm: 0,
-    important: 0,
+    opm: 1,
+    important: 1,
     dateDeclenchement: "2020-03-31",
     heureDeclenchement:"16:52",
     dateFin: "2020-03-31",
@@ -51,7 +51,7 @@ export class InterventionAddComponent implements OnInit {
     HeureArrive: null,
     DateRetour: null,
     HeureRetour: null,
-    Ronde: null
+    Ronde:null
   };
    nbvehicule:Number=0;
   listePompier: string[] = [];
@@ -140,7 +140,7 @@ export class InterventionAddComponent implements OnInit {
   buildVehicule(): FormGroup{
     return this.fb.group({
       vehicule: "",
-      ronde:'false',
+      ronde:false,
       dateDepart:formatDate(
         new Date(),
         "yyyy-MM-dd",
@@ -295,8 +295,11 @@ export class InterventionAddComponent implements OnInit {
 
 
    console.log("------------------",this.AddInterventionForm.value);
-  // console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
-  console.log("-----------numerointer ",this.AddInterventionForm.value.numeroIntervention);
+   
+   console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
+  
+
+   console.log("-----------numerointer ",this.AddInterventionForm.value.numeroIntervention);
   
    this.interventionForm.numeroIntervention=this.AddInterventionForm.value.numeroIntervention;
    this.interventionForm.commune=this.AddInterventionForm.value.commune;
@@ -304,10 +307,7 @@ export class InterventionAddComponent implements OnInit {
    this.interventionForm.typeIntervention=this.AddInterventionForm.value.typeIntervention;
    this.interventionForm.requerant=this.AddInterventionForm.value.requerant;
    this.interventionForm.opm=this.AddInterventionForm.value.opm;
-   console.log(this.AddInterventionForm.value.important);
-   if(this.AddInterventionForm.value.important=="false")
-   this.interventionForm.important=0;
-   else  this.interventionForm.important=1;
+   this.interventionForm.important=this.AddInterventionForm.value.important;
    this.interventionForm.dateDeclenchement=this.AddInterventionForm.value.dateDeclenchement;
    this.interventionForm.dateFin=this.AddInterventionForm.value.dateFin;
    this.interventionForm.heureDeclenchement=this.AddInterventionForm.value.heureDeclenchement;
@@ -380,7 +380,7 @@ export class InterventionAddComponent implements OnInit {
       }
    
     );
-  
+
      
   }
 
