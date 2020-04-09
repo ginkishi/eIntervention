@@ -136,6 +136,16 @@ export class InterventionEditComponent implements OnInit {
           .subscribe((res: Pompier) => {
             this.response = JSON.parse(JSON.stringify(res));
             this.responsable = this.response.pompier[0];
+             let op:boolean;
+             let im:boolean;
+             if(this.intervention.OPM==1)
+             op=true;
+             else op=false;
+            
+             if(this.intervention.Important==1)
+             im=true;
+             else im=false;
+
             let splitteddatedeclenchement = this.intervention.DateDeclenchement.toString().split(" ");
             let splitteddatedefin = this.intervention.DateFin.toString().split(" ");
             this.AddInterventionForm = this.fb.group({
@@ -144,8 +154,8 @@ export class InterventionEditComponent implements OnInit {
               adresse: this.intervention.Adresse,
               typeIntervention: this.intervention.TypeIntervention,
               requerant: this.intervention.Requerant,
-              opm: this.intervention.OPM,
-              important: this.intervention.Important,
+              opm: op,
+              important: im,
               dateDeclenchement: splitteddatedeclenchement[0],
               heureDeclenchement: splitteddatedeclenchement[1],
               dateFin: splitteddatedefin[0],
@@ -220,9 +230,14 @@ export class InterventionEditComponent implements OnInit {
     let splitedatedepart = v.DateDepart.toString().split(" ");
     let spliteddatearrivee = v.DateArrive.toString().split(" ");
     let spliteddateretour = v.DateRetour.toString().split(" ");
+    let ron:boolean;
+    if(v.Ronde==1)
+      ron=true;
+    else
+      ron=false;
     return this.fb.group({
       vehicule: v.IDVehicule,
-      ronde: v.Ronde,
+      ronde: ron,
       dateDepart: splitedatedepart[0],
       heureDepart: splitedatedepart[1],
       dateArrivee: spliteddatearrivee[0],
@@ -272,7 +287,7 @@ export class InterventionEditComponent implements OnInit {
   buildVehicule(): FormGroup {
     return this.fb.group({
       vehicule: "",
-      ronde: 'false',
+      ronde: false,
       dateDepart: formatDate(
         new Date(),
         "yyyy-MM-dd",
@@ -452,9 +467,7 @@ export class InterventionEditComponent implements OnInit {
         this.interventionForm.requerant = this.AddInterventionForm.value.requerant;
         this.interventionForm.opm = this.AddInterventionForm.value.opm;
         console.log(this.AddInterventionForm.value.important);
-        if (this.AddInterventionForm.value.important == "false")
-          this.interventionForm.important = 0;
-        else this.interventionForm.important = 1;
+        this.interventionForm.important = this.AddInterventionForm.value.important;
         this.interventionForm.dateDeclenchement = this.AddInterventionForm.value.dateDeclenchement;
         this.interventionForm.dateFin = this.AddInterventionForm.value.dateFin;
         this.interventionForm.heureDeclenchement = this.AddInterventionForm.value.heureDeclenchement;
