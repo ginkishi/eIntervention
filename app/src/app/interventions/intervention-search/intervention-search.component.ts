@@ -65,6 +65,9 @@ item:string;
       //console.log(this.typesIntervention[0]);
     });
   }
+  isEmptyList(obj) {
+    return (obj && (Object.keys(obj).length === 0));
+  }
   getSelecteditem(){
     this.radioSel = this.itemsList.find(Item => Item.value === this.radioSelected);
     this.radioSelectedString = JSON.stringify(this.radioSel);
