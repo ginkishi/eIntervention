@@ -60,10 +60,10 @@
         
     </form>
 </div>
-<h5  *ngIf='intervention=="" '>
+<h5  *ngIf='isEmptyList(intervention)'>
  Pas D'interventions
 </h5>
-<div class="table-responsive" *ngIf='intervention!="" '>
+<div class="table-responsive" *ngIf='!isEmptyList(intervention)'>
     <table class="table text-center">
         <thead>
             <tr class="bg-primary">
