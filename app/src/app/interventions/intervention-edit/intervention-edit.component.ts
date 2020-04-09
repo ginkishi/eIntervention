@@ -441,7 +441,7 @@ export class InterventionEditComponent implements OnInit {
 
         ///ajout
         // console.log(this.AddInterventionForm.value);
-        // console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
+        console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
         console.log("-----------numerointer ", this.AddInterventionForm.value.numeroIntervention);
 
         this.interventionForm.numeroIntervention = this.AddInterventionForm.value.numeroIntervention;

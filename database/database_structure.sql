@@ -99,9 +99,11 @@ CREATE TABLE IF NOT EXISTS `vehiculeutilise` (
 -- ----------------------------------------
 -- structure de la table des modification demandé 
 -- --------------------------------------------------
+
 DROP TABLE IF EXISTS `remarqueModification`;
 
 CREATE TABLE IF NOT EXISTS `remarqueModification` ( `IDIntervention` INT NOT NULL , `Remarques` TEXT NOT NULL ) ENGINE = MyISAM;
+
 -- ---------------------------------------------------
 INSERT INTO `status` (`IDstatus`, `label`) VALUES 
     ('0', 'Sauvegardé'),

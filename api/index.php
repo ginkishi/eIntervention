@@ -248,4 +248,15 @@ $router->get('/searchByadr/:adr', function ($adr) {
     $s->getInterventionByAdr($adr);
 });
 
+$router->get('/searchByRedac/:redac', function ($redac) {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->getInterventionByRedac($redac);
+});
+$router->get('/searchBydate/:date1/:date2', function ($date1,$date2) {
+    require_once CONTROLLERS . DS . 'interventionC.php';
+    $s = new InterventionController();
+    $s->getInterventionByDate($date1,$date2);
+});
+
 $router->run();

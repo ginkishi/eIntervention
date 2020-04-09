@@ -65,6 +65,9 @@ item:string;
       //console.log(this.typesIntervention[0]);
     });
   }
+  isEmptyList(obj) {
+    return (obj && (Object.keys(obj).length === 0));
+  }
   getSelecteditem(){
     this.radioSel = this.itemsList.find(Item => Item.value === this.radioSelected);
     this.radioSelectedString = JSON.stringify(this.radioSel);
@@ -79,7 +82,7 @@ item:string;
     console.log(f.value);
     console.log(this.radioSelected);
     console.log(f.value.adresse);
-    if(f.value.item='adresse')
+    if(f.value.item=='adresse')
     {
          this.dataService.getInterventionsbyAdresse(f.value.adresse).subscribe((resultat: Intervention[]) => {
         this.response = JSON.parse(JSON.stringify(resultat));
@@ -88,7 +91,7 @@ item:string;
         console.log(this.intervention);
       });
     }
-   if(f.value.item='numerointervention')
+   if(f.value.item=='numerointervention')
     {
       this.dataService.getInterventionsbyNum(f.value.numerointervention).subscribe((resultat: Intervention[]) => {
         this.response = JSON.parse(JSON.stringify(resultat));
@@ -98,15 +101,25 @@ item:string;
       });
      
     }
-    if(f.value.item='date')
+    if(f.value.item=='date')
     {
-      
+      console.log(f.value);
+      this.dataService.getInterventionsbyDate(f.value.dated,f.value.datef).subscribe((resultat: Intervention[]) => {
+        this.response = JSON.parse(JSON.stringify(resultat));
+        this.intervention = this.response.interventions;
+     
+        console.log(this.intervention);
+      });
+     
     }
-    if(f.value.item='redacteur')
+    if(f.value.item=='redacteur')
     { console.log(f.value.redacteur);
       this.dataService.getInterventionsbyRedacteur(f.value.redacteur).subscribe((resultat: Intervention[]) => {
         console.log("ici777");
-        console.log(resultat);
+        this.response = JSON.parse(JSON.stringify(resultat));
+        this.intervention = this.response.interventions;
+     
+        console.log(this.intervention);
     
         console.log("ici");
       
