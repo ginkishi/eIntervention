@@ -13,7 +13,7 @@ import { VehiculeUtilise } from "src/app/models/vehiculeutilise";
 import { NotExpr } from '@angular/compiler';
 import { PompierRoles } from 'src/app/models/pompierRoles';
 import { stringify } from 'querystring';
-
+import { Router, ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-intervention-add",
   templateUrl: "./intervention-add.component.html",
@@ -76,6 +76,7 @@ export class InterventionAddComponent implements OnInit {
     private apiService: BrigadeApiService,
     private dataService: DataService,
     private fb:FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -261,6 +262,9 @@ export class InterventionAddComponent implements OnInit {
       // console.log(this.vehicules);
     });
   }
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+   }
   createListAllPompier(): void {
     this.apiService.readAllPompier().subscribe((resultat: Pompier[]) => {
       //   console.log(resultat);
@@ -381,8 +385,12 @@ export class InterventionAddComponent implements OnInit {
    
     );
 
-     
-  }
+    this.delay(2000).then(any=>{
+      this.router.navigate(["intervention/"+ this.interventionID]);
+ });
+   
+    }
+
 
 }  
     
