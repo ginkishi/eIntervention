@@ -86,6 +86,10 @@ getInterventionsbyAdresse(adr:string):Observable<Intervention[]>{
     `${this.PHP_API_SERVER}/searchByadr/` +adr
   );
 }
-
+getInterventionsbyDate(date1:string,date2:string):Observable<Intervention[]>{
+  return this.http.get<Intervention[]>(
+    `${this.PHP_API_SERVER}/searchBydate/` +date1+'/'+date2
+  );
+}
 
 }
