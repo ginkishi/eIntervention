@@ -18,6 +18,7 @@ import { Intervention } from 'src/app/models/intervention';
 import { PersonnelIntervention } from 'src/app/models/personnelIntervention';
 import { VehiculeIntervention } from 'src/app/models/vehiculeIntervention';
 import { Modification } from 'src/app/models/modification';
+import { Router} from "@angular/router";
 @Component({
   selector: "app-intervention-edit",
   templateUrl: "./intervention-edit.component.html",
@@ -83,7 +84,8 @@ export class InterventionEditComponent implements OnInit {
     private apiService: BrigadeApiService,
     private dataService: DataService,
     private fb: FormBuilder,
-    public routeActive: ActivatedRoute
+    public routeActive: ActivatedRoute,
+    private router: Router
   ) { }
   getID() {
     this.idIntervention = this.routeActive.snapshot.params.id;
@@ -177,7 +179,7 @@ export class InterventionEditComponent implements OnInit {
                   let modif:Modification= new Modification();
                 this.dataService.getRemarques(this.idIntervention).subscribe(
                   result => 
-                  { console.log("--------------resutl171",result);
+                  {// console.log("--------------resutl171",result);
                        this.AddInterventionForm.patchValue({
                      remarque:  JSON.parse(JSON.stringify(result)).modification
                   });
@@ -432,7 +434,9 @@ export class InterventionEditComponent implements OnInit {
   }
   // rajouter l'equipe d'apres le vehicule selectionnée
 
-
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+   }
   selectEvent(item: string) {
     this.interventionForm.responsable = item;
   }
@@ -447,7 +451,7 @@ export class InterventionEditComponent implements OnInit {
 
   }
   onSubmit() {
-    console.log("---------435------",this.status);
+   // console.log("---------435------",this.status);
   
 
     // suppression
@@ -457,8 +461,8 @@ export class InterventionEditComponent implements OnInit {
 
         ///ajout
         // console.log(this.AddInterventionForm.value);
-        console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
-        console.log("-----------numerointer ", this.AddInterventionForm.value.numeroIntervention);
+      //  console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
+       // console.log("-----------numerointer ", this.AddInterventionForm.value.numeroIntervention);
 
         this.interventionForm.numeroIntervention = this.AddInterventionForm.value.numeroIntervention;
         this.interventionForm.commune = this.AddInterventionForm.value.commune;
@@ -476,16 +480,16 @@ export class InterventionEditComponent implements OnInit {
         this.interventionForm.idcreateur = JSON.parse(localStorage.getItem("user")).P_ID;
         this.interventionForm.statut=this.status;
 
-        console.log("------------conntent397 ",this.interventionForm);
+      //  console.log("------------conntent397 ",this.interventionForm);
       //  console.log("in onSubmit:");
 
         //ajout d'une intervention
         this.dataService.postInterventionForm(this.interventionForm).subscribe(
           result => {
-            console.log("success hallelujah", result);
+           // console.log("success hallelujah", result);
             var c: VehiculeUtilise;
             for (let vi of this.AddInterventionForm.value.vehiculesintervention) {
-              console.log("vi-------",vi);
+             // console.log("vi-------",vi);
               c = {
                 IdVehicule: vi.vehicule,
                 IDIntervention: this.interventionID,
@@ -499,15 +503,15 @@ export class InterventionEditComponent implements OnInit {
               };
           
               if(this.status==2) // chef de corps demande modif
-              { console.log("---------526--------");
+              {// console.log("---------526--------");
                 let modif:Modification= new Modification();
                 modif.Id=this.interventionID;
                 modif.modif=this.AddInterventionForm.value.modification;
-                console.log("--------530----------",modif);
+             //   console.log("--------530----------",modif);
                 this.dataService.setRemarques(modif).subscribe(
                   result => 
                   {
-                    console.log("success", JSON.parse(JSON.stringify(result)));
+                 //   console.log("success", JSON.parse(JSON.stringify(result)));
                   },
                   error => console.log("erreur", error)
                 );
@@ -532,13 +536,13 @@ export class InterventionEditComponent implements OnInit {
                  // console.log("success", JSON.parse(JSON.stringify(result)));
 
                   for (let pom of vi.roles) {
-                    console.log(pom);
-                    console.log(c.IdVehicule);
+                  //  console.log(pom);
+                   // console.log(c.IdVehicule);
                     if (pom.roleid !== '0' || pom.pompiername != "") {
-                      console.log(pom.roleid);
+                     // console.log(pom.roleid);
                       this.dataService.postMembertoInntervention(vi.vehicule, this.interventionID, pom.roleid, pom.pompiername).subscribe(
                         result => {
-                          console.log("success", JSON.parse(JSON.stringify(result)));
+                   //       console.log("success", JSON.parse(JSON.stringify(result)));
                         },
                         error => console.log("erreur", error)
                       );
@@ -546,11 +550,11 @@ export class InterventionEditComponent implements OnInit {
                     else
                      if(pom.roleid=='0' && pom.pompiername!="")
                       {
-                        console.log(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername);
+                      //  console.log(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername);
                       this.dataService.postMembertoInntervention(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername).subscribe(
                         result => 
                         {
-                          console.log("success", JSON.parse(JSON.stringify(result)));
+                        //  console.log("success", JSON.parse(JSON.stringify(result)));
                         },
                         error => console.log("erreur", error)
                       );
@@ -574,9 +578,11 @@ export class InterventionEditComponent implements OnInit {
 
       }
     );
-
-
-
+    
+    this.delay(2000).then(any=>{
+      this.router.navigate(["intervention/"+ this.interventionID]);
+ });
+   
 
   }
 
