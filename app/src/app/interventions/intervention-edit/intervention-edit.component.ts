@@ -355,7 +355,7 @@ export class InterventionEditComponent implements OnInit {
     control.push(this.buildRoles("apprenti(Optionel)", "0"));
   }
   getvalue(value: string){
-    if(value=="sauvegarder")
+    if(value=="Sauvegarder")
     {
         this.status=0;
     }
@@ -432,7 +432,8 @@ export class InterventionEditComponent implements OnInit {
 
   }
   onSubmit() {
-    console.log("coucou");
+    console.log("---------435------",this.status);
+  
 
     // suppression
     this.dataService.DeleteInterventionID(this.idIntervention).subscribe(
@@ -460,6 +461,7 @@ export class InterventionEditComponent implements OnInit {
         this.interventionForm.heureFin = this.AddInterventionForm.value.heureFin;
         this.interventionForm.responsable = this.AddInterventionForm.value.responsable;
         this.interventionForm.idcreateur = JSON.parse(localStorage.getItem("user")).P_ID;
+        this.interventionForm.statut=this.status;
 
         console.log("------------conntent397 ",this.interventionForm);
       //  console.log("in onSubmit:");
