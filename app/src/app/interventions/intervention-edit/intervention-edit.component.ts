@@ -355,7 +355,7 @@ export class InterventionEditComponent implements OnInit {
     control.push(this.buildRoles("apprenti(Optionel)", "0"));
   }
   getvalue(value: string){
-    if(value=="sauvegarder")
+    if(value=="Sauvegarder")
     {
         this.status=0;
     }
@@ -432,7 +432,7 @@ export class InterventionEditComponent implements OnInit {
 
   }
   onSubmit() {
-    console.log("435",this.status);
+    console.log("---------435------",this.status);
   
 
     // suppression
