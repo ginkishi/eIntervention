@@ -198,8 +198,17 @@ class Intervention
         $datedec = $dateDeclenchement . " " . $heureDeclenchement;
         $result = Pompier::getPompierID($res[0], $res[1])->fetch();
         $idresp = $result[0];
-
+          echo $opm;
+          echo $important;
         $datef = $dateFin . " " . $heureFin;
+         if($opm==true) 
+         $opm=1;
+         else 
+         $opm=0;
+         if($important==true) 
+         $important=1;
+         else 
+         $important=0;
 
 
         $sql = "INSERT INTO interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur,IDstatus) VALUES('$numIntervention',$opm,'$commune','$adresse','$typeIntervention',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur,$status);";
@@ -262,7 +271,13 @@ class Intervention
 
         $dateretour = $dateretour . " " . $heureretour;
 
+   if($ronde==true)
+   {$ronde=1;
 
+   } 
+   else{
+       $ronde=0;
+   }
         $sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
 
 
