@@ -63,14 +63,26 @@ class Intervention
         $res = explode(" ", $redac); // $res[0] = prenom
         $result = Pompier::getPompierID($res[0], $res[1])->fetch();
         $idredac = $result[0];
-        echo $idredac;
+       // echo $idredac;
         $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where NIntervention = " . $idredac . ";";
+      //  echo $sql;
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
         
 
+    }
+    public function  getInterventionByDate($date1,$date2){
+      
+        $date1=$date1." 00:00:00";
+        $date2=$date2." 23:59:59";
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where DateDeclenchement > '" . $date1 ."' and DateDeclenchement < '" . $date2."';";
+        //  echo $sql;
+          $dbh = BDD::getInstanceOfEIntervention();
+          $stmt = $dbh->prepare($sql);
+          $stmt->execute();
+          return $stmt;
     }
     public function listVehiculesForOneIntervention($id)
     {
