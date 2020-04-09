@@ -80,7 +80,7 @@ export class InterventionAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.AddInterventionForm=this.fb.group({
-      numeroIntervention:258,
+      numeroIntervention:"",
       commune: "",
       adresse: "",
       typeIntervention:"",
@@ -294,7 +294,7 @@ export class InterventionAddComponent implements OnInit {
  onSubmit() {
 
 
-  // console.log(this.AddInterventionForm.value);
+   console.log("------------------",this.AddInterventionForm.value);
   // console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
   console.log("-----------numerointer ",this.AddInterventionForm.value.numeroIntervention);
   
