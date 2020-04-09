@@ -21,11 +21,12 @@ export class WritingAccessGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    this.auth.rights.checkRight();
     if (this.auth.rights.haveWritingAccess()) {
       return true;
     } else {
       this.router.navigate(["forbidden"]);
     }
   }
-  constructor(private auth: AuthentificationService, private router: Router) {}
+  constructor(private auth: AuthentificationService, private router: Router) { }
 }
