@@ -151,9 +151,7 @@ $router->post('/vehicule', function () {
     $s = new InterventionController();
     $data = json_decode(file_get_contents('php://input'), true);
 
-    if ($data["Ronde"] == "" || $data["Ronde"] == null) {
-        $data["Ronde"] = 0;
-    }
+  
     $s->addVehiculeToIntervention($data["IdVehicule"], $data["IDIntervention"], $data["DateDepart"], $data["HeureDepart"], $data["DateArrive"], $data["HeureArrive"], $data["DateRetour"], $data["HeureRetour"], $data["Ronde"]);
 });
 $router->get('/intervention1/:numeroIntervention/:dateDeclenchement/:heureDeclenchement', function ($numeroIntervention, $dateDeclenchement, $heureDeclenchement) {
@@ -185,7 +183,7 @@ $router->post('/intervention', function () {
     require_once CONTROLLERS . DS . 'interventionC.php';
     $s = new InterventionController();
     $data = json_decode(file_get_contents('php://input'), true);
-    $s->addIntervention($data["numeroIntervention"], $data["adresse"], $data["commune"], 1, $data["typeIntervention"], $data["important"], $data["requerant"], $data["dateDeclenchement"], $data["heureDeclenchement"], $data["dateFin"], $data["heureFin"], $data["responsable"], $data["idcreateur"], $data["statut"]);
+    $s->addIntervention($data["numeroIntervention"], $data["adresse"], $data["commune"],  $data["opm"], $data["typeIntervention"], $data["important"], $data["requerant"], $data["dateDeclenchement"], $data["heureDeclenchement"], $data["dateFin"], $data["heureFin"], $data["responsable"], $data["idcreateur"], $data["statut"]);
 });
 
 // Get one intervention by id
