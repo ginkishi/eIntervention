@@ -18,6 +18,7 @@ import { Intervention } from 'src/app/models/intervention';
 import { PersonnelIntervention } from 'src/app/models/personnelIntervention';
 import { VehiculeIntervention } from 'src/app/models/vehiculeIntervention';
 import { Modification } from 'src/app/models/modification';
+import { Router} from "@angular/router";
 @Component({
   selector: "app-intervention-edit",
   templateUrl: "./intervention-edit.component.html",
@@ -83,7 +84,8 @@ export class InterventionEditComponent implements OnInit {
     private apiService: BrigadeApiService,
     private dataService: DataService,
     private fb: FormBuilder,
-    public routeActive: ActivatedRoute
+    public routeActive: ActivatedRoute,
+    private router: Router
   ) { }
   getID() {
     this.idIntervention = this.routeActive.snapshot.params.id;
@@ -136,6 +138,16 @@ export class InterventionEditComponent implements OnInit {
           .subscribe((res: Pompier) => {
             this.response = JSON.parse(JSON.stringify(res));
             this.responsable = this.response.pompier[0];
+             let op:boolean;
+             let im:boolean;
+             if(this.intervention.OPM==1)
+             op=true;
+             else op=false;
+            
+             if(this.intervention.Important==1)
+             im=true;
+             else im=false;
+
             let splitteddatedeclenchement = this.intervention.DateDeclenchement.toString().split(" ");
             let splitteddatedefin = this.intervention.DateFin.toString().split(" ");
             this.AddInterventionForm = this.fb.group({
@@ -144,8 +156,8 @@ export class InterventionEditComponent implements OnInit {
               adresse: this.intervention.Adresse,
               typeIntervention: this.intervention.TypeIntervention,
               requerant: this.intervention.Requerant,
-              opm: this.intervention.OPM,
-              important: this.intervention.Important,
+              opm: op,
+              important: im,
               dateDeclenchement: splitteddatedeclenchement[0],
               heureDeclenchement: splitteddatedeclenchement[1],
               dateFin: splitteddatedefin[0],
@@ -167,7 +179,7 @@ export class InterventionEditComponent implements OnInit {
                   let modif:Modification= new Modification();
                 this.dataService.getRemarques(this.idIntervention).subscribe(
                   result => 
-                  { console.log("--------------resutl171",result);
+                  {// console.log("--------------resutl171",result);
                        this.AddInterventionForm.patchValue({
                      remarque:  JSON.parse(JSON.stringify(result)).modification
                   });
@@ -220,9 +232,14 @@ export class InterventionEditComponent implements OnInit {
     let splitedatedepart = v.DateDepart.toString().split(" ");
     let spliteddatearrivee = v.DateArrive.toString().split(" ");
     let spliteddateretour = v.DateRetour.toString().split(" ");
+    let ron:boolean;
+    if(v.Ronde==1)
+      ron=true;
+    else
+      ron=false;
     return this.fb.group({
       vehicule: v.IDVehicule,
-      ronde: v.Ronde,
+      ronde: ron,
       dateDepart: splitedatedepart[0],
       heureDepart: splitedatedepart[1],
       dateArrivee: spliteddatearrivee[0],
@@ -272,7 +289,7 @@ export class InterventionEditComponent implements OnInit {
   buildVehicule(): FormGroup {
     return this.fb.group({
       vehicule: "",
-      ronde: 'false',
+      ronde: false,
       dateDepart: formatDate(
         new Date(),
         "yyyy-MM-dd",
@@ -417,7 +434,9 @@ export class InterventionEditComponent implements OnInit {
   }
   // rajouter l'equipe d'apres le vehicule selectionnée
 
-
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+   }
   selectEvent(item: string) {
     this.interventionForm.responsable = item;
   }
@@ -432,7 +451,7 @@ export class InterventionEditComponent implements OnInit {
 
   }
   onSubmit() {
-    console.log("---------435------",this.status);
+   // console.log("---------435------",this.status);
   
 
     // suppression
@@ -442,8 +461,8 @@ export class InterventionEditComponent implements OnInit {
 
         ///ajout
         // console.log(this.AddInterventionForm.value);
-        console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
-        console.log("-----------numerointer ", this.AddInterventionForm.value.numeroIntervention);
+      //  console.log('saved'+JSON.stringify(this.AddInterventionForm.value));
+       // console.log("-----------numerointer ", this.AddInterventionForm.value.numeroIntervention);
 
         this.interventionForm.numeroIntervention = this.AddInterventionForm.value.numeroIntervention;
         this.interventionForm.commune = this.AddInterventionForm.value.commune;
@@ -452,9 +471,7 @@ export class InterventionEditComponent implements OnInit {
         this.interventionForm.requerant = this.AddInterventionForm.value.requerant;
         this.interventionForm.opm = this.AddInterventionForm.value.opm;
         console.log(this.AddInterventionForm.value.important);
-        if (this.AddInterventionForm.value.important == "false")
-          this.interventionForm.important = 0;
-        else this.interventionForm.important = 1;
+        this.interventionForm.important = this.AddInterventionForm.value.important;
         this.interventionForm.dateDeclenchement = this.AddInterventionForm.value.dateDeclenchement;
         this.interventionForm.dateFin = this.AddInterventionForm.value.dateFin;
         this.interventionForm.heureDeclenchement = this.AddInterventionForm.value.heureDeclenchement;
@@ -463,16 +480,16 @@ export class InterventionEditComponent implements OnInit {
         this.interventionForm.idcreateur = JSON.parse(localStorage.getItem("user")).P_ID;
         this.interventionForm.statut=this.status;
 
-        console.log("------------conntent397 ",this.interventionForm);
+      //  console.log("------------conntent397 ",this.interventionForm);
       //  console.log("in onSubmit:");
 
         //ajout d'une intervention
         this.dataService.postInterventionForm(this.interventionForm).subscribe(
           result => {
-            console.log("success hallelujah", result);
+           // console.log("success hallelujah", result);
             var c: VehiculeUtilise;
             for (let vi of this.AddInterventionForm.value.vehiculesintervention) {
-              console.log("vi-------",vi);
+             // console.log("vi-------",vi);
               c = {
                 IdVehicule: vi.vehicule,
                 IDIntervention: this.interventionID,
@@ -486,15 +503,15 @@ export class InterventionEditComponent implements OnInit {
               };
           
               if(this.status==2) // chef de corps demande modif
-              { console.log("---------526--------");
+              {// console.log("---------526--------");
                 let modif:Modification= new Modification();
                 modif.Id=this.interventionID;
                 modif.modif=this.AddInterventionForm.value.modification;
-                console.log("--------530----------",modif);
+             //   console.log("--------530----------",modif);
                 this.dataService.setRemarques(modif).subscribe(
                   result => 
                   {
-                    console.log("success", JSON.parse(JSON.stringify(result)));
+                 //   console.log("success", JSON.parse(JSON.stringify(result)));
                   },
                   error => console.log("erreur", error)
                 );
@@ -519,13 +536,13 @@ export class InterventionEditComponent implements OnInit {
                  // console.log("success", JSON.parse(JSON.stringify(result)));
 
                   for (let pom of vi.roles) {
-                    console.log(pom);
-                    console.log(c.IdVehicule);
+                  //  console.log(pom);
+                   // console.log(c.IdVehicule);
                     if (pom.roleid !== '0' || pom.pompiername != "") {
-                      console.log(pom.roleid);
+                     // console.log(pom.roleid);
                       this.dataService.postMembertoInntervention(vi.vehicule, this.interventionID, pom.roleid, pom.pompiername).subscribe(
                         result => {
-                          console.log("success", JSON.parse(JSON.stringify(result)));
+                   //       console.log("success", JSON.parse(JSON.stringify(result)));
                         },
                         error => console.log("erreur", error)
                       );
@@ -533,11 +550,11 @@ export class InterventionEditComponent implements OnInit {
                     else
                      if(pom.roleid=='0' && pom.pompiername!="")
                       {
-                        console.log(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername);
+                      //  console.log(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername);
                       this.dataService.postMembertoInntervention(c.IdVehicule,this.interventionID,pom.roleid,pom.pompiername).subscribe(
                         result => 
                         {
-                          console.log("success", JSON.parse(JSON.stringify(result)));
+                        //  console.log("success", JSON.parse(JSON.stringify(result)));
                         },
                         error => console.log("erreur", error)
                       );
@@ -561,9 +578,11 @@ export class InterventionEditComponent implements OnInit {
 
       }
     );
-
-
-
+    
+    this.delay(2000).then(any=>{
+      this.router.navigate(["intervention/"+ this.interventionID]);
+ });
+   
 
   }
 
