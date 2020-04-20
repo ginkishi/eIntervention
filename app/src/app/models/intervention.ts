@@ -12,9 +12,10 @@ export class Intervention {
     public DateFin: Date,
     public Important: number,
     public IDResponsable: number,
+    public IDCreateur: number,
     public Requerant: string,
     public IDStatut: number,
     public Statut: string,
     public Vehicules: VehiculeIntervention[]
-  ) {}
+  ) { }
 }

@@ -13,6 +13,7 @@ export class InterventionListComponent implements OnInit {
   intervention: Intervention[];
   response: any;
   type: string;
+  idUser: number;
 
   constructor(public api: BrigadeApiService, public routeActive: ActivatedRoute, public auth: AuthentificationService) { }
 
@@ -22,6 +23,9 @@ export class InterventionListComponent implements OnInit {
     });
 
     this.getInterventions();
+
+    this.idUser = JSON.parse(localStorage.getItem("user")).P_ID;
+
   }
 
   getInterventions() {

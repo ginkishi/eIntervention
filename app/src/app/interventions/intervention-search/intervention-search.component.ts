@@ -81,9 +81,9 @@ export class InterventionSearchComponent implements OnInit {
 
   onSubmit(f) {
     this.intervention = [];
-    console.log(f.value);
-    console.log(this.radioSelected);
-    console.log(f.value.adresse);
+    // console.log(f.value);
+    // console.log(this.radioSelected);
+    // console.log(f.value.adresse);
     if (f.value.item == 'adresse') {
       this.dataService.getInterventionsbyAdresse(f.value.adresse).subscribe((resultat: Intervention[]) => {
         this.response = JSON.parse(JSON.stringify(resultat));

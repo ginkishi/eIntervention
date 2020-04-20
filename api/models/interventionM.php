@@ -15,7 +15,7 @@ class Intervention
     // Récupère la liste de toute les interventions
     public function listAllInterv()
     {
-        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus';
+        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,IDCreateur,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus';
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
@@ -64,7 +64,7 @@ class Intervention
     // Récupère la liste des interventions validées par le chef
     public function listAllIntervValid()
     {
-        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 3';
+        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,IDCreateur,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 3';
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
@@ -74,7 +74,7 @@ class Intervention
     // Récupère la liste des interventions en attente de validations du chef
     public function listAllIntervWaiting()
     {
-        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 1';
+        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,IDCreateur,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 1';
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
@@ -84,7 +84,7 @@ class Intervention
     // Récupère la liste des interventions non validé par le responsable
     public function listAllIntervNoValid()
     {
-        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 2 OR i.IDstatus = 0';
+        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,IDCreateur,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 2 OR i.IDstatus = 0';
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
