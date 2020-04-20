@@ -67,6 +67,9 @@
   grid-template-columns: 1fr 1fr;
   column-gap: 10px;
 }
+.row {
+  justify-content: center;
+}
 .form-container .section .body .group-champ .champ {
   margin: 5px;
 }

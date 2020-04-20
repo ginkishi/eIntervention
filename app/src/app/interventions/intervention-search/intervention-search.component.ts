@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgModel } from "@angular/forms";
 import { formatDate } from "@angular/common";
 import { Pompier } from 'src/app/models/pompier';
@@ -6,13 +6,14 @@ import { BrigadeApiService } from 'src/app/services/brigade-api.service';
 import { DataService } from 'src/app/services/data.service';
 import { Item } from 'src/app/models/item';
 import { Intervention } from 'src/app/models/intervention';
+import { ExportService } from 'src/app/services/export.service';
 @Component({
   selector: 'app-intervention-search',
   templateUrl: './intervention-search.component.html',
   styleUrls: ['./intervention-search.component.scss']
 })
 export class InterventionSearchComponent implements OnInit {
-
+  @ViewChild('epltable', { static: false }) epltable: ElementRef;
   itemsList: Item[] = [
     {
       name: 'Numero d\'intervention',
@@ -43,7 +44,7 @@ export class InterventionSearchComponent implements OnInit {
   listePompier: string[] = [];
   intervention: Intervention[] = [];
   response: any;
-  constructor(private apiService: BrigadeApiService,
+  constructor(private apiService: BrigadeApiService, public exportService: ExportService,
     private dataService: DataService,
     private fb: FormBuilder) { }
 
@@ -128,4 +129,8 @@ export class InterventionSearchComponent implements OnInit {
 
 
   }
+  exportToExcel() {
+    this.exportService.exportToExcel(this.epltable);
+  }
+
 }

@@ -36,8 +36,10 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col text-center">
+                <div class="col3 text-center">
+                    <div *ngIf='isEmptyList(intervention)'></div>
                     <input type="submit" value="Recherche" class="btn btn-primary btn-lg">
+                    <button class="btn btn-lg btn-success" (click)="exportToExcel()" *ngIf='!isEmptyList(intervention)'>EXPORTER Excel</button>
                 </div>
             </div>
         </div>
@@ -47,7 +49,7 @@
 <h3 *ngIf='isEmptyList(intervention)' class="msg">
     Pas d'interventions
 </h3>
-<div class="table-responsive" *ngIf='!isEmptyList(intervention)'>
+<div class="table-responsive" *ngIf='!isEmptyList(intervention)' #epltable>
     <table class="table text-center">
         <thead>
             <tr class="bg-primary">
