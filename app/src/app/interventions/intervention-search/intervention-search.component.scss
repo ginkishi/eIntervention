@@ -1,11 +1,208 @@
 .form-container {
+  flex: 1 0 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 90%;
+  margin: auto;
+  font-family: "Montserrat", sans-serif !important;
+  padding: 10px;
+}
+.form-container h1.header {
+  flex: 1 0 0;
+  min-width: 100%;
+  max-width: 100%;
+  background-color: #0575e6;
+  color: white;
+  font-size: 2.5em;
+  text-align: center;
+  box-shadow: 0px 0px 5px 1px black;
+  padding: 15px;
+  margin: auto;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.form-container .section {
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  justify-content: stretch;
+  flex: 1 0 0;
+  margin-bottom: 20px;
+  background-color: rgba(42, 82, 152, 0.05);
+}
+.form-container .section .title {
+  text-align: center;
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.75);
+  color: white;
+  min-width: 100%;
+  background-color: #0083b0;
+  font-size: 2em;
+  border-radius: 5px;
+  padding: 5px;
+}
+.form-container .section .body {
+  flex: 1 0 0;
+  padding: 10px;
+}
+.form-container .section .body .group-champ {
+  display: flex;
+  justify-content: flex-start;
+  flex: 1 0 0;
+}
+.col4 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 10px;
+}
+.col3 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+}
+.col2 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}
+.form-container .section .body .group-champ .champ {
+  margin: 5px;
+}
+.form-container .section .body .group-champ .champ label,
+.form-container .section .body .champ label {
+  font-size: 22px;
+  color: gray;
+}
+.form-container .section .body .group-champ .champ input[type="text"],
+.form-container .section.resp .body .champ input[type="text"] {
+  min-width: 100%;
+  background-color: white;
+  outline: none;
+  border: none;
+  font-size: 22px;
+  height: 32px;
+  //   color: rgb(0, 132, 255);
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.55);
+  padding-left: 5px;
+}
+.form-container .section .body .group-champ .champ input[type="date"] {
+  min-width: 100%;
+  background-color: white;
+  outline: none;
+  border: none;
+  height: 32px;
+  /* border-bottom: 1px solid black; */
+  //   color: rgb(0, 132, 255);
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.75);
+  /* border-radius: 5px; */
+  text-align: center;
+  font-size: 22px;
+}
+.form-container .section .body .group-champ .champ input[type="submit"] {
+  min-width: 100%;
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.55);
+}
+.form-container .group-champ .champ input[type="submit"] {
+  min-width: 100%;
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.55);
+}
+.form-container .section .body .group-champ .champ input[type="time"] {
+  min-width: 100%;
+  background-color: white;
+  outline: none;
+  border: none;
+  height: 32px;
+  /* border-bottom: 1px solid black; */
+  //   color: rgb(0, 132, 255);
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.55);
+  /* border-radius: 5px; */
+  text-align: center;
+  font-size: 22px;
+}
+.form-container .section .body .group-champ .champ .form-control {
+  margin: 0px 5px 10px 0;
+
+  font-size: 16px !important;
+  height: 32px;
+  width: 100%;
+  flex: 1 0 0;
+  border: none;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+.form-container .section .body .group-champ .champ input[type="checkbox"] {
+  min-width: 16px;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  height: 16px;
+  /* border-bottom: 1px solid black; */
+  color: rgb(0, 132, 255);
+
+  /* border-radius: 5px; */
+}
+.form-container .section .body .group-champ .champ.mycheckbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#addVehicule {
+  min-width: 100%;
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.75);
+}
+.engin {
+  flex-direction: column;
+}
+.engin .body {
+  border: 1px dashed gray;
+  margin-bottom: 10px;
+}
+.table-responsive .table th {
+  color: white;
+}
+.msg {
+  margin-top: 20px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  font-style: italic;
+}
+.bandeau-title {
+  min-height: 75px;
+  max-height: 75px;
+  background: #396afc;
+  background: -webkit-linear-gradient(to right, #2948ff, #396afc);
+  background: linear-gradient(to right, #2948ff, #396afc);
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+  min-width: 100%;
+  margin: 10px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-weight: bold;
+  .title {
+    font-size: 2em;
+    margin-left: 20px;
+  }
+  .logo {
+    font-size: 52px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .form-container {
     flex: 1 0 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 90%;
+    max-width: 650px;
     margin: auto;
-    font-family: "Montserrat", sans-serif !important;
+    font-family: "Ubuntu", sans-serif !important;
     padding: 10px;
   }
   .form-container h1.header {
@@ -17,248 +214,84 @@
     font-size: 2.5em;
     text-align: center;
     box-shadow: 0px 0px 5px 1px black;
-    padding: 15px;
+    padding: 10px;
     margin: auto;
     border-radius: 5px;
     margin-bottom: 20px;
   }
   .form-container .section {
-    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 5px 1px black;
     border-radius: 5px;
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
-    justify-content: stretch;
-    flex: 1 0 0;
+    justify-content: center;
     margin-bottom: 20px;
-    background-color: rgba(42, 82, 152, 0.05);
   }
   .form-container .section .title {
     text-align: center;
-    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.75);
     color: white;
     min-width: 100%;
     background-color: #0083b0;
-    font-size: 2em;
-    border-radius: 5px;
-    padding: 5px;
   }
-  .form-container .section .body {
-    flex: 1 0 0;
-    padding: 10px;
+  .form-container .section.resp {
+    flex-direction: column;
   }
-  .form-container .section .body .group-champ {
-    display: flex;
-    justify-content: flex-start;
-    flex: 1 0 0;
+  .form-container .section .champ {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .form-container .section .champ label {
+    font-size: 22px;
+    color: black;
+  }
+  .champ input[type="text"] {
+    min-width: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 22px;
+    height: 32px;
+    border-bottom: 1px solid black;
+    color: rgb(0, 132, 255);
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.75);
   }
   .col4 {
     display: grid !important;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 10px;
+    grid-template-columns: 1fr 1fr;
   }
   .col3 {
     display: grid !important;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 10px;
+    grid-template-columns: 1fr;
   }
   .col2 {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
-    column-gap: 10px;
   }
-  .form-container .section .body .group-champ .champ {
-    margin: 5px;
-  }
-  .form-container .section .body .group-champ .champ label,
-  .form-container .section .body .champ label {
-    font-size: 22px;
-    color: gray;
-  }
-  .form-container .section .body .group-champ .champ input[type="text"],
-  .form-container .section.resp .body .champ input[type="text"] {
-    min-width: 100%;
-    background-color: white;
-    outline: none;
-    border: none;
-    font-size: 22px;
-    height: 32px;
-    //   color: rgb(0, 132, 255);
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.55);
-    padding-left: 5px;
-  }
-  .form-container .section .body .group-champ .champ input[type="date"] {
-    min-width: 100%;
-    background-color: white;
-    outline: none;
-    border: none;
-    height: 32px;
-    /* border-bottom: 1px solid black; */
-    //   color: rgb(0, 132, 255);
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.75);
-    /* border-radius: 5px; */
-    text-align: center;
-    font-size: 22px;
-  }
-  .form-container .section .body .group-champ .champ input[type="submit"] {
-    min-width: 100%;
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.55);
-  }
-  .form-container .group-champ .champ input[type="submit"] {
-    min-width: 100%;
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.55);
-  }
-  .form-container .section .body .group-champ .champ input[type="time"] {
-    min-width: 100%;
-    background-color: white;
-    outline: none;
-    border: none;
-    height: 32px;
-    /* border-bottom: 1px solid black; */
-    //   color: rgb(0, 132, 255);
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.55);
-    /* border-radius: 5px; */
-    text-align: center;
-    font-size: 22px;
-  }
-  .form-container .section .body .group-champ .champ .form-control {
-    margin: 0px 5px 10px 0;
-  
-    font-size: 16px !important;
-    height: 32px;
-    width: 100%;
-    flex: 1 0 0;
-    border: none;
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
-  }
-  .form-container .section .body .group-champ .champ input[type="checkbox"] {
-    min-width: 16px;
-    background: none;
-    outline: none;
-    border: none;
-    font-size: 16px;
-    height: 16px;
-    /* border-bottom: 1px solid black; */
-    color: rgb(0, 132, 255);
-  
-    /* border-radius: 5px; */
-  }
-  .form-container .section .body .group-champ .champ.mycheckbox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  #addVehicule {
-    min-width: 100%;
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.75);
-  }
-  .engin {
-    flex-direction: column;
-  }
-  .engin .body {
-    border: 1px dashed gray;
-    margin-bottom: 10px;
-  }
-  @media screen and (max-width: 700px) {
-    .form-container {
-      flex: 1 0 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 650px;
-      margin: auto;
-      font-family: "Ubuntu", sans-serif !important;
-      padding: 10px;
-    }
-    .form-container h1.header {
-      flex: 1 0 0;
-      min-width: 100%;
-      max-width: 100%;
-      background-color: #0575e6;
-      color: white;
-      font-size: 2.5em;
-      text-align: center;
-      box-shadow: 0px 0px 5px 1px black;
-      padding: 10px;
-      margin: auto;
-      border-radius: 5px;
-      margin-bottom: 20px;
-    }
-    .form-container .section {
-      box-shadow: 0px 0px 5px 1px black;
-      border-radius: 5px;
-      display: flex;
-      flex-wrap: wrap;
-      padding: 10px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    .form-container .section .title {
-      text-align: center;
-      box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.75);
-      color: white;
-      min-width: 100%;
-      background-color: #0083b0;
-    }
-    .form-container .section.resp {
-      flex-direction: column;
-    }
-    .form-container .section .champ {
-      position: relative;
-      margin-bottom: 20px;
-    }
-    .form-container .section .champ label {
-      font-size: 22px;
-      color: black;
-    }
-    .champ input[type="text"] {
-      min-width: 100%;
-      background: none;
-      outline: none;
-      border: none;
-      font-size: 22px;
-      height: 32px;
-      border-bottom: 1px solid black;
-      color: rgb(0, 132, 255);
-      box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.75);
-    }
-    .col4 {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr;
-    }
-    .col3 {
-      display: grid !important;
-      grid-template-columns: 1fr;
-    }
-    .col2 {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  .completer-dropdown {
-    border-color: #ececec;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 2px;
-    width: 100%;
-   
-    cursor: pointer;
-    z-index: 9999;
-    position: absolute;
-    margin-top: -6px;
-    background-color: #ffffff;
-  }
-  .completer-description {
-    font-size: 14px;
-    width: 100%;
-  }
-  .completer-row {
-    padding: 5px;
-    color: #000000;
-    margin-bottom: 4px;
-    clear: both;
-    display: inline-block;
-    width: 100%;
-  }
-  
+}
+.completer-dropdown {
+  border-color: #ececec;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  width: 100%;
+
+  cursor: pointer;
+  z-index: 9999;
+  position: absolute;
+  margin-top: -6px;
+  background-color: #ffffff;
+}
+.completer-description {
+  font-size: 14px;
+  width: 100%;
+}
+.completer-row {
+  padding: 5px;
+  color: #000000;
+  margin-bottom: 4px;
+  clear: both;
+  display: inline-block;
+  width: 100%;
+}
