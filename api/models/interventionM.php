@@ -120,7 +120,6 @@ class Intervention
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
-
     }
     public function getInterventionByAdr($adr)
     {
@@ -131,32 +130,32 @@ class Intervention
         $stmt->execute();
         return $stmt;
     }
-    public function getInterventionByRedac($redac){
-     
+    public function getInterventionByRedac($redac)
+    {
+
         $res = explode(" ", $redac); // $res[0] = prenom
         $result = Pompier::getPompierID($res[0], $res[1])->fetch();
         $idredac = $result[0];
-       // echo $idredac;
-        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where NIntervention = " . $idredac . ";";
-      //  echo $sql;
+        //echo $idredac;
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where IDCreateur = " . $idredac . ";";
+        //echo $sql;
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
-        
-
     }
 
-    public function  getInterventionByDate($date1,$date2){
-      
-        $date1=$date1." 00:00:00";
-        $date2=$date2." 23:59:59";
-        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where DateDeclenchement > '" . $date1 ."' and DateDeclenchement < '" . $date2."';";
+    public function  getInterventionByDate($date1, $date2)
+    {
+
+        $date1 = $date1 . " 00:00:00";
+        $date2 = $date2 . " 23:59:59";
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where DateDeclenchement > '" . $date1 . "' and DateDeclenchement < '" . $date2 . "';";
         //  echo $sql;
-          $dbh = BDD::getInstanceOfEIntervention();
-          $stmt = $dbh->prepare($sql);
-          $stmt->execute();
-          return $stmt;
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
     }
     public function listVehiculesForOneIntervention($id)
     {
@@ -198,17 +197,17 @@ class Intervention
         $datedec = $dateDeclenchement . " " . $heureDeclenchement;
         $result = Pompier::getPompierID($res[0], $res[1])->fetch();
         $idresp = $result[0];
-          echo $opm;
-          echo $important;
+        echo $opm;
+        echo $important;
         $datef = $dateFin . " " . $heureFin;
-         if($opm==true) 
-         $opm=1;
-         else 
-         $opm=0;
-         if($important==true) 
-         $important=1;
-         else 
-         $important=0;
+        if ($opm == true)
+            $opm = 1;
+        else
+            $opm = 0;
+        if ($important == true)
+            $important = 1;
+        else
+            $important = 0;
 
 
         $sql = "INSERT INTO interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur,IDstatus) VALUES('$numIntervention',$opm,'$commune','$adresse','$typeIntervention',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur,$status);";
@@ -271,13 +270,11 @@ class Intervention
 
         $dateretour = $dateretour . " " . $heureretour;
 
-   if($ronde==true)
-   {$ronde=1;
-
-   } 
-   else{
-       $ronde=0;
-   }
+        if ($ronde == true) {
+            $ronde = 1;
+        } else {
+            $ronde = 0;
+        }
         $sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
 
 
