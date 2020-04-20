@@ -237,7 +237,9 @@
   }
 }
 //----------------------auto complete
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 body {
   font: 16px Arial;
 }
@@ -248,19 +250,15 @@ body {
 }
 input {
   border: 1px solid transparent;
-  background-color: #f1f1f1;
+
   padding: 10px;
   font-size: 16px;
 }
-input[type=text] {
+input[type="text"] {
   background-color: #f1f1f1;
   width: 100%;
 }
 
-input[type=submit] {
-  background-color: DodgerBlue;
-  color: #fff;
-}
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
@@ -293,7 +291,7 @@ input[type=submit] {
   border-style: solid;
   border-radius: 2px;
   width: 100%;
- 
+
   cursor: pointer;
   z-index: 9999;
   position: absolute;
@@ -312,4 +310,3 @@ input[type=submit] {
   display: inline-block;
   width: 100%;
 }
-
