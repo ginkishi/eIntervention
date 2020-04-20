@@ -108,11 +108,17 @@ span.label {
   margin-bottom: 10px;
 }
 a.see-more {
-  background: #000000;
-  background: -webkit-linear-gradient(to right, #434343, #000000);
-  background: linear-gradient(to right, #434343, #000000);
+  background: #396afc;
+  background: -webkit-linear-gradient(to right, #2948ff, #396afc);
+  background: linear-gradient(to right, #2948ff, #396afc);
+
   padding: 10px 30px;
   border-radius: 10px;
   font-size: 24px;
   box-shadow: 1px 1px 3px rgb(185, 180, 180), -1px -1px 3px #ffffff;
+}
+a.see-more:hover {
+  background: #000000;
+  background: -webkit-linear-gradient(to right, #434343, #000000);
+  background: linear-gradient(to right, #434343, #000000);
 }
