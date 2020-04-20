@@ -18,11 +18,13 @@ export class HomeComponent implements OnInit {
   intervention: Intervention[];
   number: NumberIntervention;
 
-  constructor(private apiService: BrigadeApiService) { }
+  constructor(private apiService: BrigadeApiService, public rights: RightAccessService) { }
 
   ngOnInit(): void {
     // console.log(localStorage.getItem("setupTime"));
+
     this.unPompier = JSON.parse(localStorage.getItem('user'));
+    this.rights.checkRight();
     this.getInterventions();
     this.getNumberOfIntervention();
   }
