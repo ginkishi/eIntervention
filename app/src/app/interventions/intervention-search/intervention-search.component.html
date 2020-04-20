@@ -58,21 +58,21 @@
                 <th scope="col">Commune</th>
                 <th scope="col">Type d'intervention</th>
                 <th scope="col">Statut</th>
-                <th scope="col">
+                <!-- <th scope="col">
                     <fa-icon [icon]="['fas', 'eye']"></fa-icon>
-                </th>
+                </th> -->
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let i of intervention">
-                <td class="align-middle">{{i.NIntervention}}</td>
+                <td class="align-middle"><a href="" routerLink='/intervention/{{i.IDIntervention}}' class="text-dark font-weight-bold">{{i.NIntervention}}</a></td>
                 <td class="align-middle">{{i.DateDeclenchement}}</td>
                 <td class="align-middle">{{i.DateFin}}</td>
                 <td class="align-middle">{{i.Adresse}}</td>
                 <td class="align-middle">{{i.Commune}}</td>
                 <td class="align-middle">{{i.TypeIntervention}}</td>
                 <td class="align-middle">{{i.Statut}}</td>
-                <td class="align-middle"><a href="" class="btn btn-lg btn-primary" routerLinkActive="active" routerLink='/intervention/{{i.IDIntervention}}'>Voir</a></td>
+                <!-- <td class="align-middle"><a href="" class="btn btn-lg btn-primary" routerLinkActive="active" routerLink='/intervention/{{i.IDIntervention}}'>Voir</a></td> -->
             </tr>
         </tbody>
     </table>
