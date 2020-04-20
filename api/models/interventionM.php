@@ -115,7 +115,7 @@ class Intervention
     public function getInterventionByNum($id)
     {
         $id = self::cleanUserInput($id);
-        $sql = "SELECT i.IDIntervention,i.NIntervention,i.OPM,i.Commune,i.Adresse,i.TypeIntervention,i.DateDeclenchement,i.DateFin,i.Important,i.IDResponsable,i.Requerant,i.IDStatus,s.label FROM interventions as i JOIN status as s on i.IDstatus = s.IDstatus where i.NIntervention = " . $id . ";";
+        $sql = "SELECT i.IDIntervention,i.NIntervention,i.OPM,i.Commune,i.Adresse,i.TypeIntervention,i.DateDeclenchement,i.DateFin,i.Important,i.IDResponsable,i.Requerant,i.IDStatus,s.label FROM interventions as i JOIN status as s on i.IDstatus = s.IDstatus where i.NIntervention like \"%" . $id . "%\";";
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
@@ -124,7 +124,7 @@ class Intervention
     public function getInterventionByAdr($adr)
     {
         $adr = self::cleanUserInput($adr);
-        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where Adresse = \"" . $adr .  "\";";
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where Adresse like \"%" . $adr .  "%\";";
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
