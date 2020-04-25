@@ -8,9 +8,21 @@ import { Component, OnInit } from "@angular/core";
 export class ClockComponent implements OnInit {
   private currentDate: Date;
   public currentTime: any;
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
+    this.currentDate = new Date();
+
+    if (this.currentDate.getMinutes() < 10) {
+      this.currentTime =
+        this.currentDate.getHours() +
+        ":" +
+        "0" +
+        this.currentDate.getMinutes();
+    } else {
+      this.currentTime =
+        this.currentDate.getHours() + ":" + this.currentDate.getMinutes();
+    }
     setInterval(() => {
       this.currentDate = new Date();
 
