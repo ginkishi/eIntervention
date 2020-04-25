@@ -44,7 +44,9 @@ export class InterventionSearchComponent implements OnInit {
   listePompier: string[] = [];
   intervention: Intervention[] = [];
   response: any;
-  constructor(private apiService: BrigadeApiService, public exportService: ExportService,
+  constructor(
+    private apiService: BrigadeApiService,
+    public exportService: ExportService,
     private dataService: DataService,
     private fb: FormBuilder) { }
 
