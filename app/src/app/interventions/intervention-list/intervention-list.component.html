@@ -12,9 +12,6 @@
                     <th scope="col">Motif</th>
                     <th scope="col">Requérant</th>
                     <th scope="col">Statut</th>
-                    <th scope="col" *ngIf="type != 'valid' && type != 'waiting'&&auth.rights.haveEditingAccess()">
-                        <fa-icon [icon]="['fas', 'edit']"></fa-icon>
-                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -27,9 +24,9 @@
                     <td class="align-middle">{{i.TypeIntervention}}</td>
                     <td class="align-middle">{{i.Requerant}}</td>
                     <td class="align-middle">{{i.Statut}}</td>
-                    <td class="align-middle" *ngIf="type != 'valid' && type != 'waiting'&&auth.rights.haveEditingAccess()"><a
+                    <!-- <td class="align-middle" *ngIf="type != 'valid' && type != 'waiting'&&auth.rights.haveEditingAccess()"><a
                             *ngIf="i.IDStatut == 2 || (i.IDStatut == 0 && idUser == i.IDResponsable) || (i.IDStatut == 1 && auth.rights.haveRequestEditingAccess() && i.IDCreateur != idUser)"
-                            href="" class="btn btn-lg btn-secondary" routerLinkActive="active" routerLink='/intervention/edit/{{i.IDIntervention}}'>Editer</a></td>
+                            href="" class="btn btn-lg btn-secondary" routerLinkActive="active" routerLink='/intervention/edit/{{i.IDIntervention}}'>Editer</a></td> -->
                 </tr>
             </tbody>
         </table>

@@ -6,6 +6,9 @@
         </div>
         <div class="title">Intervention n°{{intervention.NIntervention}}</div>
     </div>
+    <div class="text-center"><button class="btn btn-lg btn-success" routerLink='/intervention/edit/{{intervention.IDIntervention}}' routerLinkActive="active"
+            *ngIf="(intervention.IDStatut == 0 && idUser == intervention.IDResponsable)  || intervention.IDStatut == 2|| (intervention.IDStatut == 1 && auth.rights.haveRequestEditingAccess() && intervention.IDCreateur != idUser)">Editer
+            l'intervention</button></div>
     <div class="body">
         <div class="info">
             <div class="title">Informations</div>

@@ -3,6 +3,7 @@ import { BrigadeApiService } from "src/app/services/brigade-api.service";
 import { ActivatedRoute } from "@angular/router";
 import { Intervention } from "src/app/models/intervention";
 import { Pompier } from "src/app/models/pompier";
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
   selector: "app-intervention-view",
@@ -14,13 +15,15 @@ export class InterventionViewComponent implements OnInit {
   response: any;
   intervention: Intervention;
   responsable: Pompier;
+  idUser: number;
 
   constructor(
     public api: BrigadeApiService,
-    public routeActive: ActivatedRoute
-  ) {}
+    public routeActive: ActivatedRoute, public auth: AuthentificationService
+  ) { }
 
   ngOnInit(): void {
+    this.idUser = JSON.parse(localStorage.getItem("user")).P_ID;
     this.getID();
     this.getInformation();
   }
