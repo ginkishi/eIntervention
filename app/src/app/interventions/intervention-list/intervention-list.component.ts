@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { BrigadeApiService } from "src/app/services/brigade-api.service";
-import { Intervention } from "src/app/models/intervention";
+import { BrigadeApiService } from 'src/app/services/brigade-api.service';
+import { Intervention } from 'src/app/models/intervention';
 import { ActivatedRoute } from '@angular/router';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { ExportService } from 'src/app/services/export.service';
 
 @Component({
-  selector: "app-intervention-list",
-  templateUrl: "./intervention-list.component.html",
-  styleUrls: ["./intervention-list.component.scss"]
+  selector: 'app-intervention-list',
+  templateUrl: './intervention-list.component.html',
+  styleUrls: ['./intervention-list.component.scss']
 })
 export class InterventionListComponent implements OnInit {
   @ViewChild('epltable', { static: false }) epltable: ElementRef;
@@ -30,7 +30,7 @@ export class InterventionListComponent implements OnInit {
 
     this.getInterventions();
 
-    this.idUser = JSON.parse(localStorage.getItem("user")).P_ID;
+    this.idUser = JSON.parse(localStorage.getItem('user')).P_ID;
 
   }
 
