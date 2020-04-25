@@ -60,11 +60,11 @@ const routes: Routes = [
     canActivate: [AuthGuard, WritingAccessGuard],
     component: InterventionAddComponent
   },
-  {
-    path: "intervention/export",
-    canActivate: [AuthGuard, ExportAccessGuard],
-    component: InterventionExportComponent
-  },
+  // {
+  //   path: "intervention/export",
+  //   canActivate: [AuthGuard, ExportAccessGuard],
+  //   component: InterventionExportComponent
+  // },
   {
     path: "intervention/edit/:id",
     canActivate: [AuthGuard, EditingAccessGuard],
@@ -78,7 +78,7 @@ const routes: Routes = [
   {
     path: "intervention/search",
     canActivate: [AuthGuard],
-    component:  InterventionSearchComponent
+    component: InterventionSearchComponent
   },
   {
 
