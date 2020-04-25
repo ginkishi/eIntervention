@@ -13,7 +13,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a *ngIf="auth.rights.haveReadingAccess()" class="dropdown-item" routerLink='/intervention' href="#">Liste</a>
                     <a *ngIf="auth.rights.haveWritingAccess()" class="dropdown-item" routerLinkActive="active" routerLink='/intervention/add' href="#">Ajouter</a>
-                    <a *ngIf="auth.rights.haveExportingAccess()" class="dropdown-item" routerLinkActive="active" routerLink='/intervention/export' href="#">Exporter</a>
+                    <!-- <a *ngIf="auth.rights.haveExportingAccess()" class="dropdown-item" routerLinkActive="active" routerLink='/intervention/export' href="#">Exporter</a> -->
                 </div>
             </li>
             <li class="nav-item" *ngIf="auth.rights.haveReadingAccess()">
