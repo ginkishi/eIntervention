@@ -64,6 +64,7 @@ class InterventionController
                     "DateFin" => utf8_encode($DateFin),
                     "Important" => utf8_encode($Important),
                     "IDResponsable" => utf8_encode($IDResponsable),
+                    "IDCreateur" => utf8_encode($IDCreateur),
                     "Requerant" => utf8_encode($Requerant),
                     "IDStatut" => utf8_encode($IDStatus),
                     "Statut" => utf8_encode($label)
@@ -132,6 +133,7 @@ class InterventionController
                     "DateFin" => utf8_encode($DateFin),
                     "Important" => utf8_encode($Important),
                     "IDResponsable" => utf8_encode($IDResponsable),
+                    "IDCreateur" => utf8_encode($IDCreateur),
                     "Requerant" => utf8_encode($Requerant),
                     "IDStatut" => utf8_encode($IDStatus),
                     "Statut" => utf8_encode($label)
@@ -171,6 +173,7 @@ class InterventionController
                     "DateFin" => utf8_encode($DateFin),
                     "Important" => utf8_encode($Important),
                     "IDResponsable" => utf8_encode($IDResponsable),
+                    "IDCreateur" => utf8_encode($IDCreateur),
                     "Requerant" => utf8_encode($Requerant),
                     "IDStatut" => utf8_encode($IDStatus),
                     "Statut" => utf8_encode($label)
@@ -210,6 +213,7 @@ class InterventionController
                     "DateFin" => utf8_encode($DateFin),
                     "Important" => utf8_encode($Important),
                     "IDResponsable" => utf8_encode($IDResponsable),
+                    "IDCreateur" => utf8_encode($IDCreateur),
                     "Requerant" => utf8_encode($Requerant),
                     "IDStatut" => utf8_encode($IDStatus),
                     "Statut" => utf8_encode($label)
@@ -289,7 +293,8 @@ class InterventionController
     }
 
     //// recherche
-    public function getInterventionByNum($id){
+    public function getInterventionByNum($id)
+    {
         $model = new Intervention();
         $stmt = $model->getInterventionByNum($id);
         $num = $stmt->rowCount();
@@ -326,7 +331,8 @@ class InterventionController
             );
         }
     }
-    public function getInterventionByAdr($adr){
+    public function getInterventionByAdr($adr)
+    {
         $model = new Intervention();
         $stmt = $model->getInterventionByAdr($adr);
         $num = $stmt->rowCount();
@@ -401,45 +407,46 @@ class InterventionController
             );
         }
     }
-    public function getInterventionByDate($date1,$date2)
+    public function getInterventionByDate($date1, $date2)
     {
-    $model = new Intervention();
-    $stmt = $model->getInterventionByDate($date1,$date2);
-    $num = $stmt->rowCount();
-    if ($num > 0) {
+        $model = new Intervention();
+        $stmt = $model->getInterventionByDate($date1, $date2);
+        $num = $stmt->rowCount();
+        if ($num > 0) {
 
-        $farr = array();
-        $farr["interventions"] = array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            extract($row);
-            $f = array(
-                "IDIntervention" => utf8_encode($IDIntervention),
-                "NIntervention" => utf8_encode($NIntervention),
-                "OPM" => utf8_encode($OPM),
-                "Commune" => utf8_encode($Commune),
-                "Adresse" => utf8_encode($Adresse),
-                "TypeIntervention" => utf8_encode($TypeIntervention),
-                "DateDeclenchement" => utf8_encode($DateDeclenchement),
-                "DateFin" => utf8_encode($DateFin),
-                "Important" => utf8_encode($Important),
-                "IDResponsable" => utf8_encode($IDResponsable),
-                "Requerant" => utf8_encode($Requerant),
-                "IDStatut" => utf8_encode($IDStatus),
-                "Statut" => utf8_encode($label)
+            $farr = array();
+            $farr["interventions"] = array();
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+                $f = array(
+                    "IDIntervention" => utf8_encode($IDIntervention),
+                    "NIntervention" => utf8_encode($NIntervention),
+                    "OPM" => utf8_encode($OPM),
+                    "Commune" => utf8_encode($Commune),
+                    "Adresse" => utf8_encode($Adresse),
+                    "TypeIntervention" => utf8_encode($TypeIntervention),
+                    "DateDeclenchement" => utf8_encode($DateDeclenchement),
+                    "DateFin" => utf8_encode($DateFin),
+                    "Important" => utf8_encode($Important),
+                    "IDResponsable" => utf8_encode($IDResponsable),
+                    "Requerant" => utf8_encode($Requerant),
+                    "IDStatut" => utf8_encode($IDStatus),
+                    "Statut" => utf8_encode($label)
+                );
+                array_push($farr["interventions"], $f);
+            }
+            header('Content-Type: application/json');
+            http_response_code(200);
+            echo json_encode($farr);
+        } else {
+            http_response_code(404);
+            echo json_encode(
+                array("message" => "Pas d'intervention.")
             );
-            array_push($farr["interventions"], $f);
         }
-        header('Content-Type: application/json');
-        http_response_code(200);
-        echo json_encode($farr);
-    } else {
-        http_response_code(404);
-        echo json_encode(
-            array("message" => "Pas d'intervention.")
-        );
     }
-}
-    public function getInterventionID($numIntervention,$datedec,$heuredec){
+    public function getInterventionID($numIntervention, $datedec, $heuredec)
+    {
 
         $model = new Intervention();
         $stmt = $model->getThisInterventionId($numIntervention, $datedec, $heuredec);

@@ -15,7 +15,7 @@ class Intervention
     // Récupère la liste de toute les interventions
     public function listAllInterv()
     {
-        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus';
+        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,IDCreateur,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus';
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
@@ -64,7 +64,7 @@ class Intervention
     // Récupère la liste des interventions validées par le chef
     public function listAllIntervValid()
     {
-        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 3';
+        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,IDCreateur,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 3';
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
@@ -74,7 +74,7 @@ class Intervention
     // Récupère la liste des interventions en attente de validations du chef
     public function listAllIntervWaiting()
     {
-        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 1';
+        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,IDCreateur,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 1';
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
@@ -84,7 +84,7 @@ class Intervention
     // Récupère la liste des interventions non validé par le responsable
     public function listAllIntervNoValid()
     {
-        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 2 OR i.IDstatus = 0';
+        $sql = 'SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,IDCreateur,Requerant, s.IDStatus, s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where i.IDstatus = 2 OR i.IDstatus = 0';
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
@@ -115,48 +115,47 @@ class Intervention
     public function getInterventionByNum($id)
     {
         $id = self::cleanUserInput($id);
-        $sql = "SELECT i.IDIntervention,i.NIntervention,i.OPM,i.Commune,i.Adresse,i.TypeIntervention,i.DateDeclenchement,i.DateFin,i.Important,i.IDResponsable,i.Requerant,i.IDStatus,s.label FROM interventions as i JOIN status as s on i.IDstatus = s.IDstatus where i.NIntervention = " . $id . ";";
+        $sql = "SELECT i.IDIntervention,i.NIntervention,i.OPM,i.Commune,i.Adresse,i.TypeIntervention,i.DateDeclenchement,i.DateFin,i.Important,i.IDResponsable,i.Requerant,i.IDStatus,s.label FROM interventions as i JOIN status as s on i.IDstatus = s.IDstatus where i.NIntervention like \"%" . $id . "%\";";
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
-
     }
     public function getInterventionByAdr($adr)
     {
         $adr = self::cleanUserInput($adr);
-        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where Adresse = \"" . $adr .  "\";";
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where Adresse like \"%" . $adr .  "%\";";
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
     }
-    public function getInterventionByRedac($redac){
-     
+    public function getInterventionByRedac($redac)
+    {
+
         $res = explode(" ", $redac); // $res[0] = prenom
         $result = Pompier::getPompierID($res[0], $res[1])->fetch();
         $idredac = $result[0];
-       // echo $idredac;
-        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where NIntervention = " . $idredac . ";";
-      //  echo $sql;
+        //echo $idredac;
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where IDCreateur = " . $idredac . ";";
+        //echo $sql;
         $dbh = BDD::getInstanceOfEIntervention();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
-        
-
     }
 
-    public function  getInterventionByDate($date1,$date2){
-      
-        $date1=$date1." 00:00:00";
-        $date2=$date2." 23:59:59";
-        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where DateDeclenchement > '" . $date1 ."' and DateDeclenchement < '" . $date2."';";
+    public function  getInterventionByDate($date1, $date2)
+    {
+
+        $date1 = $date1 . " 00:00:00";
+        $date2 = $date2 . " 23:59:59";
+        $sql = "SELECT i.IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,i.IDStatus,s.label FROM interventions i JOIN status s on i.IDstatus = s.IDstatus where DateDeclenchement > '" . $date1 . "' and DateDeclenchement < '" . $date2 . "';";
         //  echo $sql;
-          $dbh = BDD::getInstanceOfEIntervention();
-          $stmt = $dbh->prepare($sql);
-          $stmt->execute();
-          return $stmt;
+        $dbh = BDD::getInstanceOfEIntervention();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
     }
     public function listVehiculesForOneIntervention($id)
     {
@@ -198,17 +197,17 @@ class Intervention
         $datedec = $dateDeclenchement . " " . $heureDeclenchement;
         $result = Pompier::getPompierID($res[0], $res[1])->fetch();
         $idresp = $result[0];
-          echo $opm;
-          echo $important;
+        echo $opm;
+        echo $important;
         $datef = $dateFin . " " . $heureFin;
-         if($opm==true) 
-         $opm=1;
-         else 
-         $opm=0;
-         if($important==true) 
-         $important=1;
-         else 
-         $important=0;
+        if ($opm == true)
+            $opm = 1;
+        else
+            $opm = 0;
+        if ($important == true)
+            $important = 1;
+        else
+            $important = 0;
 
 
         $sql = "INSERT INTO interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur,IDstatus) VALUES('$numIntervention',$opm,'$commune','$adresse','$typeIntervention',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur,$status);";
@@ -271,13 +270,11 @@ class Intervention
 
         $dateretour = $dateretour . " " . $heureretour;
 
-   if($ronde==true)
-   {$ronde=1;
-
-   } 
-   else{
-       $ronde=0;
-   }
+        if ($ronde == true) {
+            $ronde = 1;
+        } else {
+            $ronde = 0;
+        }
         $sql = "INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
 
 

@@ -1,73 +1,55 @@
 <app-menu></app-menu>
 <div class="form-container">
-    <h1 class="header">Rapport d'intervention</h1>
+    <div class="bandeau-title">
+        <div class="logo">
+            <fa-icon [icon]="['fas', 'search']"></fa-icon>
+        </div>
+        <div class="title">Rapport d'intervention</div>
+    </div>
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="section">
             <h2 class="title">Recherche d'intervention</h2>
             <div class="body">
                 <div class="group-champ col4">
-
-                   
-                      
-                         
-                        
-                          
-                                <div class="champ" *ngFor="let item of itemsList">
-                                  <input type="radio" [(ngModel)]="radioSelected" value="{{item.value}}" name="item" (change)="onItemChange(item)"/> 
-                                  {{item.name}}
-                                  
-                      
-                         
-                        </div>
-                        <div class="champ" *ngIf="radioSelected=='numerointervention'"><label for="">Num&eacute;ro d'intervention</label>
-                            <input id="value" name="numerointervention" type="text" ngModel  autocomplete="off" required
-                            >
-                        </div>
-                        <div class="champ" *ngIf="radioSelected=='adresse'"><label for="">Adresse</label>
-                            <input id="value" name="adresse" type="text" ngModel  autocomplete="off" required
-                            >
-                        </div>
-                        <div class="champ" *ngIf="radioSelected=='date'"><label for="">Date debut</label>
-                            <input id="value" name="dated" type="date" ngModel  autocomplete="off" required
-                            >
-                        </div>
-                        <div class="champ" *ngIf="radioSelected=='date'"><label for="">Date fin</label>
-                            <input id="value" name="datef" type="date" ngModel  autocomplete="off" required
-                                >
-                        </div>
-                        <div class="champ" *ngIf="radioSelected=='redacteur'"><label for="">Redacteur</label>
-                          
-                            <ng2-completer [datasource]="listePompier" [inputClass]="'form-control form-control-inline'"
-                                [minSearchLength]="1"  ngModel name="redacteur"></ng2-completer>
-    
-                       
-                       
+                    <div class="champ" *ngFor="let item of itemsList">
+                        <input type="radio" [(ngModel)]="radioSelected" value="{{item.value}}" name="item" (change)="onItemChange(item)" />
+                        {{item.name}}
                     </div>
-                        
-                               
-                            
-                    
-            
-                    
-                   
+                    <div class="champ" *ngIf="radioSelected=='numerointervention'"><label for="">Num&eacute;ro d'intervention</label>
+                        <input id="value" name="numerointervention" type="text" ngModel autocomplete="off" required>
+                    </div>
+                    <div class="champ" *ngIf="radioSelected=='adresse'"><label for="">Adresse</label>
+                        <input id="value" name="adresse" type="text" ngModel autocomplete="off" required>
+                    </div>
+                    <div class="champ" *ngIf="radioSelected=='date'"><label for="">Date debut</label>
+                        <input id="value" name="dated" type="date" ngModel autocomplete="off" required>
+                    </div>
+                    <div class="champ" *ngIf="radioSelected=='date'"><label for="">Date fin</label>
+                        <input id="value" name="datef" type="date" ngModel autocomplete="off" required>
+                    </div>
+                    <div class="champ" *ngIf="radioSelected=='redacteur'"><label for="">Redacteur</label>
+                        <ng2-completer [datasource]="listePompier" [inputClass]="'form-control form-control-inline'" [minSearchLength]="1" ngModel name="redacteur">
+                        </ng2-completer>
+                    </div>
                 </div>
             </div>
-        </div>   
-               
+        </div>
         <div class="container">
             <div class="row">
-              <div class="col text-center">
-                <input type="submit" value="Recherche" class="btn btn-primary btn-lg">
-              </div>
+                <div class="col3 text-center">
+                    <div *ngIf='isEmptyList(intervention)'></div>
+                    <input type="submit" value="Recherche" class="btn btn-primary btn-lg">
+                    <button class="btn btn-lg btn-success" (click)="exportToExcel()" *ngIf='!isEmptyList(intervention)'>EXPORTER Excel</button>
+                </div>
             </div>
-          </div>
-        
+        </div>
     </form>
 </div>
-<h5  *ngIf='isEmptyList(intervention)'>
- Pas D'interventions
-</h5>
-<div class="table-responsive" *ngIf='!isEmptyList(intervention)'>
+<hr>
+<h3 *ngIf='isEmptyList(intervention)' class="msg">
+    Pas d'interventions
+</h3>
+<div class="table-responsive" *ngIf='!isEmptyList(intervention)' #epltable>
     <table class="table text-center">
         <thead>
             <tr class="bg-primary">
@@ -78,24 +60,22 @@
                 <th scope="col">Commune</th>
                 <th scope="col">Type d'intervention</th>
                 <th scope="col">Statut</th>
-                <th scope="col">
+                <!-- <th scope="col">
                     <fa-icon [icon]="['fas', 'eye']"></fa-icon>
-                </th>
-               
+                </th> -->
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let i of intervention">
-                <td class="align-middle">{{i.NIntervention}}</td>
+                <td class="align-middle"><a href="" routerLink='/intervention/{{i.IDIntervention}}' class="text-dark font-weight-bold">{{i.NIntervention}}</a></td>
                 <td class="align-middle">{{i.DateDeclenchement}}</td>
                 <td class="align-middle">{{i.DateFin}}</td>
                 <td class="align-middle">{{i.Adresse}}</td>
                 <td class="align-middle">{{i.Commune}}</td>
                 <td class="align-middle">{{i.TypeIntervention}}</td>
-                <td class="align-middle">{{i.Statut}}</td>                                        
-                <td class="align-middle"><a href="" class="btn btn-lg btn-primary" routerLinkActive="active" routerLink='/intervention/{{i.IDIntervention}}'>Voir</a></td>
-               
-            </tr> 
+                <td class="align-middle">{{i.Statut}}</td>
+                <!-- <td class="align-middle"><a href="" class="btn btn-lg btn-primary" routerLinkActive="active" routerLink='/intervention/{{i.IDIntervention}}'>Voir</a></td> -->
+            </tr>
         </tbody>
     </table>
 </div>

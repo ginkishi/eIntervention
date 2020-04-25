@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { BrigadeApiService } from "src/app/services/brigade-api.service";
 import { Intervention } from "src/app/models/intervention";
 import { ActivatedRoute } from '@angular/router';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
   selector: "app-intervention-list",
@@ -12,8 +13,9 @@ export class InterventionListComponent implements OnInit {
   intervention: Intervention[];
   response: any;
   type: string;
+  idUser: number;
 
-  constructor(public api: BrigadeApiService, public routeActive: ActivatedRoute) { }
+  constructor(public api: BrigadeApiService, public routeActive: ActivatedRoute, public auth: AuthentificationService) { }
 
   ngOnInit(): void {
     this.routeActive.data.subscribe(resp => {
@@ -21,6 +23,9 @@ export class InterventionListComponent implements OnInit {
     });
 
     this.getInterventions();
+
+    this.idUser = JSON.parse(localStorage.getItem("user")).P_ID;
+
   }
 
   getInterventions() {

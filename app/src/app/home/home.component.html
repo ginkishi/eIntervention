@@ -8,7 +8,7 @@
     </div>
     <app-clock></app-clock>
 </div>
-<div class="cards-container">
+<div class="cards-container" *ngIf="rights.haveWritingAccess() || rights.haveEditingAccess() || rights.haveRequestEditingAccess()">
     <div class="cards danger">
         <div class="logo"><a routerLinkActive="active" routerLink='/intervention/novalid' href="#">
                 <fa-icon [icon]="['fas', 'times-circle']"></fa-icon>
