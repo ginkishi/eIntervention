@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { BrigadeApiService } from "../services/brigade-api.service";
-import { Vehicule } from "../models/vehicule";
-import { Pompier } from "../models/pompier";
-import { Intervention } from "../models/intervention";
-import { RightAccessService } from "../services/right-access.service";
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { BrigadeApiService } from '../services/brigade-api.service';
+import { Vehicule } from '../models/vehicule';
+import { Pompier } from '../models/pompier';
+import { Intervention } from '../models/intervention';
+import { RightAccessService } from '../services/right-access.service';
 import { NumberIntervention } from '../models/numberintervention';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   response: any;
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   constructor(private apiService: BrigadeApiService, public rights: RightAccessService) { }
 
   ngOnInit(): void {
-    // console.log(localStorage.getItem("setupTime"));
+    // console.log(localStorage.getItem('setupTime'));
 
     this.unPompier = JSON.parse(localStorage.getItem('user'));
     this.rights.checkRight();
