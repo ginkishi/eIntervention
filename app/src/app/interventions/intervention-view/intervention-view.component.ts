@@ -1,14 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { BrigadeApiService } from "src/app/services/brigade-api.service";
-import { ActivatedRoute } from "@angular/router";
-import { Intervention } from "src/app/models/intervention";
-import { Pompier } from "src/app/models/pompier";
+import { Component, OnInit } from '@angular/core';
+import { BrigadeApiService } from 'src/app/services/brigade-api.service';
+import { ActivatedRoute } from '@angular/router';
+import { Intervention } from 'src/app/models/intervention';
+import { Pompier } from 'src/app/models/pompier';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
-  selector: "app-intervention-view",
-  templateUrl: "./intervention-view.component.html",
-  styleUrls: ["./intervention-view.component.scss"]
+  selector: 'app-intervention-view',
+  templateUrl: './intervention-view.component.html',
+  styleUrls: ['./intervention-view.component.scss']
 })
 export class InterventionViewComponent implements OnInit {
   id: number;
@@ -23,7 +23,7 @@ export class InterventionViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.idUser = JSON.parse(localStorage.getItem("user")).P_ID;
+    this.idUser = JSON.parse(localStorage.getItem('user')).P_ID;
     this.getID();
     this.getInformation();
   }
@@ -35,7 +35,7 @@ export class InterventionViewComponent implements OnInit {
       .readOneIntervention(this.id)
       .subscribe((resultat: Intervention) => {
         this.response = JSON.parse(JSON.stringify(resultat));
-        //console.log(this.response);
+        // console.log(this.response);
         this.intervention = this.response.intervention[0];
         this.getResponsable();
         console.log(this.intervention);
@@ -48,7 +48,7 @@ export class InterventionViewComponent implements OnInit {
       .subscribe((res: Pompier) => {
         this.response = JSON.parse(JSON.stringify(res));
         this.responsable = this.response.pompier[0];
-        //console.log(this.responsable.P_NOM);
+        // console.log(this.responsable.P_NOM);
       });
   }
 }
