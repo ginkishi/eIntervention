@@ -1,4 +1,4 @@
-export class Item{
-    name:string;
-    value:string;
+export class Item {
+  name: string;
+  value: string;
 }

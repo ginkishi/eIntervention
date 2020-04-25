@@ -1,3 +1,3 @@
 export class User {
-  constructor(public code, public mp, public Pompier = null) {}
+  constructor(public code, public mp, public Pompier = null) { }
 }

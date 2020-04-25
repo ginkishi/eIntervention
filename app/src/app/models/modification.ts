@@ -1,5 +1,4 @@
-export class Modification{
-    Id:string;
-    modif:String;
-  
+export class Modification {
+  Id: string;
+  modif: string;
 }
