@@ -91,7 +91,7 @@ export class InterventionSearchComponent implements OnInit {
         this.response = JSON.parse(JSON.stringify(resultat));
         this.intervention = this.response.interventions;
 
-        console.log(this.intervention);
+        //console.log(this.intervention);
       });
     }
     if (f.value.item == 'numerointervention') {
@@ -99,7 +99,7 @@ export class InterventionSearchComponent implements OnInit {
         this.response = JSON.parse(JSON.stringify(resultat));
         this.intervention = this.response.interventions;
 
-        console.log(this.intervention);
+        //console.log(this.intervention);
       });
 
     }
@@ -109,7 +109,7 @@ export class InterventionSearchComponent implements OnInit {
         this.response = JSON.parse(JSON.stringify(resultat));
         this.intervention = this.response.interventions;
 
-        console.log(this.intervention);
+        //console.log(this.intervention);
       });
 
     }
@@ -120,13 +120,13 @@ export class InterventionSearchComponent implements OnInit {
         this.response = JSON.parse(JSON.stringify(resultat));
         this.intervention = this.response.interventions;
 
-        console.log(this.intervention);
+        //console.log(this.intervention);
 
-        console.log("ici");
+        //console.log("ici");
 
 
       });
-      console.log("ici2");
+      //console.log("ici2");
     }
 
 

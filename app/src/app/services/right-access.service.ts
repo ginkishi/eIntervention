@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { Droit } from "../models/droit";
+import { Injectable } from '@angular/core';
+import { Droit } from '../models/droit';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class RightAccessService {
   private static right: Droit[] = null;
@@ -14,7 +14,7 @@ export class RightAccessService {
   private deletingAccess: boolean;
   private validatingAccess: boolean;
   constructor() {
-    if (RightAccessService.right != null) this.checkRight();
+    if (RightAccessService.right != null) { this.checkRight(); }
   }
 
   haveWritingAccess() {
@@ -55,11 +55,11 @@ export class RightAccessService {
 
   getRight() {
     if (RightAccessService.right == null) {
-      //console.log("Creation");
+      // console.log('Creation');
 
-      RightAccessService.right = JSON.parse(localStorage.getItem("user")).ROLE;
+      RightAccessService.right = JSON.parse(localStorage.getItem('user')).ROLE;
     }
-    //console.log("Utilisation");
+    // console.log('Utilisation');
 
     return RightAccessService.right;
   }

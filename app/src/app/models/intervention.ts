@@ -1,4 +1,4 @@
-import { VehiculeIntervention } from "./vehiculeIntervention";
+import { VehiculeIntervention } from './vehiculeIntervention';
 
 export class Intervention {
   constructor(

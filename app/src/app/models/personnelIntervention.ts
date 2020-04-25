@@ -4,5 +4,5 @@ export class PersonnelIntervention {
     public Personne: string,
     public IDrole: number,
     public Role: string
-  ) {}
+  ) { }
 }
