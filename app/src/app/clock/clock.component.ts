@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./clock.component.scss"]
 })
 export class ClockComponent implements OnInit {
-  private currentDate: Date;
+  public currentDate: Date;
   public currentTime: any;
   constructor() { }
 
