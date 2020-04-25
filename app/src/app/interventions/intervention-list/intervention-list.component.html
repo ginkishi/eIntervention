@@ -12,9 +12,6 @@
                     <th scope="col">Motif</th>
                     <th scope="col">Requérant</th>
                     <th scope="col">Statut</th>
-                    <th scope="col">
-                        <fa-icon [icon]="['fas', 'eye']"></fa-icon>
-                    </th>
                     <th scope="col" *ngIf="type != 'valid' && type != 'waiting'&&auth.rights.haveEditingAccess()">
                         <fa-icon [icon]="['fas', 'edit']"></fa-icon>
                     </th>
@@ -22,7 +19,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let i of intervention">
-                    <td class="align-middle">{{i.NIntervention}}</td>
+                    <td class="align-middle"><a href="" routerLinkActive="active" routerLink='/intervention/{{i.IDIntervention}}'>{{i.NIntervention}}</a></td>
                     <td class="align-middle">{{i.DateDeclenchement}}</td>
                     <td class="align-middle">{{i.DateFin}}</td>
                     <td class="align-middle">{{i.Adresse}}</td>
@@ -30,7 +27,6 @@
                     <td class="align-middle">{{i.TypeIntervention}}</td>
                     <td class="align-middle">{{i.Requerant}}</td>
                     <td class="align-middle">{{i.Statut}}</td>
-                    <td class="align-middle"><a href="" class="btn btn-lg btn-primary" routerLinkActive="active" routerLink='/intervention/{{i.IDIntervention}}'>Voir</a></td>
                     <td class="align-middle" *ngIf="type != 'valid' && type != 'waiting'&&auth.rights.haveEditingAccess()"><a
                             *ngIf="i.IDStatut == 2 || (i.IDStatut == 0 && idUser == i.IDResponsable) || (i.IDStatut == 1 && auth.rights.haveRequestEditingAccess() && i.IDCreateur != idUser)"
                             href="" class="btn btn-lg btn-secondary" routerLinkActive="active" routerLink='/intervention/edit/{{i.IDIntervention}}'>Editer</a></td>
