@@ -15,7 +15,7 @@ import { NumberIntervention } from '../models/numberintervention';
   providedIn: 'root'
 })
 export class BrigadeApiService {
-  PHP_API_SERVER = 'http://localhost/eIntervention/api';
+  PHP_API_SERVER = 'http://localhost/eintervention/api';
   constructor(private httpClient: HttpClient) { }
 
   readAllVehicule(): Observable<Vehicule[]> {
