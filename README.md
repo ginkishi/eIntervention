@@ -78,3 +78,44 @@ Wait compilation ending...
 
 Now the application is launched
 Go to http://localhost:4200
+
+## **Deployement**
+
+- Open a terminal
+- Go to eIntervention folder
+- Into eIntervention folder :
+
+```bash
+$ cd app
+```
+
+```bash
+ng build --base-href /app/ --prod
+```
+
+with /app/ your baseurl (ex: http://localhost/app/) by default it was "/" <br>
+we use "http://localhost/eintervention/app/"
+
+When the compilation is ended
+
+Go to eIntevention/app/dist and copy/paste in your web server
+
+Paste also an .htaccess file if you use apache server
+
+```bash
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+ 	# -- REDIRECTION to https (optional):
+	# If you need this, uncomment the next two commands
+	# RewriteCond %{HTTPS} !on
+  	# RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+	# --
+
+	RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
+	RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
+
+	RewriteRule ^.*$ - [NC,L]
+	RewriteRule ^(.*) index.html [NC,L]
+</IfModule>
+```
