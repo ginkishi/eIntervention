@@ -29,7 +29,7 @@
     "angular-ng-autocomplete": "^2.0.1",
     "angular7-csv": "^0.2.12",
     "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-ui-dist": "^1.12.1",
     "ng2-completer": "^3.0.3",
     "ng2-input-autocomplete": "^1.1.2",
