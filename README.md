@@ -119,3 +119,13 @@ Paste also an .htaccess file if you use apache server
 	RewriteRule ^(.*) index.html [NC,L]
 </IfModule>
 ```
+
+Create a folder (ex: eIntervention) and inside
+
+Create an "app" folder
+
+Paste the contents of the "dist" folder into the "app" folder created previously
+
+Then paste the "api" folder in your folder (ex: eIntervention)
+
+For more help, see the deployment video in the "[video](video)" folder
